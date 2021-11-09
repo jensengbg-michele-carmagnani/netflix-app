@@ -32,7 +32,7 @@ const ProfileForm = () => {
         <div className={css.profileForm__line2} />
         <PlanScreen />
         <button onClick={signOut} className={css.profileForm__signout}>
-          Sign out
+          <a className={css.profileForm__link} href="/login">Sign out</a>
         </button>
       </section>
     </div>

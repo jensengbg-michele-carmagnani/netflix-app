@@ -1,6 +1,6 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, useHistory, Redirect } from "react-router-dom";
-import {  auth } from "./firebase";
+import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
 
@@ -16,22 +16,17 @@ function App() {
   const userStore = useSelector(selectUser);
   const history = useHistory();
   const dispatch = useDispatch();
-  
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(login({ uid: user.uid, email: user.email }));
-         history.push("/")
+        history.push("/");
       } else {
         dispatch(logout);
-        history.push("/login")
-        
-        
       }
     });
-     
+
     return unsubscribe;
   }, [dispatch, history]);
 

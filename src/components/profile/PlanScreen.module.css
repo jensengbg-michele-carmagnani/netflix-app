@@ -1,7 +1,7 @@
 .planScreen {
   width: 550px;
-
 }
+
 .planScreen__subscription{
   display: flex;
   justify-content:space-between;

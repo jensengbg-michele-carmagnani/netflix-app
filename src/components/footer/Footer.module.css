@@ -22,7 +22,11 @@ margin-right: 0.8rem;
 .footer__wrapper h5{
   line-height: 2.5rem;
   font-weight: 100;
+ 
 }
+/* h5:hover{
+  text-decoration: underline;
+} */
 section > h5:hover{
 color: #fff;
 cursor: pointer;
