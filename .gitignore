@@ -12,9 +12,8 @@
 /build
 # firebase 
 firebase.json
-
+.firebaserc
 firebase/
-
 firebase/*
 
 /firebase/firebase_config.js
