@@ -1,57 +1,75 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, {  useEffect, useState } from "react";
+import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+import {  auth } from "./firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout, selectUser } from "./features/userSlice";
+
+import Layout from "./components/Layout/Layout";
+import HomeScreen from "./Pages/HomeScreen";
+import LoginScreen from "./Pages/LoginScreen";
+import Profile from "./Pages/ProfileScreen";
+
+import "./App.css";
 
 function App() {
+  const [show, setShow] = useState(false);
+  const userStore = useSelector(selectUser);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  
+
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(login({ uid: user.uid, email: user.email }));
+         history.push("/")
+      } else {
+        dispatch(logout);
+        history.push("/login")
+        
+        
+      }
+    });
+     
+    return unsubscribe;
+  }, [dispatch, history]);
+
+  const transitionNavBarHandler = () => {
+    if (window.scrollY > 100) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      {userStore ? (
+        <Layout isShow={show}>
+          <Switch>
+            <Route path="/" exact>
+              <HomeScreen homeScreenHandler={transitionNavBarHandler} />
+            </Route>
+
+            <Route path="/series">{/* series */}</Route>
+            <Route path="/films">{/* Films */}</Route>
+            <Route path="/latest">{/* New & Popular */}</Route>
+            <Route path="/my-list">{/* My List */}</Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+          </Switch>
+        </Layout>
+      ) : (
+        <Switch>
+          <Route path="/">
+            <Redirect to="/login"></Redirect>
+            <LoginScreen />
+          </Route>
+        </Switch>
+      )}
+    </>
   );
 }
 

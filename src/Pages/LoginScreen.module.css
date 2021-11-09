@@ -1,0 +1,100 @@
+.loginScreen {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/b77751c7-0e02-4941-af39-30514ff6b3e2/bc5b1541-15da-43df-9ed9-f8c37833c208/SE-en-20211026-popsignuptwoweeks-perspective_alpha_website_large.jpg") ;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  object-fit: contain;
+  overflow: hidden;
+}
+.loginScreen__logo {
+  width: 190px;
+  position: fixed;
+  top: 0;
+  left: 20px;
+  object-fit: contain;
+}
+.loginScreen__signInButton {
+  position: fixed;
+  top: 25px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 0.2rem;
+  background-color: #e50a15;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+}
+.loginScreen__body {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  top: 30%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  padding: 20px;
+  font-size: 1.4rem;
+  text-indent: 1rem;
+  text-align: center;
+}
+.loginScreen__body > h1 {
+  font-size: 3, 125rem;
+  margin-bottom: 20px;
+}
+.loginScreen__body > h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+.loginScreen__body > h3 {
+  text-align: center;
+  font-weight: 200;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+input {
+  height: 63px;
+  width: 30%;
+  border: none;
+  outline-width: 0;
+  max-width: 600px;
+  border-radius: 0.2rem 0 0 0.2rem;
+  padding-left: 0.6rem;
+  font-size: 1.2rem;
+}
+.loginScreen__buttonSubmit {
+  padding: 18px;
+  width: 200px;
+  background-color: #e50a15;
+  color: #fff;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 0.2rem 0.2rem 0;
+}
+.loginScreen__buttonSubmit:hover {
+  background-color: #ff1925;
+}
+.loginScreen__gredient {
+  width: 100%;
+  z-index: 2;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.4);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}

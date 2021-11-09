@@ -1,13 +1,29 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@100;200;300;400;500,600,700&display=swap');
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  
+}
+html{
+ min-height: 100%;
+ 
+ 
+}
+body {
+  font-family: "Bebas Neue", cursive;
+  font-family: "Kanit", sans-serif;
+  background-color: #141414;
+  
+}
+a{
+  text-decoration:none;
+  color: #fff;
+  cursor: pointer;
+}
+a:hover{
+  text-decoration: underline;
+}
+button{
+  transition-timing-function: ease-in;
+  transition: all 0.5s;
 }

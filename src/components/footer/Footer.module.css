@@ -1,0 +1,36 @@
+.footer{
+  
+  width: 100%;
+  background-color: #141414;
+  color: #808080;
+  height:  250px;
+  
+}
+.footer__wrapper{
+  height:100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer__socialmedia img{
+margin-right: 0.8rem;
+}
+.footer__wrapper section{
+  margin-right: 6rem;
+}
+.footer__wrapper h5{
+  line-height: 2.5rem;
+  font-weight: 100;
+}
+section > h5:hover{
+color: #fff;
+cursor: pointer;
+}
+
+.footer img{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: #fff;
+}
