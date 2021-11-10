@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import css from "./SignIn.module.css";
 import { auth } from "../../firebase";
 
@@ -8,12 +9,15 @@ const SignIn = () => {
 
   const signInHandler = (e) => {
     e.preventDefault();
-    auth.signInWithEmailAndPassword(
-      emailRef.current.value,
-      passwordRef.current.value
-    ).then(user => user).catch(err => {
-      alert(err)
-    });
+    auth
+      .signInWithEmailAndPassword(
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+      .then((user) => user)
+      .catch((err) => {
+        alert(err);
+      });
   };
   const signUpHandler = (e) => {
     e.preventDefault();
@@ -36,12 +40,12 @@ const SignIn = () => {
         <input type="email" placeholder="Email" ref={emailRef} />
         <input type="password" placeholder="Password" ref={passwordRef} />
         <button onClick={signInHandler} type="submit">
-          Sign in
+          <Link to="/movies">Sign in</Link>
         </button>
         <h4>
           <span className={css.signIn__gray}>New to Netflix? </span>
           <span className={css.signIn__link} onClick={signUpHandler}>
-            Sign Up now.
+            <Link to="/movies">Sign up</Link>
           </span>
         </h4>
       </form>

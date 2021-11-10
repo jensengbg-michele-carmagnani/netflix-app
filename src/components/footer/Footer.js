@@ -3,7 +3,7 @@ import css from './Footer.module.css'
 import facebook  from '../../Assets/logo-facebook.svg'
 import instagram  from '../../Assets/logo-instagram.svg'
 import linkedin  from '../../Assets//logo-linkedin.svg'
-import youtube from '../../Assets/logo-facebook.svg'
+import youtube from '../../Assets/logo-youtube.svg'
 
 
 const Footer = () => {

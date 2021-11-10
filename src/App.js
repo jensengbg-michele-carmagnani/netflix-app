@@ -8,6 +8,8 @@ import Layout from "./components/Layout/Layout";
 import HomeScreen from "./Pages/HomeScreen";
 import LoginScreen from "./Pages/LoginScreen";
 import Profile from "./Pages/ProfileScreen";
+import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
+import NotFoundScreen from "./Pages/NotFoundScreen";
 
 import "./App.css";
 
@@ -21,7 +23,6 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(login({ uid: user.uid, email: user.email }));
-        history.push("/");
       } else {
         dispatch(logout);
       }
@@ -44,9 +45,11 @@ function App() {
         <Layout isShow={show}>
           <Switch>
             <Route path="/" exact>
+              <Redirect to="/movies" />
+            </Route>
+            <Route path="/movies" exact>
               <HomeScreen homeScreenHandler={transitionNavBarHandler} />
             </Route>
-
             <Route path="/series">{/* series */}</Route>
             <Route path="/films">{/* Films */}</Route>
             <Route path="/latest">{/* New & Popular */}</Route>
@@ -54,12 +57,17 @@ function App() {
             <Route path="/profile">
               <Profile />
             </Route>
+            <Route path="/movies/:movieId">
+              <MovieDetail />
+            </Route>
+            <Route path="*">
+              <NotFoundScreen />
+            </Route>
           </Switch>
         </Layout>
       ) : (
         <Switch>
-          <Route path="/">
-            <Redirect to="/login"></Redirect>
+          <Route path="/login">
             <LoginScreen />
           </Route>
         </Switch>
