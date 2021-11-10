@@ -13,7 +13,6 @@ const PlanScreen = () => {
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  console.log("env", process.env.REACT_APP_API_STRIPE);
   useEffect(() => {
     db.collection("customers")
       .doc(user.uid)
@@ -94,7 +93,7 @@ const PlanScreen = () => {
           const isCurrentPackage = productData.name === subscription?.role;
 
           return (
-            <section className={css.planScreen__subscription}>
+            <section key={productId} className={css.planScreen__subscription}>
               <article className={css.planScreen__info}>
                 <h4>{productData.name} </h4>
                 <h5>{productData.description}</h5>
@@ -119,10 +118,8 @@ const PlanScreen = () => {
   }
 
   if (loading) {
-    return <LoadingSpinner/>
+    return <LoadingSpinner />;
   }
-
-  
 };
 
 export default PlanScreen;

@@ -21,10 +21,9 @@ const Row = ({ title, fetchUrl, isLargeRow = false ,  }) => {
   const detailsMovieHandler = async (id) => {
     setIsDetail(true);
     setMovieId(id);
-    console.log('detailsHandler', id);
-    console.log('detailsHandler', isDetail);
+
   };
-  console.log(movies)
+  
   const imgRow = `${css.row__poster} ${isLargeRow && css.row__posterLarge}`;
   return (
     <div className={css.row}>

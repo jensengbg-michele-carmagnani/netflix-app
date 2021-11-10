@@ -1,6 +1,6 @@
 .moviedetail{
   position: relative;
-  height:70vh;
+  height:90vh;
   color: aliceblue;
   margin-top: 4rem;
 }
@@ -75,16 +75,24 @@
 }
 
 .moviedetail__info{
-  height:150px;
+  height:280px;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
- padding: 2rem;
+ padding: 2.5rem;
  flex-direction: column;
 }
 .moviedetail__info article{
-  
-  width: 500px;
+  width: 350px;
   display:flex;
+  justify-content: space-between;
 }
+.moviedetail img{
+  width:50px;
+  height:50px;
+  
+  cursor: pointer;
+}
+
+
 
