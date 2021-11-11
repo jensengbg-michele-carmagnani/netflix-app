@@ -4,6 +4,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     user: null,
+    favoriteMovieId:null,
   },
   reducers: {
     login: (state, action) => {
@@ -12,8 +13,11 @@ const userSlice = createSlice({
     logout: (state, action) => {
       state.user = null;
     },
+    favoriteMovie: (state, action) => {
+      state.favoriteMovieId = action.payload;
+    }
   },
 });
-export const { login, logout } = userSlice.actions;
+export const { login, logout, favoriteMovie } = userSlice.actions;
 export const selectUser = (state) => state.user.user;
 export default userSlice.reducer;

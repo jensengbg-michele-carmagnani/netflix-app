@@ -26,19 +26,7 @@
 .banner__buttons {
   margin-bottom: 1.5rem;
 }
-.bunner__buttonDisabled{
- height: 2rem;
-  width: 150px;
-  color: rgb(77, 75, 75);
-  background-color: rgba(51, 51, 51, 0.7);
-  outline: none;
-  border: none;
-  font-weight: 700;
-  border-radius: 0.2vw;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin-right: 1rem;
-}
+
 .bunner__button {
   height: 2rem;
   width: 150px;
@@ -51,9 +39,9 @@
   border-radius: 0.2vw;
   padding-left: 2rem;
   padding-right: 2rem;
-  margin-right: 1rem;
+  
+  
 }
-
 .bunner__button:hover {
   transition: all 0.4s;
   color: #111;
@@ -86,16 +74,18 @@
  font-weight: 100;
  color: #fff;
 }
-
-.moviedetail__info{
-  height:280px;
+.moviedetail__wrapper{
+  height:180px;
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
- padding: 2.5rem;
- flex-direction: column;
+  align-items: center;
+}
+
+.moviedetail__info{
+  flex-direction: column;
 }
 .moviedetail__info article{
+  padding: .4rem;
   width: 350px;
   display:flex;
   justify-content: space-between;
