@@ -6,7 +6,10 @@ import css from "./MovieDetail.module.css";
 import db from "../../firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../features/userSlice";
-import { favoriteMovie } from "../../features/userSlice";
+import {
+  addFavoriteMovie,
+  removeFavoriteMovie,
+} from "../../features/userSlice";
 import avatar from "../../Assets/Netflix-avatar.png";
 import add from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
@@ -43,13 +46,16 @@ const MovieDetail = () => {
     checkFaboriteList();
   }, []);
   console.log(disable);
+
   const addFavoriteHandler = async () => {
     await db
       .collection("customers")
       .doc(user.uid)
       .collection("favorite_session")
       .add(movie)
-      .then(() => alert(` ${movie?.title} succefully added!`))
+      .then(() => {
+        alert(` ${movie?.title} succefully added!`);
+      })
       .catch((error) => console.log(error));
     setDisable(true);
   };
@@ -60,7 +66,9 @@ const MovieDetail = () => {
       .collection("favorite_session")
       .doc(user.favoriteMovieId)
       .delete()
-      .then(() => alert("Movie succefully deleted!"))
+      .then(() => {
+        alert("Movie succefully deleted!");
+      })
       .catch((error) => console.log(error));
     setDisable(false);
   };
@@ -74,7 +82,8 @@ const MovieDetail = () => {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           if (doc.data().id === movie.id) {
-            dispatch(favoriteMovie(doc.id));
+            console.log('check if in favorite', doc.data().id);
+            dispatch(addFavoriteMovie( doc.data().id ));
             setDisable(true);
           }
         });
@@ -98,19 +107,9 @@ const MovieDetail = () => {
           </h1>
           <div className={css.banner__buttons}>
             {!disable ? (
-              <img
-                src={add}
-                className={css.bunner__button}
-                alt=""
-                onClick={addFavoriteHandler}
-              />
+              <img src={add} alt="" onClick={addFavoriteHandler} />
             ) : (
-              <img
-                src={check}
-                alt=""
-                onClick={removeFavoriteHandler}
-                className={css.bunner__button}
-              />
+              <img src={check} alt="" onClick={removeFavoriteHandler} />
             )}
           </div>
         </div>
@@ -130,7 +129,8 @@ const MovieDetail = () => {
             <h4>Vote: </h4>
             <p>
               {movie?.vote_average}
-              <span>&#9734;</span>{" "}
+              <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>{" "}
+              <span>&#9734;</span> <span>&#9734;</span>{" "}
             </p>
           </article>
         </section>

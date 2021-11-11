@@ -31,22 +31,8 @@
   max-width: 560px;
   font-weight: 300;
 }
-.bunner__button {
-  height: 2rem;
-  width: 150px;
-  cursor: pointer;
-  color: #fff;
-  background-color: rgba(51, 51, 51, 0.7);
-  outline: none;
-  border: none;
-  font-weight: 500;
-  border-radius: 0.2vw;
-}
-.bunner__button:hover {
-  transition: all 0.4s;
-  color: #111;
-  background-color: #fff;
-}
+
+
 .banner___fedeBottom {
   height: 16.1rem;
 
@@ -79,11 +65,19 @@
   display: flex;
   justify-content: space-between;
 }
-.moviedetail img {
+.banner__buttons  {
+  position: fixed;
+  top: 500px;
+  left: 30px;
+  
+}
+.banner__buttons img {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  
 }
+
 .moviedetail__cast_info {
   display: flex;
   overflow-y: hidden;

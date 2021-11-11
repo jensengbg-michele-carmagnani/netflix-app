@@ -4,7 +4,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     user: null,
-    favoriteMovieId:null,
+    favoriteMovies:[],
   },
   reducers: {
     login: (state, action) => {
@@ -13,11 +13,14 @@ const userSlice = createSlice({
     logout: (state, action) => {
       state.user = null;
     },
-    favoriteMovie: (state, action) => {
-      state.favoriteMovieId = action.payload;
+    addFavoriteMovie: (state, action) => {
+      state.favoriteMovies.push(action.payload);
+    },
+    removeFavoriteMovie: (state, action) => {
+      state.favoriteMovies.filter(movie => movie.id === !action.payload.movieId)
     }
   },
 });
-export const { login, logout, favoriteMovie } = userSlice.actions;
+export const { login, logout, addFavoriteMovie,removeFavoriteMovie } = userSlice.actions;
 export const selectUser = (state) => state.user.user;
 export default userSlice.reducer;
