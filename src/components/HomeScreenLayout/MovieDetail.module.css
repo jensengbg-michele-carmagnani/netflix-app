@@ -1,6 +1,6 @@
-.moviedetail{
+.moviedetail {
   position: relative;
-  height:90vh;
+  height: 90vh;
   color: aliceblue;
   margin-top: 4rem;
 }
@@ -23,10 +23,14 @@
   font-weight: 800;
   padding-bottom: 0.3rem;
 }
-.banner__buttons {
-  margin-bottom: 1.5rem;
+.banner__description {
+  height: 280px;
+  width: 45rem;
+  line-height: 1.8rem;
+  font-size: 1.6rem;
+  max-width: 560px;
+  font-weight: 300;
 }
-
 .bunner__button {
   height: 2rem;
   width: 150px;
@@ -35,25 +39,13 @@
   background-color: rgba(51, 51, 51, 0.7);
   outline: none;
   border: none;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 0.2vw;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  
-  
 }
 .bunner__button:hover {
   transition: all 0.4s;
   color: #111;
   background-color: #fff;
-}
-.banner__description {
-  height: 280px;
-  width: 45rem;
-  line-height: 1.8rem;
-  font-size: 1.6rem;
-  max-width: 560px;
-  font-weight: 300;
 }
 .banner___fedeBottom {
   height: 16.1rem;
@@ -66,34 +58,51 @@
     rgba(17, 17, 17, 1) 100%
   );
 }
-.moviedetail h4{
- color: #686868;
- font-weight: 300;
-}
- .moviedetail span{
- font-weight: 100;
- color: #fff;
-}
-.moviedetail__wrapper{
-  height:180px;
+
+.moviedetail__wrapper {
+  height: 180px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+.moviedetail__wrapper h4 {
+  color: #686868;
+  font-weight: 300;
+}
 
-.moviedetail__info{
+.moviedetail__info {
   flex-direction: column;
 }
-.moviedetail__info article{
-  padding: .4rem;
+.moviedetail__info article {
+  padding: 0.4rem;
   width: 350px;
-  display:flex;
+  display: flex;
   justify-content: space-between;
 }
-.moviedetail img{
-  width:50px;
-  height:50px;
+.moviedetail img {
+  width: 50px;
+  height: 50px;
   cursor: pointer;
 }
-
-
+.moviedetail__cast_info {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 30px;
+  margin-top: 5rem;
+}
+.moviedetail__cast_info img {
+  height: 250px;
+  width: 150px;
+  object-fit: contain;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+.moviedetail__cast_info img:hover {
+  transform: scale(1.08);
+  opacity: 1;
+  cursor: pointer;
+}
+.moviedetail__cast_info::-webkit-scrollbar {
+  display: none;
+}

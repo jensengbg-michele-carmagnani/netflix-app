@@ -7,13 +7,18 @@ import db from "../../firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { favoriteMovie } from "../../features/userSlice";
-import add from "../../Assets/add-circle-outline.svg";
+import avatar from "../../Assets/Netflix-avatar.png";
+import add from "../../Assets/add50-ico.png";
+import check from "../../Assets/check50-ico.png";
 
 const MovieDetail = () => {
   const [movie, setMovie] = useState({});
-  const [isDisable, setIsDisable] = useState(false);
+  const [movieCast, setMovieCast] = useState([]);
+
+  const [disable, setDisable] = useState(false);
   const movieId = useParams().movieId;
   const user = useSelector(selectUser);
+  const base_url_img = "https://image.tmdb.org/t/p/original/";
 
   const dispatch = useDispatch();
 
@@ -22,35 +27,42 @@ const MovieDetail = () => {
   };
 
   const details_Url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos&append_to_response=videos`;
+  const movieCast_url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const response = await axios.get(details_Url);
       setMovie(response.data);
     };
+    const fetchMovieCast = async () => {
+      const response = await axios.get(movieCast_url);
+      setMovieCast(response.data.cast);
+    };
     fetchMovieDetails();
+    fetchMovieCast();
     checkFaboriteList();
   }, []);
-
+  console.log(disable);
   const addFavoriteHandler = async () => {
     await db
       .collection("customers")
       .doc(user.uid)
       .collection("favorite_session")
       .add(movie)
-      .then((docRef) => alert(` ${movie?.title} succefully added!`))
+      .then(() => alert(` ${movie?.title} succefully added!`))
       .catch((error) => console.log(error));
-    setIsDisable(true);
+    setDisable(true);
   };
-  const removeFavoriteHandler = () => {
-    db.collection("customers")
+  const removeFavoriteHandler = async () => {
+    await db
+      .collection("customers")
       .doc(user.uid)
       .collection("favorite_session")
       .doc(user.favoriteMovieId)
       .delete()
       .then(() => alert("Movie succefully deleted!"))
       .catch((error) => console.log(error));
-    setIsDisable(false);
+    setDisable(false);
   };
   const checkFaboriteList = async () => {
     console.log("checkfavorites");
@@ -63,7 +75,7 @@ const MovieDetail = () => {
         querySnapshot.forEach((doc) => {
           if (doc.data().id === movie.id) {
             dispatch(favoriteMovie(doc.id));
-            setIsDisable(true);
+            setDisable(true);
           }
         });
       });
@@ -85,20 +97,20 @@ const MovieDetail = () => {
             {troncate(movie?.overview, 180)}
           </h1>
           <div className={css.banner__buttons}>
-            {isDisable ? (
-              <button
-                onClick={addFavoriteHandler}
+            {!disable ? (
+              <img
+                src={add}
                 className={css.bunner__button}
-              >
-                + My list
-              </button>
+                alt=""
+                onClick={addFavoriteHandler}
+              />
             ) : (
-              <button
+              <img
+                src={check}
+                alt=""
                 onClick={removeFavoriteHandler}
                 className={css.bunner__button}
-              >
-                - My list
-              </button>
+              />
             )}
           </div>
         </div>
@@ -139,6 +151,22 @@ const MovieDetail = () => {
             ))}
           </article>
         </section>
+      </section>
+      <section className={css.moviedetail__cast_info}>
+        {movieCast.map((actor) => (
+          <div className={css.moviedetail__cast_card} key={actor.id}>
+            <img
+              key={actor.id}
+              src={
+                actor.profile_path
+                  ? `${base_url_img}${actor.profile_path}`
+                  : avatar
+              }
+              alt={actor.name}
+            />
+            <p>{actor.name}</p>
+          </div>
+        ))}
       </section>
     </div>
   );
