@@ -10,6 +10,7 @@ import add from "../../Assets/add-circle-outline.svg";
 
 const MovieDetail = () => {
   const [movie, setMovie] = useState({});
+  const [isDisable, setIsDisable] = useState(false);
   const movieId = useParams().movieId;
   const user = useSelector(selectUser);
 
@@ -25,25 +26,38 @@ const MovieDetail = () => {
       setMovie(response.data);
     };
     fetchMovieDetails();
+    checkFaboriteList();
   }, []);
 
   const addFavoriteHandler = async () => {
-    const docRef = await db
+    await db
       .collection("customers")
       .doc(user.uid)
       .collection("favorite_session")
-      .add({ movidId: "hello" })
-      .then((docRef) => alert(docRef))
+      .add(movie)
+      .then((docRef) =>
+        alert(`${movie?.title} has been adde to your favorite `)
+      )
       .catch((error) => console.log(error));
-    
-    
+    setIsDisable(true);
   };
-  
 
-
-
-  console.log(movie);
-
+  const checkFaboriteList = async () => {
+    console.log("checkfavorites");
+    await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("favorite_session")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (doc.data().id === movie.id) {
+            setIsDisable(true);
+          }
+        });
+      });
+  };
+  console.log("movieId", movie.id);
   return (
     <div className={css.moviedetail}>
       <div
@@ -60,8 +74,15 @@ const MovieDetail = () => {
             {troncate(movie?.overview, 180)}
           </h1>
           <div className={css.banner__buttons}>
-            <img src={add} alt="add" />
-            <button onClick={addFavoriteHandler} className={css.bunner__button}>
+            <button
+              disabled={isDisable}
+              onClick={addFavoriteHandler}
+              className={
+                isDisable
+                  ? `${css.bunner__button}`
+                  : `${css.bunner__buttonDisabled}`
+              }
+            >
               + My list
             </button>
           </div>
