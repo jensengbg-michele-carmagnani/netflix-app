@@ -17,7 +17,7 @@ import "./App.css";
 function App() {
   const [show, setShow] = useState(false);
   const user = useSelector(selectUser);
-  const favoriteListArray = useSelector(state=> state.user.favoriteList)
+const favoriteListArray = useSelector(state=> state.user.favoriteList)
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -30,10 +30,12 @@ function App() {
       }
     });
 
+   
     return unsubscribe;
-  }, [dispatch, history]);
+  }, [dispatch, history,]);
 
-  
+  const getFavoriteList = () => {
+    
     if (user !== null) {
       db.collection("customers")
         .doc(user.uid)
@@ -47,22 +49,23 @@ function App() {
           dispatch(favoriteList(favoriteListArray));
         });
     }
-  
+  }
 
  
-  
-    // db.collection("customers")
-    //   .doc(user.uid)
-    //   .collection("favorite_session")
-    //   .onSnapshot((querySnapshot) => {
-    //     let newFavoriteList = [];
-    //     querySnapshot.forEach((movie) => {
-    //       if(user.favoriteListArray.find(fav =>  fav.movieId !== movie.data().id))
-    //         newFavoriteList.push({ movieId: movie.data().id });
-          
-    //     });
-    //     dispatch(favoriteList(newFavoriteList));
-    //   });
+  // if (user) {
+    
+  //   db.collection("customers")
+  //     .doc(user.uid)
+  //     .collection("favorite_session")
+  //     .onSnapshot((querySnapshot) => {
+  //       let newFavoriteList = [];
+  //       querySnapshot.forEach((movie) => {
+  //         if(favoriteListArray.find(fav =>  fav.movieId !== movie.data().id))
+  //           newFavoriteList.push({ movieId: movie.data().id });
+  //       });
+  //       dispatch(favoriteList(newFavoriteList));
+  //     });
+  // }
   
 
   const transitionNavBarHandler = () => {
