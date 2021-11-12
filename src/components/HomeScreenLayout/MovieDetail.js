@@ -6,24 +6,23 @@ import css from "./MovieDetail.module.css";
 import db from "../../firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../features/userSlice";
-import {
-  addFavoriteMovie,
-  removeFavoriteMovie,
-} from "../../features/userSlice";
+
+
 import avatar from "../../Assets/Netflix-avatar.png";
 import add from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
 
 const MovieDetail = () => {
+
   const [movie, setMovie] = useState({});
   const [movieCast, setMovieCast] = useState([]);
+  
 
-  const [disable, setDisable] = useState(false);
+  const dispatch = useDispatch();
   const movieId = useParams().movieId;
   const user = useSelector(selectUser);
   const base_url_img = "https://image.tmdb.org/t/p/original/";
-
-  const dispatch = useDispatch();
+  const favoriteList = useSelector((state) => state.user.favoriteList);
 
   const troncate = (string, n) => {
     return string?.length > n ? string.substring(0, n - 1) + "..." : string;
@@ -43,9 +42,10 @@ const MovieDetail = () => {
     };
     fetchMovieDetails();
     fetchMovieCast();
-    checkFaboriteList();
   }, []);
-  console.log(disable);
+  
+
+
 
   const addFavoriteHandler = async () => {
     await db
@@ -54,11 +54,12 @@ const MovieDetail = () => {
       .collection("favorite_session")
       .add(movie)
       .then(() => {
+
         alert(` ${movie?.title} succefully added!`);
       })
       .catch((error) => console.log(error));
-    setDisable(true);
   };
+
   const removeFavoriteHandler = async () => {
     await db
       .collection("customers")
@@ -70,25 +71,14 @@ const MovieDetail = () => {
         alert("Movie succefully deleted!");
       })
       .catch((error) => console.log(error));
-    setDisable(false);
+    
   };
-  const checkFaboriteList = async () => {
-    console.log("checkfavorites");
-    await db
-      .collection("customers")
-      .doc(user.uid)
-      .collection("favorite_session")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (doc.data().id === movie.id) {
-            console.log('check if in favorite', doc.data().id);
-            dispatch(addFavoriteMovie( doc.data().id ));
-            setDisable(true);
-          }
-        });
-      });
-  };
+
+
+  
+
+  
+   const isFavorite = favoriteList.some((movie) => movie.movieId == movieId); 
 
   return (
     <div className={css.moviedetail}>
@@ -106,7 +96,7 @@ const MovieDetail = () => {
             {troncate(movie?.overview, 180)}
           </h1>
           <div className={css.banner__buttons}>
-            {!disable ? (
+            {!isFavorite  ? (
               <img src={add} alt="" onClick={addFavoriteHandler} />
             ) : (
               <img src={check} alt="" onClick={removeFavoriteHandler} />
