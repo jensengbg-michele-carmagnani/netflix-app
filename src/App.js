@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout, selectUser, favoriteList } from "./features/userSlice";
-import db from "./firebase";
+import { login, logout, selectUser } from "./features/userSlice";
+
 
 import Layout from "./components/Layout/Layout";
 import HomeScreen from "./Pages/HomeScreen";
@@ -17,7 +17,6 @@ import "./App.css";
 function App() {
   const [show, setShow] = useState(false);
   const user = useSelector(selectUser);
-const favoriteListArray = useSelector(state=> state.user.favoriteList)
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -30,43 +29,10 @@ const favoriteListArray = useSelector(state=> state.user.favoriteList)
       }
     });
 
-   
     return unsubscribe;
-  }, [dispatch, history,]);
+  }, [dispatch, history]);
 
-  const getFavoriteList = () => {
-    
-    if (user !== null) {
-      db.collection("customers")
-        .doc(user.uid)
-        .collection("favorite_session")
-        .get()
-        .then((querySnapshot) => {
-          let favoriteListArray = [];
-          querySnapshot.forEach((movie) => {
-            favoriteListArray.push({ movieId: movie.data().id });
-          });
-          dispatch(favoriteList(favoriteListArray));
-        });
-    }
-  }
 
- 
-  // if (user) {
-    
-  //   db.collection("customers")
-  //     .doc(user.uid)
-  //     .collection("favorite_session")
-  //     .onSnapshot((querySnapshot) => {
-  //       let newFavoriteList = [];
-  //       querySnapshot.forEach((movie) => {
-  //         if(favoriteListArray.find(fav =>  fav.movieId !== movie.data().id))
-  //           newFavoriteList.push({ movieId: movie.data().id });
-  //       });
-  //       dispatch(favoriteList(newFavoriteList));
-  //     });
-  // }
-  
 
   const transitionNavBarHandler = () => {
     if (window.scrollY > 100) {
