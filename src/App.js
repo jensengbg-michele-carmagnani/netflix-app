@@ -70,7 +70,8 @@ function App() {
         </Layout>
       ) : (
         <Switch>
-          <Route path="/login">
+            <Route path="/">
+              <Redirect to="/login"/>
             <LoginScreen />
           </Route>
         </Switch>

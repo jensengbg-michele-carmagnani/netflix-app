@@ -84,7 +84,7 @@ const MovieDetail = () => {
       });
 
   const removeFavoriteHandler = async () => {
-    
+    console.log(isFavoriteId)
     await db
       .collection("customers")
       .doc(user.uid)
