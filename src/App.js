@@ -8,6 +8,7 @@ import Layout from "./components/Layout/Layout";
 import HomeScreen from "./Pages/HomeScreen";
 import LoginScreen from "./Pages/LoginScreen";
 import Profile from "./Pages/ProfileScreen";
+import TvSeriesScreen from "./Pages/TvSeriesScreen"
 
 import "./App.css";
 
@@ -47,7 +48,7 @@ function App() {
               <HomeScreen homeScreenHandler={transitionNavBarHandler} />
             </Route>
 
-            <Route path="/series">{/* series */}</Route>
+            <Route path="/series"><TvSeriesScreen/></Route>
             <Route path="/films">{/* Films */}</Route>
             <Route path="/latest">{/* New & Popular */}</Route>
             <Route path="/my-list">{/* My List */}</Route>
