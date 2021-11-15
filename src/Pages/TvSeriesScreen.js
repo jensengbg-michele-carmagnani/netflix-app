@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import axios from "../lib/axios";
-import requests from "../lib/Requests";
-import TvSeries from "../components/TvSeries/TvSeries"
+import React from 'react'
 
+import TvSeries from "../components/TvSeries/TvSeries"
+import css from "./TvSeriesScreen.module.css"
 const TvSeriesScreen = () => {
-  const [tvSeries, setTvSeries] = useState({});
-    
-  useEffect(() => {
-    const getSeriesHandler = async () => {
-      const response = await axios.get(
-        `${requests.fetchTvseries}`
-      );
-      setTvSeries(response.data.results)
-    };
-    getSeriesHandler();
-  }, []);
-  console.log(tvSeries);
+  
   return (
-    <TvSeries tvSeries={tvSeries}/>
+    <div className={css.tvSeriesScreen}>
+      <TvSeries />
+    </div>
   )
 }
 
