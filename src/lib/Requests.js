@@ -19,6 +19,7 @@ const requests = {
   fetchTvseriesDrama: `/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_genres=18`,
   fetchTvseriesWarPolitics: `/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_genres=10768`,
   fetchGenre: `genre/tv/list?api_key=${API_KEY}&language=en-US`,
+  fetchTvseriesTopten:`discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`,
   base_url_img: "https://image.tmdb.org/t/p/original/",
 };
 

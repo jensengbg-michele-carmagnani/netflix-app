@@ -1,5 +1,4 @@
 import React from 'react'
-
 import requests from '../lib/Requests'
 import TvSeries from "../components/TvSeries/TvSeries"
 import Banner from '../components/Header/Banner'
@@ -9,7 +8,8 @@ const TvSeriesScreen = () => {
    
   return (
     <div className={css.tvSeriesScreen}>
-      <Banner/>
+      <Banner />
+      <TvSeries title="Top Twenty" fetchUrl={requests.fetchTvseriesTopten}/>
       <TvSeries title="Action & Adventure" fetchUrl={requests.fetchTvseriesAction} isLargeRow />
       <TvSeries title="Animation" fetchUrl={requests.fetchTvseriesAnimation} />
       <TvSeries title="Fantasy" fetchUrl={requests.fetchTvseriesFantasy} />
@@ -24,3 +24,4 @@ const TvSeriesScreen = () => {
 }
 
 export default TvSeriesScreen
+

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "../../lib/axios";
 import requests from "../../lib/Requests";
 import css from "./TvSeries.module.css";
+import icons from "../../Assets/Icons"
 
 const TvSeries = (props) => {
   const {fetchUrl, title} = props
@@ -17,7 +18,7 @@ useEffect(() => {
   getSeriesHandler();
 }, []);
   
-  console.log("Genre", axios.get(requests.fetchGenre));
+  console.log("icon", tvSeries);
  
   
   return (
@@ -27,6 +28,7 @@ useEffect(() => {
         {tvSeries.map((serie) => (
           <Link to={`/movies/${serie.id}`}>
             <div className={css.tvseries__poster}>
+              {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>}
               <img
                 className={css.tvseries__img}
                 key={serie.id}
