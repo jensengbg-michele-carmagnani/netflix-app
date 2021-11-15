@@ -11,6 +11,8 @@ import LoginScreen from "./Pages/LoginScreen";
 import Profile from "./Pages/ProfileScreen";
 import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
 import NotFoundScreen from "./Pages/NotFoundScreen";
+import MyListScreen from "./Pages/MyListScreen";
+
 
 import "./App.css";
 
@@ -56,7 +58,7 @@ function App() {
             <Route path="/series">{/* series */}</Route>
             <Route path="/films">{/* Films */}</Route>
             <Route path="/latest">{/* New & Popular */}</Route>
-            <Route path="/my-list">{/* My List */}</Route>
+            <Route path="/myfavorites"><MyListScreen/></Route>
             <Route path="/profile">
               <Profile />
             </Route>
@@ -71,7 +73,6 @@ function App() {
       ) : (
         <Switch>
             <Route path="/">
-              <Redirect to="/login"/>
             <LoginScreen />
           </Route>
         </Switch>

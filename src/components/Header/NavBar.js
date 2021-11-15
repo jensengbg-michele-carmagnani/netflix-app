@@ -15,7 +15,7 @@ const NavBar = (props) => {
     >
       <div className={css.nav__content}>
         <ul>
-          <NavLink to="/" >
+          <NavLink to="/">
             <li>
               <img
                 className={css.logo}
@@ -33,7 +33,7 @@ const NavBar = (props) => {
           <NavLink to="/latest" activeClassName={css.active}>
             <li>New & Popular</li>
           </NavLink>
-          <NavLink to="/my-list" activeClassName={css.active}>
+          <NavLink to="/myfavorites" activeClassName={css.active}>
             <li>My list</li>
           </NavLink>
           <NavLink to="/profile" activeClassName={css.active}>
@@ -45,7 +45,6 @@ const NavBar = (props) => {
               />
             </li>
           </NavLink>
-          
         </ul>
       </div>
     </div>

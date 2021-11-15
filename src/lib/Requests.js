@@ -9,6 +9,7 @@ const requests = {
   fetchCommedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
   fetchRomaticMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
   fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
+  base_url_img : "https://image.tmdb.org/t/p/original/",
 }
 
 export default requests
