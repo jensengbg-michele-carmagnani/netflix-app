@@ -6,26 +6,29 @@ import requests from "../../lib/Requests";
 import css from "./TvSeries.module.css";
 
 const TvSeries = (props) => {
+  const {fetchUrl, title} = props
   const [tvSeries, setTvSeries] = useState([]);
 
 useEffect(() => {
   const getSeriesHandler = async () => {
-    const response = await axios.get(`${requests.fetchTvseries}`);
+    const response = await axios.get(fetchUrl);
     setTvSeries(response.data.results);
   };
   getSeriesHandler();
 }, []);
+  
+  console.log("Genre", axios.get(requests.fetchGenre));
  
-  console.log("seriesComponent", tvSeries);
+  
   return (
     <div className={css.tvseries}>
-      <h1>My List</h1>
-      <div className={css.tvserie__gridcontainer}>
+      <h1>{title}</h1>
+      <div className={css.tvseries__postersRow}>
         {tvSeries.map((serie) => (
           <Link to={`/movies/${serie.id}`}>
-            <div className={css.mylist__griditem}>
+            <div className={css.tvseries__poster}>
               <img
-                className={css.tvserie__img}
+                className={css.tvseries__img}
                 key={serie.id}
                 src={`${requests.base_url_img}${
                   serie.poster_path || serie.backdrop_path
@@ -33,7 +36,7 @@ useEffect(() => {
                 alt={serie.name}
               />
             </div>
-            <h3>{serie.name}</h3>
+            
           </Link>
         ))}
       </div>

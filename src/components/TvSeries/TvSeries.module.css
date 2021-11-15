@@ -1,15 +1,27 @@
-.tvseries{
-  height:100%;
+.tvseries {
+  height: 100%;
   margin-top: 60px;
+  color: #fff;
 }
 
-.tvserie__gridcontainer{
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
-
-
+.tvseries__postersRow {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 20px;
 }
-.tvserie__img{
-  max-width:250px;
+.tvseries__img {
+  max-height: 250px;
   object-fit: contain;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+.tvseries__img:hover {
+  transform: scale(1.08);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.tvseries__posters::-webkit-scrollbar {
+  display: none;
 }
