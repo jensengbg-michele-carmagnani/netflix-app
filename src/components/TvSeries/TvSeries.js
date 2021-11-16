@@ -28,7 +28,7 @@ useEffect(() => {
         {tvSeries.map((serie) => (
           <Link to={`/movies/${serie.id}`}>
             <div className={css.tvseries__poster}>
-              {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>}
+              {/* {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>} */}
               <img
                 className={css.tvseries__img}
                 key={serie.id}
