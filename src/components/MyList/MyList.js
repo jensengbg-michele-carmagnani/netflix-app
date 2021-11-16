@@ -22,7 +22,6 @@ const MyList = () => {
         querySnapshot.forEach((fav) => {
           if (fav.exists) {
             favoriteMovies.push({ docId: fav.id, movie: fav.data() });
-            console.log(fav.data());
           }
         });
         setMyFavorite(favoriteMovies);
@@ -35,7 +34,7 @@ const MyList = () => {
     getFavoriteHandler();
   }, []);
 
-  console.log("favorite", myFavorite);
+
 
   return (
     <div className={css.mylist}>
