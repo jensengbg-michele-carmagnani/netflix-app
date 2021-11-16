@@ -1,9 +1,15 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import requests from '../lib/Requests'
 import TvSeries from "../components/TvSeries/TvSeries"
 import Banner from '../components/Header/Banner'
 import css from "./TvSeriesScreen.module.css"
-const TvSeriesScreen = () => {
+const TvSeriesScreen = (props) => {
+
+   useEffect(() => {
+     window.addEventListener("scroll", props.seriesScreenHandler);
+     return () =>
+       window.removeEventListener("scroll", props.seriesScreenHandler);
+   }, [props.seriesScreenHandler]);
   
    
   return (

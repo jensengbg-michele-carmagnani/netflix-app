@@ -18,7 +18,9 @@ useEffect(() => {
   getSeriesHandler();
 }, []);
   
-  console.log("icon", tvSeries);
+ 
+  
+  
  
   
   return (
