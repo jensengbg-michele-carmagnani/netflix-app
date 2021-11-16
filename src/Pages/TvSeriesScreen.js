@@ -5,9 +5,6 @@ import Banner from '../components/Header/Banner'
 import css from "./TvSeriesScreen.module.css"
 const TvSeriesScreen = (props) => {
 
-  console.log(props)
-
-  
    useEffect(() => {
      window.addEventListener("scroll", props.seriesScreenHandler);
      return () =>

@@ -38,8 +38,6 @@ function App() {
     return unsubscribe;
   }, [dispatch, history]);
 
-
-
   const transitionNavBarHandler = () => {
     if (window.scrollY > 100) {
       setShow(true);
@@ -47,7 +45,7 @@ function App() {
       setShow(false);
     }
   };
- console.log(show);
+ 
   return (
     <>
       {user ? (
