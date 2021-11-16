@@ -4,19 +4,16 @@ import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
 
-
 import Layout from "./components/Layout/Layout";
 import HomeScreen from "./Pages/HomeScreen";
 import LoginScreen from "./Pages/LoginScreen";
 import Profile from "./Pages/ProfileScreen";
 
-import TvSeriesScreen from "./Pages/TvSeriesScreen"
-
+import TvSeriesScreen from "./Pages/TvSeriesScreen";
+import FilmsScreen from "./Pages/FilmsScreen";
 import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
 import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
-
-
 
 import "./App.css";
 
@@ -38,8 +35,6 @@ function App() {
     return unsubscribe;
   }, [dispatch, history]);
 
-
-
   const transitionNavBarHandler = () => {
     if (window.scrollY > 100) {
       setShow(true);
@@ -60,12 +55,17 @@ function App() {
               <HomeScreen homeScreenHandler={transitionNavBarHandler} />
             </Route>
 
+            <Route path="/series">
+              <TvSeriesScreen />
+            </Route>
 
-            <Route path="/series"><TvSeriesScreen/></Route>
-
-            <Route path="/films">{/* Films */}</Route>
+            <Route path="/films">
+              <FilmsScreen />
+            </Route>
             <Route path="/latest">{/* New & Popular */}</Route>
-            <Route path="/myfavorites"><MyListScreen/></Route>
+            <Route path="/myfavorites">
+              <MyListScreen />
+            </Route>
             <Route path="/profile">
               <Profile />
             </Route>
@@ -79,7 +79,7 @@ function App() {
         </Layout>
       ) : (
         <Switch>
-            <Route path="/">
+          <Route path="/">
             <LoginScreen />
           </Route>
         </Switch>
