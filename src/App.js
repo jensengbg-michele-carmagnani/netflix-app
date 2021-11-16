@@ -47,7 +47,7 @@ function App() {
       setShow(false);
     }
   };
-
+ console.log(show);
   return (
     <>
       {user ? (
@@ -60,12 +60,15 @@ function App() {
               <HomeScreen homeScreenHandler={transitionNavBarHandler} />
             </Route>
 
+            <Route path="/series">
+              <TvSeriesScreen seriesScreenHandler={transitionNavBarHandler} />
+            </Route>
 
-            <Route path="/series"><TvSeriesScreen/></Route>
-
-            <Route path="/films">{/* Films */}</Route>
+            <Route path="/films" >{/* Films */}</Route>
             <Route path="/latest">{/* New & Popular */}</Route>
-            <Route path="/myfavorites"><MyListScreen/></Route>
+            <Route path="/myfavorites">
+              <MyListScreen />
+            </Route>
             <Route path="/profile">
               <Profile />
             </Route>
@@ -79,7 +82,7 @@ function App() {
         </Layout>
       ) : (
         <Switch>
-            <Route path="/">
+          <Route path="/">
             <LoginScreen />
           </Route>
         </Switch>
