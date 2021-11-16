@@ -1,4 +1,4 @@
-const API_KEY = "ee50a1e0d06151144fff8f5e7363f16e";
+export const API_KEY = "ee50a1e0d06151144fff8f5e7363f16e";
 
 const requests = {
   fetchTrending: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
@@ -22,5 +22,6 @@ const requests = {
   fetchTvseriesTopten:`discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`,
   base_url_img: "https://image.tmdb.org/t/p/original/",
 };
+
 
 export default requests;

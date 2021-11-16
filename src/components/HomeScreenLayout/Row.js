@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import css from "./Row.module.css";
 import axios from "../../lib/axios";
 
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   const [movies, setMovies] = useState([]);
+
   const base_url_img = "https://image.tmdb.org/t/p/original/";
 
   useEffect(() => {
@@ -24,14 +26,16 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
           (movie) =>
             ((isLargeRow && movie.poster_path) ||
               (!isLargeRow && movie.backdrop_path)) && (
-              <img
-                className={imgRow}
-                key={movie.id}
-                src={`${base_url_img}${
-                  isLargeRow ? movie.poster_path : movie.backdrop_path
-                }`}
-                alt={movie.name}
-              />
+              <Link to={`/movies/${movie.id}`}>
+                <img
+                  className={imgRow}
+                  key={movie.id}
+                  src={`${base_url_img}${
+                    isLargeRow ? movie.poster_path : movie.backdrop_path
+                  }`}
+                  alt={movie.name}
+                />
+              </Link>
             )
         )}
       </div>
