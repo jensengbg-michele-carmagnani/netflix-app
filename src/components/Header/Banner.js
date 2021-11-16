@@ -38,7 +38,7 @@ const Banner = () => {
           <button className={css.bunner__button}>My list</button>
         </div>
         <h1 className={css.banner__description}>
-          {troncate(movie?.overview, 150)}
+          {troncate(movie?.overview, 180)}
         </h1>
       </div>
       <div className={css.banner___fedeBottom} />

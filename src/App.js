@@ -4,16 +4,21 @@ import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
 
+
 import Layout from "./components/Layout/Layout";
 import HomeScreen from "./Pages/HomeScreen";
 import LoginScreen from "./Pages/LoginScreen";
 import Profile from "./Pages/ProfileScreen";
+import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
+import NotFoundScreen from "./Pages/NotFoundScreen";
+import MyListScreen from "./Pages/MyListScreen";
+
 
 import "./App.css";
 
 function App() {
   const [show, setShow] = useState(false);
-  const userStore = useSelector(selectUser);
+  const user = useSelector(selectUser);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -21,7 +26,6 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(login({ uid: user.uid, email: user.email }));
-        history.push("/");
       } else {
         dispatch(logout);
       }
@@ -29,6 +33,8 @@ function App() {
 
     return unsubscribe;
   }, [dispatch, history]);
+
+
 
   const transitionNavBarHandler = () => {
     if (window.scrollY > 100) {
@@ -40,26 +46,33 @@ function App() {
 
   return (
     <>
-      {userStore ? (
+      {user ? (
         <Layout isShow={show}>
           <Switch>
             <Route path="/" exact>
+              <Redirect to="/movies" />
+            </Route>
+            <Route path="/movies" exact>
               <HomeScreen homeScreenHandler={transitionNavBarHandler} />
             </Route>
-
             <Route path="/series">{/* series */}</Route>
             <Route path="/films">{/* Films */}</Route>
             <Route path="/latest">{/* New & Popular */}</Route>
-            <Route path="/my-list">{/* My List */}</Route>
+            <Route path="/myfavorites"><MyListScreen/></Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/movies/:movieId">
+              <MovieDetail />
+            </Route>
+            <Route path="*">
+              <NotFoundScreen />
             </Route>
           </Switch>
         </Layout>
       ) : (
         <Switch>
-          <Route path="/">
-            <Redirect to="/login"></Redirect>
+            <Route path="/">
             <LoginScreen />
           </Route>
         </Switch>

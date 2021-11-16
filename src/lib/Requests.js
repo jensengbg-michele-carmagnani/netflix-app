@@ -1,4 +1,4 @@
-const API_KEY = "ee50a1e0d06151144fff8f5e7363f16e";
+export const API_KEY = "ee50a1e0d06151144fff8f5e7363f16e";
 
 const requests = {
   fetchTrending: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
@@ -9,6 +9,7 @@ const requests = {
   fetchCommedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
   fetchRomaticMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
   fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
+  base_url_img : "https://image.tmdb.org/t/p/original/",
 }
 
 export default requests
