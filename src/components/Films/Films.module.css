@@ -17,11 +17,12 @@
   transition: transform 450ms;
 }
 .films__img:hover {
+  
   transform: scale(1.08);
   opacity: 1;
   cursor: pointer;
 }
 
-.films__posters::-webkit-scrollbar {
+.films__postersRow::-webkit-scrollbar {
   display: none;
 }
