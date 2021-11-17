@@ -2,13 +2,13 @@ import React, { useState, Fragment } from "react";
 import css from "./LoginScreen.module.css";
 import SignIn from "../components/Login/SignIn";
 
-const Login = () => {
+const Login: React.FC = () => {
   const [signIn, setSignIn] = useState(false);
 
   const signInHandler = () => {
     setSignIn(true);
   };
-  
+
   return (
     <div className={css.loginScreen}>
       <div className={css.loginScreen__background}>
@@ -41,7 +41,7 @@ const Login = () => {
                     className={css.loginScreen__buttonSubmit}
                     onClick={signInHandler}
                   >
-                    Get started >
+                    Get started
                   </button>
                 </form>
               </div>

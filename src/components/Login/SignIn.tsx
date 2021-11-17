@@ -5,26 +5,26 @@ import { auth } from "../../firebase";
 
 const SignIn = () => {
   const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const signInHandler = (e) => {
+  const signInHandler = (e: React.FormEvent) => {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
+        emailRef.current!.value,
+        passwordRef.current!.value
       )
       .then((user) => user)
       .catch((err) => {
         alert(err);
       });
   };
-  const signUpHandler = (e) => {
+  const signUpHandler = (e:React.FormEvent) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
+        emailRef.current!.value,
+        passwordRef.current!.value
       )
       .then((userCredetial) => {
         console.log(userCredetial);

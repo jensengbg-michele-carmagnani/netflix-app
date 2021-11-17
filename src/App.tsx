@@ -10,18 +10,15 @@ import HomeScreen from "./Pages/HomeScreen";
 import LoginScreen from "./Pages/LoginScreen";
 import Profile from "./Pages/ProfileScreen";
 
-import TvSeriesScreen from "./Pages/TvSeriesScreen"
+import TvSeriesScreen from "./Pages/TvSeriesScreen";
 
 import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
 import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
 
 
-
-import "./App.css";
-
-function App() {
-  const [show, setShow] = useState(false);
+const App: React.FC = () => {
+  const [show, setShow] = useState<boolean>(false);
   const user = useSelector(selectUser);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -34,7 +31,6 @@ function App() {
         dispatch(logout);
       }
     });
-
     return unsubscribe;
   }, [dispatch, history]);
 
@@ -45,7 +41,8 @@ function App() {
       setShow(false);
     }
   };
- 
+  
+
   return (
     <>
       {user ? (
@@ -62,7 +59,7 @@ function App() {
               <TvSeriesScreen seriesScreenHandler={transitionNavBarHandler} />
             </Route>
 
-            <Route path="/films" >{/* Films */}</Route>
+            <Route path="/films">{/* Films */}</Route>
             <Route path="/latest">{/* New & Popular */}</Route>
             <Route path="/myfavorites">
               <MyListScreen />
@@ -87,6 +84,6 @@ function App() {
       )}
     </>
   );
-}
+};
 
 export default App;
