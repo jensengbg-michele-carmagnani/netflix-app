@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import css from "./SignIn.module.css";
 import { auth } from "../../firebase";
+import css from "./SignIn.module.css";
 
-const SignIn = () => {
-  const emailRef = useRef(null);
+const SignIn:React.FC = () => {
+  const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const signInHandler = (e: React.FormEvent) => {
@@ -19,7 +19,7 @@ const SignIn = () => {
         alert(err);
       });
   };
-  const signUpHandler = (e:React.FormEvent) => {
+  const signUpHandler = (e: React.FormEvent) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(

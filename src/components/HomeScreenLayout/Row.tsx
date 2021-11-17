@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import css from "./Row.module.css";
 import axios from "../../lib/axios";
+import { RowProp } from "../../../types/Screens";
+import {Movie} from "../../../types/Movie"
 
-const Row = ({ title, fetchUrl, isLargeRow = false }) => {
-  const [movies, setMovies] = useState([]);
+const Row: React.FC<RowProp> = ({ title, fetchUrl, isLargeRow = false }) => {
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   const base_url_img = "https://image.tmdb.org/t/p/original/";
 

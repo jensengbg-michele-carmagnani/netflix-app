@@ -10,18 +10,19 @@ import { selectUser } from "../../features/userSlice";
 import avatar from "../../Assets/Netflix-avatar.png";
 import add from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
+import { Movie } from "../../../types/Movie";
 
-const MovieDetail = () => {
-  const [movie, setMovie] = useState({});
+const MovieDetail: React.FC = () => {
+  const [movie, setMovie] = useState<Movie>();
   const [movieCast, setMovieCast] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFavoriteId, setIsFavoriteId] = useState(null);
 
-  const movieId = useParams().movieId;
+  const movieId = useParams<{ movieId: string }>().movieId;
   const user = useSelector(selectUser);
   const base_url_img = "https://image.tmdb.org/t/p/original/";
 
-  const troncate = (string, n) => {
+  const troncate = (string:string, n:number) => {
     return string?.length > n ? string.substring(0, n - 1) + "..." : string;
   };
 
@@ -59,7 +60,7 @@ const MovieDetail = () => {
       .collection("customers")
       .doc(user.uid)
       .collection("favorite_session")
-      .add(movie)
+      .add(movie!)
       .then(() => {
         alert(` ${movie?.title} succefully added!`);
       })

@@ -23,5 +23,6 @@ const requests = {
   base_url_img: "https://image.tmdb.org/t/p/original/",
 };
 
+//https://api.themoviedb.org/3/discover/tv?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate
 
 export default requests;
