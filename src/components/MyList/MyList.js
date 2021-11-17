@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import requests from "../../lib/Requests";
+import MediaCard from "../MediaCards/MediaCard"
+import { Divider, Grid } from '@material-ui/core'
 
 import css from "./MyList.module.css";
 
@@ -38,26 +40,35 @@ const MyList = () => {
   console.log("favorite", myFavorite);
 
   return (
-    <div className={css.mylist}>
-      <h1>My List</h1>
-      <div className={css.mylist__gridcontainer}>
-        {myFavorite.map((fav) => (
+    <Grid container className={css.GridContainer}>
+
+      {/* <div className={css.mylist}> */}
+
+      {/* <div className={css.mylist__gridcontainer}> */}
+      {myFavorite.map((fav) => (
+        <Grid key={fav.movie.id} item >
           <Link to={`/movies/${fav.movie.id}`}>
-            <div className={css.mylist__griditem}>
-              <img
-                className={css.mylist__img}
-                key={fav.movie.id}
-                src={`${requests.base_url_img}${
-                  fav.movie.poster_path || fav.movie.backdrop_path
-                }`}
-                alt={fav.movie.name}
-              />
-            </div>
-            <h3>{fav.movie.title}</h3>
+            {/* <div className={css.mylist__griditem}> */}
+            <MediaCard image={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
+              }`}
+              title={fav.movie.original_title}
+            />
+            {/* <img
+            className={css.mylist__img}
+            key={fav.movie.id}
+            src={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
+              }`}
+            alt={fav.movie.name}
+          /> */}
+            {/* </div> */}
+            {/* <h3>{fav.movie.title}</h3> */}
           </Link>
-        ))}
-      </div>
-    </div>
+        </Grid>
+      ))}
+      {/* </div> */}
+      {/* </div> */}
+
+    </Grid>
   );
 };
 
