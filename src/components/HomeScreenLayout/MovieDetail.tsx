@@ -4,16 +4,16 @@ import { API_KEY } from "../../lib/Requests";
 import axios from "axios";
 import css from "./MovieDetail.module.css";
 import db from "../../firebase";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../features/userSlice";
+import { useAppSelector } from "../../app/hooks";
+
 
 import avatar from "../../Assets/Netflix-avatar.png";
 import add from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
 import { MovieDetails } from "../../../types/MovieDetails";
 import { Cast } from "../../../types/MovieCast";
-import{troncate} from '../../../types/Movie'
-
+import { troncate } from "../../../types/Movie";
+import {UserSlice} from "../../../types/User"
 
 const MovieDetail: React.FC = () => {
   const [movie, setMovie] = useState<MovieDetails>();
@@ -22,10 +22,10 @@ const MovieDetail: React.FC = () => {
   const [isFavoriteId, setIsFavoriteId] = useState<string>();
 
   const movieId = useParams<{ movieId: string }>().movieId;
-  const user = useSelector(selectUser);
+  const user  = useAppSelector(state => state.user.user) as UserSlice;
   const base_url_img = "https://image.tmdb.org/t/p/original/";
- 
- const troncate:troncate = (string, n) => {
+
+  const troncate: troncate = (string, n) => {
     return string?.length > n ? string.substring(0, n - 1) + "..." : string;
   };
 
@@ -52,7 +52,6 @@ const MovieDetail: React.FC = () => {
     .collection("favorite_session")
     .onSnapshot((querySnapshot) => {
       querySnapshot.forEach((movie) => {
-    
         if (movie.data().id === +movieId) {
           setIsFavorite(true);
         }
@@ -115,7 +114,7 @@ const MovieDetail: React.FC = () => {
             {movie?.title || movie?.name || movie?.original_title}
           </h1>
           <h1 className={css.banner__description}>
-            { movie && troncate(movie.overview, 180)}
+            {movie && troncate(movie.overview, 180)}
           </h1>
           <div className={css.banner__buttons}>
             {!isFavorite ? (

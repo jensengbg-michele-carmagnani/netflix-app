@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import { auth } from "./firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { login, logout, selectUser } from "./features/userSlice";
-import type { RootState, AppDispatch } from "./app/store";
+
 
 import Layout from "./components/Layout/Layout";
 import HomeScreen from "./Pages/HomeScreen";
@@ -16,15 +16,18 @@ import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
 import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
 
+
+
 const App: React.FC = () => {
   const [show, setShow] = useState<boolean>(false);
-  const user = useSelector<RootState>(selectUser);
+
+  const user = useAppSelector(selectUser);
   const history = useHistory();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (user && user.email) {
         dispatch(login({ uid: user.uid, email: user.email }));
       } else {
         dispatch(logout);

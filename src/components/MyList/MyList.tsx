@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import db from "../../firebase";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../features/userSlice";
+import { useAppSelector } from "../../app/hooks";
 import requests from "../../lib/Requests";
 import { MyFavorites } from "../../../types/MyFavorites";
+import { MovieDetails } from "../../../types/MovieDetails";
 
 import css from "./MyList.module.css";
 
-import { MovieDetails } from "../../../types/MovieDetails";
 
 const MyList: React.FC = () => {
-  const user = useSelector(selectUser);
+  const user = useAppSelector(state=>state.user.user);
   const [myFavorite, setMyFavorite] = useState<MyFavorites[]>([]);
 
   const getFavoriteHandler = async () =>
