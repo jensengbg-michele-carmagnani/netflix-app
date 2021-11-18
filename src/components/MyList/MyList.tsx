@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import requests from "../../lib/Requests";
+import { MyFavorites } from "../../../types/MyFavorites";
 
 import css from "./MyList.module.css";
 
-const MyList = () => {
+const MyList: React.FC = () => {
   const user = useSelector(selectUser);
-  const [myFavorite, setMyFavorite] = useState([]);
+  const [myFavorite, setMyFavorite] = useState<MyFavorites[]>([]);
 
   const getFavoriteHandler = async () =>
     await db
@@ -18,7 +19,7 @@ const MyList = () => {
       .collection("favorite_session")
       .get()
       .then((querySnapshot) => {
-        const favoriteMovies = [];
+        const favoriteMovies: MyFavorites[] = [];
         querySnapshot.forEach((fav) => {
           if (fav.exists) {
             favoriteMovies.push({ docId: fav.id, movie: fav.data() });
@@ -33,8 +34,6 @@ const MyList = () => {
   useEffect(() => {
     getFavoriteHandler();
   }, []);
-
-
 
   return (
     <div className={css.mylist}>
