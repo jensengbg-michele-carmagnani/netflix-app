@@ -2,10 +2,13 @@ import React,{useEffect, useState} from "react";
 import css from "./Banner.module.css";
 import axios from "../../lib/axios";
 import requests from "../../lib/Requests";
+import { troncate } from "../../../types/Movie"
+import { MovieDetails } from "../../../types/MovieDetails"
 
 const Banner = () => {
-  const [movie, setMovie] = useState([])
-  const troncate = (string, n) => {
+  const [movie, setMovie] = useState<MovieDetails>()
+
+  const troncate:troncate = (string, n) => {
     return string?.length > n ? string.substring(0, n - 1) + "..." : string;
   };
 
@@ -23,7 +26,7 @@ const Banner = () => {
 
 
   return (
-    <div
+    <div 
       className={css.banner}
       style={{
         backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
@@ -31,14 +34,14 @@ const Banner = () => {
     >
       <div className={css.banner__contents}>
         <h1 className={css.banner__title}>
-          {movie?.title || movie?.name || movie?.original_title}
+          { movie?.title || movie?.name || movie?.original_title}
         </h1>
         <div className={css.banner__buttons}>
           <button className={css.bunner__button}>Play</button>
           <button className={css.bunner__button}>My list</button>
         </div>
         <h1 className={css.banner__description}>
-          {troncate(movie?.overview, 180)}
+          {movie && troncate(movie.overview, 180)}
         </h1>
       </div>
       <div className={css.banner___fedeBottom} />

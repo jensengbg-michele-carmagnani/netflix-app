@@ -3,7 +3,7 @@ import css from "./NavBar.module.css";
 
 import { NavLink } from "react-router-dom";
 
-const NavBar = (props) => {
+const NavBar:React.FC<{isShow:boolean}> = (props) => {
   
   return (
     <div

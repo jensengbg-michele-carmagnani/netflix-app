@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import {Movie} from "../../../types/Movie"
 
 import axios from "../../lib/axios";
 import requests from "../../lib/Requests";
 import css from "./TvSeries.module.css";
-import icons from "../../Assets/Icons"
+import { RowsType } from "../../../types/RowsType";
 
-const TvSeries = (props) => {
+const TvSeries: React.FC<RowsType> = (props) => {
   const {fetchUrl, title} = props
-  const [tvSeries, setTvSeries] = useState([]);
+  const [tvSeries, setTvSeries] = useState<Movie[]>([]);
 
 useEffect(() => {
   const getSeriesHandler = async () => {
