@@ -11,7 +11,8 @@ import avatar from "../../Assets/Netflix-avatar.png";
 import add from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
 import { MovieDetails } from "../../../types/MovieDetails";
-import {Cast} from "../../../types/MovieCast";
+import { Cast } from "../../../types/MovieCast";
+import{troncate} from '../../../types/Movie'
 
 
 const MovieDetail: React.FC = () => {
@@ -24,7 +25,7 @@ const MovieDetail: React.FC = () => {
   const user = useSelector(selectUser);
   const base_url_img = "https://image.tmdb.org/t/p/original/";
  
- const troncate = (string:string, n:number):string => {
+ const troncate:troncate = (string, n) => {
     return string?.length > n ? string.substring(0, n - 1) + "..." : string;
   };
 

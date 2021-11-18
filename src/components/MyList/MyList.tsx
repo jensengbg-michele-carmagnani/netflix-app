@@ -8,6 +8,8 @@ import { MyFavorites } from "../../../types/MyFavorites";
 
 import css from "./MyList.module.css";
 
+import { MovieDetails } from "../../../types/MovieDetails";
+
 const MyList: React.FC = () => {
   const user = useSelector(selectUser);
   const [myFavorite, setMyFavorite] = useState<MyFavorites[]>([]);
@@ -22,7 +24,10 @@ const MyList: React.FC = () => {
         const favoriteMovies: MyFavorites[] = [];
         querySnapshot.forEach((fav) => {
           if (fav.exists) {
-            favoriteMovies.push({ docId: fav.id, movie: fav.data() });
+            favoriteMovies.push({
+              docId: fav.id,
+              movie: fav.data() as MovieDetails,
+            });
           }
         });
         setMyFavorite(favoriteMovies);
