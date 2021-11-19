@@ -2,7 +2,6 @@ import React from 'react'
 import css from './Error.module.css'
 
  const Error = (props) => {
-   console.log('props',props)
    const{message, error} = props.onError
   return (
     <div className={css.error}>
