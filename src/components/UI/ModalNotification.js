@@ -21,15 +21,18 @@ const modal = props => {
             exit: '',
             exitActive: 'ModalClosed'
         }}>
+          <>
+            {/* <div className="Backdroop"/> */}
           <div className="Modal">
-            <h1>Do you want receive notification?</h1>
-            <button className="Button" onClick={props.closed}>
+            <h1>Do you want receive notification ?</h1>
+            <button className="Modola__button" onClick={()=> props.closed("granted")} >
               yes
             </button>
-            <button className="Button" onClick={props.closed}>
-              now
+            <button className="Modola__button" onClick={()=>props.closed('denied')} >
+              no
             </button>
           </div>
+          </>
     </CSSTransition>
   );
 };
