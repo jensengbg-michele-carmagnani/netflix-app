@@ -3,9 +3,11 @@ import Banner from "../components/Header/Banner";
 import requests from "../lib/Requests";
 import Films from "../components/Films/Films";
 
+
+
 export const FilmsScreen = (props) => {
-
-
+ 
+ 
   useEffect(() => {
     window.addEventListener("scroll", props.moviesScreenBarHandler);
     return () => window.removeEventListener("scroll", props.moviesScreenBarHandler);

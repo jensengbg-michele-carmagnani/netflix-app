@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+import Error from "../UI/Error";
+import useHttp from "../../hooks/use-http";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import css from "./Row.module.css";
-import axios from "../../lib/axios";
 
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   const [movies, setMovies] = useState([]);
@@ -9,13 +12,30 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   const base_url_img = "https://image.tmdb.org/t/p/original/";
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(fetchUrl);
-      setMovies(response.data.results);
-      return response;
-    };
-    fetchData();
-  }, [fetchUrl]);
+    fetchTask();
+  }, []);
+
+  const getMovies = (paylod) => {
+    setMovies(paylod);
+  };
+  const {
+    error,
+    isLoading,
+    sendRequest: fetchTask,
+  } = useHttp({ url: fetchUrl, getMovies });
+  
+
+  if (error) {
+    return (
+      <Error
+        onError={{ message: "Somesthing went wrong, try again later!", error }}
+      />
+    );
+  }
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   const imgRow = `${css.row__poster} ${isLargeRow && css.row__posterLarge}`;
   return (

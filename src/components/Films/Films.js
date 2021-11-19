@@ -1,23 +1,43 @@
-import React, {useEffect, useState} from 'react'
-import css from './Films.module.css'
-import axios from '../../lib/axios'
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState } from "react";
 
+import { Link } from "react-router-dom";
+
+import useHttp from "../../hooks/use-http";
+import Error from '../UI/Error'
+import LoadingSpinner from '../UI/LoadingSpinner'
+import css from "./Films.module.css";
 
 const Films = (props) => {
-  const { title, fetchUrl, base_url_img } = props
-  const [films, setFilms] = useState([])
- 
-  useEffect(() => {
-    const getMoviesHandler =async () => {
-      const response = await axios.get(fetchUrl);
-      setFilms(response.data.results)
-    }
-    getMoviesHandler()
+  const { title, fetchUrl, base_url_img } = props;
+  const [films, setFilms] = useState([]);
 
-  },[])
- 
-   
+  useEffect(() => {
+    fetchTask();
+  }, []);
+
+  const getMovies = (paylod) => {
+    setFilms(paylod);
+  };
+  const {
+    error,
+    isLoading,
+    sendRequest: fetchTask,
+  } = useHttp({ url: fetchUrl, getMovies });
+  
+
+  if (error) {
+    return (
+      <Error
+        onError={{ message: "Somesthing went wrong, try again later!", error }}
+      />
+    );
+  }
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+
   return (
     <div className={css.films}>
       <h1>{title}</h1>
@@ -38,6 +58,6 @@ const Films = (props) => {
       </div>
     </div>
   );
-}
+};
 
-export default Films
+export default Films;
