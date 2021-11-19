@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "../components/Header/Banner";
 import requests from "../lib/Requests";
 import Films from "../components/Films/Films";
 
-export const FilmsScreen = () => {
+export const FilmsScreen = (props) => {
+
+
+  useEffect(() => {
+    window.addEventListener("scroll", props.moviesScreenBarHandler);
+    return () => window.removeEventListener("scroll", props.moviesScreenBarHandler);
+  }, [props.moviesScreenBarHandler]);
 
   return (
     <div>

@@ -15,8 +15,7 @@ const TvSeriesScreen = () => {
     };
     getMoviesHandler();
   }, []);
-
-  console.log("movies", movies);
+  
 
   return (
     <div className={css.tvSeriesScreen}>

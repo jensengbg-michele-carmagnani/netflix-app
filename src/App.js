@@ -56,11 +56,11 @@ function App() {
             </Route>
 
             <Route path="/series">
-              <TvSeriesScreen />
+              <TvSeriesScreen  />
             </Route>
 
             <Route path="/films">
-              <FilmsScreen />
+              <FilmsScreen  moviesScreenBarHandler={transitionNavBarHandler} />
             </Route>
             <Route path="/latest">{/* New & Popular */}</Route>
             <Route path="/myfavorites">
