@@ -70,7 +70,7 @@ function App() {
             <Route path="/profile">
               <Profile />
             </Route>
-            <Route path="/movies/:movieId">
+            <Route path="/movies/:movieId" exact>
               <MovieDetail />
             </Route>
             <Route path="*">
