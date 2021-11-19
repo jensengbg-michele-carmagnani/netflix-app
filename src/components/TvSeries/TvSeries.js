@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "../../lib/axios";
 import requests from "../../lib/Requests";
 import css from "./TvSeries.module.css";
-import icons from "../../Assets/Icons"
+
+
 
 const TvSeries = (props) => {
   const {fetchUrl, title} = props
@@ -19,8 +20,7 @@ useEffect(() => {
 }, []);
   
  
-  
-  
+
  
   
   return (
