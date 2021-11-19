@@ -42,7 +42,7 @@ function App() {
       setShow(false);
     }
   };
-
+ 
   return (
     <>
       {user ? (
@@ -62,6 +62,7 @@ function App() {
             <Route path="/films">
               <FilmsScreen  moviesScreenBarHandler={transitionNavBarHandler} />
             </Route>
+
             <Route path="/latest">{/* New & Popular */}</Route>
             <Route path="/myfavorites">
               <MyListScreen />

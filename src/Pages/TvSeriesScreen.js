@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from "react";
-import requests from "../lib/Requests";
-import TvSeries from "../components/TvSeries/TvSeries";
-import Banner from "../components/Header/Banner";
-import css from "./TvSeriesScreen.module.css";
 
-import axios from "../lib/axios";
+import React,{useEffect} from 'react'
+import requests from '../lib/Requests'
+import TvSeries from "../components/TvSeries/TvSeries"
+import Banner from '../components/Header/Banner'
+import css from "./TvSeriesScreen.module.css"
+const TvSeriesScreen = (props) => {
 
-const TvSeriesScreen = () => {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    const getMoviesHandler = async () => {
-      const response = await axios.get(requests.fetchMoviesAction);
-      setMovies(response.data.results);
-    };
-    getMoviesHandler();
-  }, []);
-  
+   useEffect(() => {
+     window.addEventListener("scroll", props.seriesScreenHandler);
+     return () =>
+       window.removeEventListener("scroll", props.seriesScreenHandler);
+   }, [props.seriesScreenHandler]);
+
 
   return (
     <div className={css.tvSeriesScreen}>
