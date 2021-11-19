@@ -6,12 +6,14 @@ import { selectUser } from "../../features/userSlice";
 import requests from "../../lib/Requests";
 import MediaCard from "../MediaCards/MediaCard"
 import { Divider, Grid } from '@material-ui/core'
-
+import { Typography } from '@material-ui/core/'
+import Box from '@material-ui/core/Box';
 import css from "./MyList.module.css";
 
 const MyList = () => {
   const user = useSelector(selectUser);
   const [myFavorite, setMyFavorite] = useState([]);
+  const [content, setContent] = useState([]);
 
   const getFavoriteHandler = async () =>
     await db
@@ -24,7 +26,7 @@ const MyList = () => {
         querySnapshot.forEach((fav) => {
           if (fav.exists) {
             favoriteMovies.push({ docId: fav.id, movie: fav.data() });
-            console.log(fav.data());
+            setContent(fav.data());
           }
         });
         setMyFavorite(favoriteMovies);
@@ -37,38 +39,30 @@ const MyList = () => {
     getFavoriteHandler();
   }, []);
 
-  console.log("favorite", myFavorite);
+  // console.log("favorite", content);
+  // console.log("favorite", content.genres);
+  // console.log("favorite", content.tagline);
 
   return (
-    <Grid container className={css.GridContainer}>
+    <Box p={5} pt={15} minHeight="100vh">
+      <Typography className={css.headingh5} gutterButton variant="h5" component="h2"> My List
+      </Typography>
+      <Grid container spacing={1} className={css.GridContainer}>
+        {myFavorite.map((fav) => (
+          <Grid key={fav.movie.id} item spacing={5} >
+            <Link to={`/movies/${fav.movie.id}`}>
+              <MediaCard image={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
+                }`}
+                title={fav.movie.original_title}
+                genres={fav.movie}
+                tagline={fav.movie.tagline}
+              />
 
-      {/* <div className={css.mylist}> */}
-
-      {/* <div className={css.mylist__gridcontainer}> */}
-      {myFavorite.map((fav) => (
-        <Grid key={fav.movie.id} item >
-          <Link to={`/movies/${fav.movie.id}`}>
-            {/* <div className={css.mylist__griditem}> */}
-            <MediaCard image={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
-              }`}
-              title={fav.movie.original_title}
-            />
-            {/* <img
-            className={css.mylist__img}
-            key={fav.movie.id}
-            src={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
-              }`}
-            alt={fav.movie.name}
-          /> */}
-            {/* </div> */}
-            {/* <h3>{fav.movie.title}</h3> */}
-          </Link>
-        </Grid>
-      ))}
-      {/* </div> */}
-      {/* </div> */}
-
-    </Grid>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
