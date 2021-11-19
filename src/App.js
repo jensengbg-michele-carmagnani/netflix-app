@@ -56,7 +56,7 @@ function App() {
             </Route>
 
             <Route path="/series">
-              <TvSeriesScreen  />
+              <TvSeriesScreen seriesScreenBarHandler={transitionNavBarHandler}  />
             </Route>
 
             <Route path="/films">

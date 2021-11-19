@@ -7,10 +7,10 @@ import css from "./TvSeriesScreen.module.css"
 const TvSeriesScreen = (props) => {
 
    useEffect(() => {
-     window.addEventListener("scroll", props.seriesScreenHandler);
+     window.addEventListener("scroll", props.seriesScreenBarHandler);
      return () =>
-       window.removeEventListener("scroll", props.seriesScreenHandler);
-   }, [props.seriesScreenHandler]);
+       window.removeEventListener("scroll", props.seriesScreenBarHandler);
+   }, [props.seriesScreenBarHandler]);
 
 
   return (
