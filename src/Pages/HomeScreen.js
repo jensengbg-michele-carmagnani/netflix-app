@@ -11,11 +11,12 @@ const HomeScreen = (props) => {
   const [show, setShow] = useState(true);
 
 
-console.log(show)
+console.log('state of show', show);
 
   const showModal = () => {
     setTimeout(() => {
       setModalIsOpen(true);
+      setShow(false)
     }, 3000);
   };
   
