@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import css from './Films.module.css'
 import axios from '../../lib/axios'
 import {Link} from 'react-router-dom'
-import requests from '../../lib/Requests'
+
 
 const Films = (props) => {
   const { title, fetchUrl, base_url_img } = props
