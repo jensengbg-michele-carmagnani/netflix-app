@@ -5,10 +5,15 @@ import Row from "../components/HomeScreenLayout/Row";
 import requests from "../lib/Requests";
 import css from "./HomeScreen.module.css";
 import Modal from "../components/UI/ModalNotification";
+import {useDispatch, useSelector} from 'react-redux';
+import { setModal } from "../features/userSlice";
+
 
 const HomeScreen = (props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [show, setShow] = useState(true);
+  
+  const show = useSelector(state=> state.user.show)
+  const dispatch = useDispatch()
 
 
 console.log('state of show', show);
@@ -16,13 +21,12 @@ console.log('state of show', show);
   const showModal = () => {
     setTimeout(() => {
       setModalIsOpen(true);
-      setShow(false)
+      dispatch(setModal(true))
     }, 3000);
   };
   
-  if (show) {
+  if (show === false) {
     showModal();
-    setShow(false);
   }
 
   const closeModal = () => {
