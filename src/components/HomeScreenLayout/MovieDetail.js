@@ -6,9 +6,10 @@ import css from "./MovieDetail.module.css";
 import db from "../../firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+import Error from "../UI/Error";
 
 import avatar from "../../Assets/Netflix-avatar.png";
-import add from "../../Assets/add50-ico.png";
+import plus from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
 
 const MovieDetail = () => {
@@ -40,11 +41,11 @@ const MovieDetail = () => {
     fetchMovieDetails();
     fetchMovieCast();
     docRef();
-    
+    isFavoriteDB()
   }, []);
-  
-// sericeWorker Notification 
-  const notificationHandler = (options)=>{
+
+  // sericeWorker Notification
+  const notificationHandler = (options) => {
     let notif = new Notification("Hi", options);
     navigator.serviceWorker.ready.then((reg) =>
       reg.showNotification("Reminder", options)
@@ -52,19 +53,40 @@ const MovieDetail = () => {
     notif.addEventListener("show", () => {
       console.log("Show notification");
     });
-   }
+  };
 
   // check for update favorite_session into db & setIsFavorite
-  db.collection("customers")
-    .doc(user.uid)
-    .collection("favorite_session")
-    .onSnapshot((querySnapshot) => {
-      querySnapshot.forEach((movie) => {
-        if (movie.data().id === +movieId) {
-          setIsFavorite(true);
-        }
+  const isFavoriteDB = async() =>
+   await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("favorite_session")
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((movie) => {
+          if (movie.data().id === +movieId) {
+            setIsFavorite(true);
+          }
+        });
       });
-    });
+
+  // find the doc releted movie
+  const docRef = async () =>
+    await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("favorite_session")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((movie) => {
+          if (movie.data().id === +movieId) {
+            setIsFavoriteId(movie.id);
+            setIsFavorite(true);
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
   const addFavoriteHandler = async () => {
     await db
@@ -76,28 +98,13 @@ const MovieDetail = () => {
         const options = {
           body: "Movie succefully added!",
         };
-        notificationHandler(options)
+        notificationHandler(options);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => <Error message={error.message} error={error} />);
   };
-  const docRef = async () =>
-    await db
-      .collection("customers")
-      .doc(user.uid)
-      .collection("favorite_session")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((movie) => {
-          if (movie.data().id === +movieId) {
-            setIsFavoriteId(movie.id);
-          }
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
 
   const removeFavoriteHandler = async () => {
+    await docRef();
     await db
       .collection("customers")
       .doc(user.uid)
@@ -108,12 +115,14 @@ const MovieDetail = () => {
         const options = {
           body: "Movie succefully deleted!",
         };
-        notificationHandler(options)
-        setIsFavorite(false);
+        notificationHandler(options);
+
+        setIsFavorite((prevState) => !prevState);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => <Error message={error.message} error={error} />);
   };
-   
+  console.log("outsideRemove");
+
   return (
     <div className={css.moviedetail}>
       <div
@@ -131,7 +140,7 @@ const MovieDetail = () => {
           </h1>
           <div className={css.banner__buttons}>
             {!isFavorite ? (
-              <img src={add} alt="" onClick={addFavoriteHandler} />
+              <img src={plus} alt="" onClick={addFavoriteHandler} />
             ) : (
               <img src={check} alt="" onClick={removeFavoriteHandler} />
             )}
