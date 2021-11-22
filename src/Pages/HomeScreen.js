@@ -25,13 +25,29 @@ const HomeScreen = (props) => {
     showModal();
   }
 
-  
+  const initNotification = async () => {
+    const permission = await Notification.requestPermission();
+    switch (permission) {
+      case "granted": {
+        console.log("Permission granted");
+        break;
+      }
+      case "denied": {
+        console.log("Permission denied");
+        break;
+      }
+      default: {
+        console.log("The user refuse to answer");
+      }
+    }
+  };
+
+  if ("Notification" in window) {
+    initNotification();
+  }
 
   const closeModal = async (btnPermision) => {
     setModalIsOpen((prevState) => !prevState);
-
-    console.log('permission',btnPermision)
-    
   };
   useEffect(() => {
     window.addEventListener("scroll", props.homeScreenHandler);
