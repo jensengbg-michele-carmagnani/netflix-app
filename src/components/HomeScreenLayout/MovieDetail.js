@@ -6,9 +6,10 @@ import css from "./MovieDetail.module.css";
 import db from "../../firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+import Error from "../UI/Error";
 
 import avatar from "../../Assets/Netflix-avatar.png";
-import add from "../../Assets/add50-ico.png";
+import plus from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
 
 const MovieDetail = () => {
@@ -40,11 +41,10 @@ const MovieDetail = () => {
     fetchMovieDetails();
     fetchMovieCast();
     docRef();
-    
   }, []);
-  
-// sericeWorker Notification 
-  const notificationHandler = (options)=>{
+
+  // sericeWorker Notification
+  const notificationHandler = (options) => {
     let notif = new Notification("Hi", options);
     navigator.serviceWorker.ready.then((reg) =>
       reg.showNotification("Reminder", options)
@@ -52,7 +52,7 @@ const MovieDetail = () => {
     notif.addEventListener("show", () => {
       console.log("Show notification");
     });
-   }
+  };
 
   // check for update favorite_session into db & setIsFavorite
   db.collection("customers")
@@ -66,20 +66,7 @@ const MovieDetail = () => {
       });
     });
 
-  const addFavoriteHandler = async () => {
-    await db
-      .collection("customers")
-      .doc(user.uid)
-      .collection("favorite_session")
-      .add(movie)
-      .then(() => {
-        const options = {
-          body: "Movie succefully added!",
-        };
-        notificationHandler(options)
-      })
-      .catch((error) => console.log(error));
-  };
+  // find the doc releted movie
   const docRef = async () =>
     await db
       .collection("customers")
@@ -97,7 +84,23 @@ const MovieDetail = () => {
         console.log(error);
       });
 
+  const addFavoriteHandler = async () => {
+    await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("favorite_session")
+      .add(movie)
+      .then(() => {
+        const options = {
+          body: "Movie succefully added!",
+        };
+        notificationHandler(options);
+      })
+      .catch((error) => <Error message={error.message} error={error} />);
+  };
+
   const removeFavoriteHandler = async () => {
+    await docRef();
     await db
       .collection("customers")
       .doc(user.uid)
@@ -105,15 +108,16 @@ const MovieDetail = () => {
       .doc(isFavoriteId)
       .delete()
       .then(() => {
+        setIsFavorite(false);
         const options = {
           body: "Movie succefully deleted!",
         };
-        notificationHandler(options)
-        setIsFavorite(false);
+        notificationHandler(options);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => <Error message={error.message} error={error} />);
   };
-   
+  console.log("outsideRemove", isFavorite);
+
   return (
     <div className={css.moviedetail}>
       <div
@@ -131,7 +135,7 @@ const MovieDetail = () => {
           </h1>
           <div className={css.banner__buttons}>
             {!isFavorite ? (
-              <img src={add} alt="" onClick={addFavoriteHandler} />
+              <img src={plus} alt="" onClick={addFavoriteHandler} />
             ) : (
               <img src={check} alt="" onClick={removeFavoriteHandler} />
             )}
