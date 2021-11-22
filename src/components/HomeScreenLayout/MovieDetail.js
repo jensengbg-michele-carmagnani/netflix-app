@@ -41,6 +41,7 @@ const MovieDetail = () => {
     fetchMovieDetails();
     fetchMovieCast();
     docRef();
+    isFavoriteDB()
   }, []);
 
   // sericeWorker Notification
@@ -55,16 +56,18 @@ const MovieDetail = () => {
   };
 
   // check for update favorite_session into db & setIsFavorite
-  db.collection("customers")
-    .doc(user.uid)
-    .collection("favorite_session")
-    .onSnapshot((querySnapshot) => {
-      querySnapshot.forEach((movie) => {
-        if (movie.data().id === +movieId) {
-          setIsFavorite(true);
-        }
+  const isFavoriteDB = async() =>
+   await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("favorite_session")
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((movie) => {
+          if (movie.data().id === +movieId) {
+            setIsFavorite(true);
+          }
+        });
       });
-    });
 
   // find the doc releted movie
   const docRef = async () =>
@@ -77,6 +80,7 @@ const MovieDetail = () => {
         querySnapshot.forEach((movie) => {
           if (movie.data().id === +movieId) {
             setIsFavoriteId(movie.id);
+            setIsFavorite(true);
           }
         });
       })
@@ -108,15 +112,16 @@ const MovieDetail = () => {
       .doc(isFavoriteId)
       .delete()
       .then(() => {
-        setIsFavorite(false);
         const options = {
           body: "Movie succefully deleted!",
         };
         notificationHandler(options);
+
+        setIsFavorite((prevState) => !prevState);
       })
       .catch((error) => <Error message={error.message} error={error} />);
   };
-  console.log("outsideRemove", isFavorite);
+  console.log("outsideRemove");
 
   return (
     <div className={css.moviedetail}>
