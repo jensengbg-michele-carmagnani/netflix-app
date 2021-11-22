@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import requests from "../../lib/Requests";
-
+import MediaCard from "../MediaCards/MediaCard"
+import { Grid } from '@material-ui/core'
+import { Typography } from '@material-ui/core/'
+import Box from '@material-ui/core/Box';
 import css from "./MyList.module.css";
+import add from "../../Assets/add50-ico.png";
+import check from "../../Assets/check50-ico.png";
 
 const MyList = () => {
   const user = useSelector(selectUser);
@@ -34,29 +39,27 @@ const MyList = () => {
     getFavoriteHandler();
   }, []);
 
-
-
   return (
-    <div className={css.mylist}>
-      <h1>My List</h1>
-      <div className={css.mylist__gridcontainer}>
+    <Box p={5} pt={15} minHeight="100vh">
+      <Typography className={css.headingh5} gutterButton variant="h5" component="h2"> My List
+      </Typography>
+      <Grid container spacing={1} className={css.GridContainer}>
         {myFavorite.map((fav) => (
-          <Link to={`/movies/${fav.movie.id}`}>
-            <div className={css.mylist__griditem}>
-              <img
-                className={css.mylist__img}
-                key={fav.movie.id}
-                src={`${requests.base_url_img}${
-                  fav.movie.poster_path || fav.movie.backdrop_path
+          <Grid key={fav.movie.id} item spacing={5} >
+            <Link to={`/movies/${fav.movie.id}`}>
+              <MediaCard image={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
                 }`}
-                alt={fav.movie.name}
+                title={fav.movie.original_title}
+                movie={fav.movie}
+                tagline={fav.movie.tagline}
+                id={fav.movie.id}
               />
-            </div>
-            <h3>{fav.movie.title}</h3>
-          </Link>
+
+            </Link>
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 };
 
