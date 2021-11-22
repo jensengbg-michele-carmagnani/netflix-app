@@ -5,24 +5,25 @@ import Row from "../components/HomeScreenLayout/Row";
 import requests from "../lib/Requests";
 import css from "./HomeScreen.module.css";
 import Modal from "../components/UI/ModalNotification";
-import { useDispatch, useSelector } from "react-redux";
-import { setModal } from "../features/userSlice";
+
 
 const HomeScreen = (props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const show = useSelector((state) => state.user.show);
-  const dispatch = useDispatch();
 
+  
   const showModal = () => {
     setTimeout(() => {
       setModalIsOpen(true);
-      dispatch(setModal(true));
+      sessionStorage.setItem('modal', "true")
     }, 3000);
   };
-
-  if (show === false) {
+  const showSession =  sessionStorage.getItem('modal')
+  console.log('state show',showSession)
+  
+  if (showSession !== "true"  ) {
     showModal();
+    
   }
 
   const initNotification = async () => {
@@ -46,7 +47,7 @@ const HomeScreen = (props) => {
     initNotification();
   }
 
-  const closeModal = async (btnPermision) => {
+  const closeModal = async () => {
     setModalIsOpen((prevState) => !prevState);
   };
   useEffect(() => {
