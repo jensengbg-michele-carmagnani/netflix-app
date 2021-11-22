@@ -5,15 +5,16 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import requests from "../../lib/Requests";
 import MediaCard from "../MediaCards/MediaCard"
-import { Divider, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import { Typography } from '@material-ui/core/'
 import Box from '@material-ui/core/Box';
 import css from "./MyList.module.css";
+import add from "../../Assets/add50-ico.png";
+import check from "../../Assets/check50-ico.png";
 
 const MyList = () => {
   const user = useSelector(selectUser);
   const [myFavorite, setMyFavorite] = useState([]);
-  const [content, setContent] = useState([]);
 
   const getFavoriteHandler = async () =>
     await db
@@ -26,7 +27,6 @@ const MyList = () => {
         querySnapshot.forEach((fav) => {
           if (fav.exists) {
             favoriteMovies.push({ docId: fav.id, movie: fav.data() });
-            setContent(fav.data());
           }
         });
         setMyFavorite(favoriteMovies);
@@ -39,10 +39,6 @@ const MyList = () => {
     getFavoriteHandler();
   }, []);
 
-  // console.log("favorite", content);
-  // console.log("favorite", content.genres);
-  // console.log("favorite", content.tagline);
-
   return (
     <Box p={5} pt={15} minHeight="100vh">
       <Typography className={css.headingh5} gutterButton variant="h5" component="h2"> My List
@@ -54,8 +50,9 @@ const MyList = () => {
               <MediaCard image={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
                 }`}
                 title={fav.movie.original_title}
-                genres={fav.movie}
+                movie={fav.movie}
                 tagline={fav.movie.tagline}
+                id={fav.movie.id}
               />
 
             </Link>
