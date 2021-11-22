@@ -55,32 +55,6 @@ export default function MediaCard({ id, image, title, tagline, movie }) {
                         movie={movie}
                         className={css.ModalCall}
                     />
-
-                    <div className={css.image__overlay}>
-
-                        {/* <div onMouseEnter={() => setIsShown(true)}>
-                        {isShown && (
-                            <CardContent >
-                                <CardActions>
-                                    <Button size="small" >thumbs up</Button>
-                                    <Button size="small" >thumbs down</Button>
-                                </CardActions>
-
-                                <Typography gutterButton variant="h5" component="h2"> {tagline}
-                                </Typography>
-
-                                {(genres && (typeof (genres.genres)) === 'object') ? (
-                                    genres.genres.map((gen, index) => (
-                                        <Typography key={index} gutterButton variant="h5" component="h2"> {gen.name}
-                                        </Typography>
-                                    ))) : (
-                                    <Typography gutterButton variant="h5" component="h2"> No genres
-                                    </Typography>
-                                )}
-                            </CardContent>
-                        )}
-                    </div> */}
-                    </div>
                 </CardActionArea>
             </Card >
         )
