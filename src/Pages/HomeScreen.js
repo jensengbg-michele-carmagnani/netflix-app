@@ -53,7 +53,6 @@ const HomeScreen = (props) => {
     window.addEventListener("scroll", props.homeScreenHandler);
     return () => window.removeEventListener("scroll", props.homeScreenHandler);
   }, [props.homeScreenHandler]);
-  console.log("modalIs", modalIsOpen);
 
   return (
     <div className={css.homescreen}>
