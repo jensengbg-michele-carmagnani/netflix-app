@@ -1,31 +1,25 @@
-.mylist{
-  height:100vh;
-  color:#fff;
-  margin-top:160px;
+.mylist {
+  height: 100vh;
+  color: #fff;
+  margin-top: 160px;
 }
-.mylist h1{
+.mylist h1 {
   font-weight: 100;
+}
 
+.mylist__griditem {
+  background-color: black;
 }
-.mylist__gridcontainer{
-  margin: 0 auto;
-  width: 100vw;
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  justify-content:center;
-  align-content: center;
-  justify-items:center;
-  align-items: center;
-  row-gap: 2rem;
-  
-}
-.mylist__griditem{
-  background-color: beige;
-}
-.mylist__img{
+.mylist__img {
   max-height: 250px;
   object-fit: contain;
   margin-right: 1.5rem;
-  
+}
+
+.GridContainer {
+  margin-top: 15%;
+}
+
+.headingh5 {
+  color: white;
 }
