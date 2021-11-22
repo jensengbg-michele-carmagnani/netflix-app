@@ -42,6 +42,17 @@ const MovieDetail = () => {
     docRef();
     
   }, []);
+  
+// sericeWorker Notification 
+  const notificationHandler = (options)=>{
+    let notif = new Notification("Hi", options);
+    navigator.serviceWorker.ready.then((reg) =>
+      reg.showNotification("Reminder", options)
+    );
+    notif.addEventListener("show", () => {
+      console.log("Show notification");
+    });
+   }
 
   // check for update favorite_session into db & setIsFavorite
   db.collection("customers")
@@ -62,7 +73,10 @@ const MovieDetail = () => {
       .collection("favorite_session")
       .add(movie)
       .then(() => {
-        alert(` ${movie?.title} succefully added!`);
+        const options = {
+          body: "Movie succefully added!",
+        };
+        notificationHandler(options)
       })
       .catch((error) => console.log(error));
   };
@@ -84,7 +98,6 @@ const MovieDetail = () => {
       });
 
   const removeFavoriteHandler = async () => {
-    console.log(isFavoriteId)
     await db
       .collection("customers")
       .doc(user.uid)
@@ -92,12 +105,15 @@ const MovieDetail = () => {
       .doc(isFavoriteId)
       .delete()
       .then(() => {
-        alert("Movie succefully deleted!");
+        const options = {
+          body: "Movie succefully deleted!",
+        };
+        notificationHandler(options)
         setIsFavorite(false);
       })
       .catch((error) => console.log(error));
   };
-
+   
   return (
     <div className={css.moviedetail}>
       <div
