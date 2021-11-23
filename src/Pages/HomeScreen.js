@@ -21,7 +21,7 @@ const HomeScreen = (props) => {
   const showSession =  sessionStorage.getItem('modal')
   console.log('state show',showSession)
   
-  if (showSession !== "true"  ) {
+  if (showSession !== "true" || null ) {
     showModal();
     
   }
