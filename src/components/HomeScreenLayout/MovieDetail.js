@@ -17,6 +17,7 @@ const MovieDetail = () => {
   const [movieCast, setMovieCast] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFavoriteId, setIsFavoriteId] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const movieId = useParams().movieId;
   const user = useSelector(selectUser);
@@ -32,8 +33,10 @@ const MovieDetail = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const response = await axios.get(details_Url);
+
       setMovie(response.data);
     };
+
     const fetchMovieCast = async () => {
       const response = await axios.get(movieCast_url);
       setMovieCast(response.data.cast);
@@ -41,7 +44,7 @@ const MovieDetail = () => {
     fetchMovieDetails();
     fetchMovieCast();
     docRef();
-    isFavoriteDB()
+    isFavoriteDB();
   }, []);
 
   // sericeWorker Notification
@@ -56,8 +59,8 @@ const MovieDetail = () => {
   };
 
   // check for update favorite_session into db & setIsFavorite
-  const isFavoriteDB = async() =>
-   await db
+  const isFavoriteDB = async () =>
+    await db
       .collection("customers")
       .doc(user.uid)
       .collection("favorite_session")
@@ -85,10 +88,11 @@ const MovieDetail = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        setErrorMsg({ message: error.message, errorType: error });
       });
 
   const addFavoriteHandler = async () => {
+    await docRef();
     await db
       .collection("customers")
       .doc(user.uid)
@@ -100,11 +104,12 @@ const MovieDetail = () => {
         };
         notificationHandler(options);
       })
-      .catch((error) => <Error message={error.message} error={error} />);
+      .catch((error) =>
+        setErrorMsg({ message: error.message, errorType: error })
+      );
   };
 
   const removeFavoriteHandler = async () => {
-    await docRef();
     await db
       .collection("customers")
       .doc(user.uid)
@@ -119,89 +124,96 @@ const MovieDetail = () => {
 
         setIsFavorite((prevState) => !prevState);
       })
-      .catch((error) => <Error message={error.message} error={error} />);
+      .catch((error) =>
+        setErrorMsg({ message: error.message, errorType: error })
+      );
   };
-  console.log("outsideRemove");
 
   return (
-    <div className={css.moviedetail}>
-      <div
-        className={css.banner}
-        style={{
-          backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
-        }}
-      >
-        <div className={css.banner__contents}>
-          <h1 className={css.banner__title}>
-            {movie?.title || movie?.name || movie?.original_title}
-          </h1>
-          <h1 className={css.banner__description}>
-            {troncate(movie?.overview, 180)}
-          </h1>
-          <div className={css.banner__buttons}>
-            {!isFavorite ? (
-              <img src={plus} alt="" onClick={addFavoriteHandler} />
-            ) : (
-              <img src={check} alt="" onClick={removeFavoriteHandler} />
-            )}
+    <>
+      {errorMsg ? (
+        <Error message={errorMsg.message} error={errorMsg.error} />
+      ) : (
+        <div className={css.moviedetail}>
+          <div
+            className={css.banner}
+            style={{
+              backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
+            }}
+          >
+            <div className={css.banner__contents}>
+              <h1 className={css.banner__title}>
+                {movie?.title || movie?.name || movie?.original_title}
+              </h1>
+              <h1 className={css.banner__description}>
+                {troncate(movie?.overview, 180)}
+              </h1>
+              <div className={css.banner__buttons}>
+                {!isFavorite ? (
+                  <img src={plus} alt="" onClick={addFavoriteHandler} />
+                ) : (
+                  <img src={check} alt="" onClick={removeFavoriteHandler} />
+                )}
+              </div>
+            </div>
+            <div className={css.banner___fedeBottom} />
           </div>
-        </div>
-        <div className={css.banner___fedeBottom} />
-      </div>
-      <section className={css.moviedetail__wrapper}>
-        <section className={css.moviedetail__info}>
-          <article>
-            <h4>Original Title: </h4>
-            <p> {movie?.original_title}</p>
-          </article>
-          <article>
-            <h4>Status: </h4>
-            <p> {movie?.status}</p>
-          </article>
-          <article>
-            <h4>Vote: </h4>
-            <p>
-              {movie?.vote_average}
-              <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>{" "}
-              <span>&#9734;</span> <span>&#9734;</span>{" "}
-            </p>
-          </article>
-        </section>
-        <section className={css.moviedetail__info}>
-          <article>
-            <h4>Release Date: </h4>
-            <p> {movie?.release_date}</p>
-          </article>
-          <article>
-            <h4>Homepage: </h4>
-            <a href={movie?.homepage}> Homepage</a>
-          </article>
+          <section className={css.moviedetail__wrapper}>
+            <section className={css.moviedetail__info}>
+              <article>
+                <h4>Original Title: </h4>
+                <p> {movie?.original_title}</p>
+              </article>
+              <article>
+                <h4>Status: </h4>
+                <p> {movie?.status}</p>
+              </article>
+              <article>
+                <h4>Vote: </h4>
+                <p>
+                  {movie?.vote_average}
+                  <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>{" "}
+                  <span>&#9734;</span> <span>&#9734;</span>{" "}
+                </p>
+              </article>
+            </section>
+            <section className={css.moviedetail__info}>
+              <article>
+                <h4>Release Date: </h4>
+                <p> {movie?.release_date}</p>
+              </article>
+              <article>
+                <h4>Homepage: </h4>
+                <a href={movie?.homepage}> Homepage</a>
+              </article>
 
-          <article className={css.moviedetail__genres}>
-            <h4>Genres: </h4>
-            {movie.genres?.map((gen) => (
-              <p key={gen.id}>{gen.name}</p>
+              <article className={css.moviedetail__genres}>
+                <h4>Genres: </h4>
+                {movie.genres?.map((gen) => (
+                  <p key={gen.id}>{gen.name}</p>
+                ))}
+              </article>
+            </section>
+          </section>
+          <section className={css.moviedetail__cast_info}>
+            {movieCast.map((actor) => (
+              <div className={css.moviedetail__cast_card} key={actor.id}>
+                <img
+                  key={actor.id}
+                  src={
+                    actor.profile_path
+                      ? `${base_url_img}${actor.profile_path}`
+                      : avatar
+                  }
+                  alt={actor.name}
+                />
+                <p>{actor.name}</p>
+              </div>
             ))}
-          </article>
-        </section>
-      </section>
-      <section className={css.moviedetail__cast_info}>
-        {movieCast.map((actor) => (
-          <div className={css.moviedetail__cast_card} key={actor.id}>
-            <img
-              key={actor.id}
-              src={
-                actor.profile_path
-                  ? `${base_url_img}${actor.profile_path}`
-                  : avatar
-              }
-              alt={actor.name}
-            />
-            <p>{actor.name}</p>
-          </div>
-        ))}
-      </section>
-    </div>
+          </section>
+        </div>
+      )}
+    </>
   );
 };
 
