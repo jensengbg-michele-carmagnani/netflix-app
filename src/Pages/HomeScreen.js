@@ -25,6 +25,9 @@ const HomeScreen = (props) => {
     showModal();
     
   }
+  const closeModal = async () => {
+    setModalIsOpen((prevState) => !prevState);
+  };
 
   const initNotification = async () => {
     const permission = await Notification.requestPermission();
@@ -47,9 +50,6 @@ const HomeScreen = (props) => {
     initNotification();
   }
 
-  const closeModal = async () => {
-    setModalIsOpen((prevState) => !prevState);
-  };
   useEffect(() => {
     window.addEventListener("scroll", props.homeScreenHandler);
     return () => window.removeEventListener("scroll", props.homeScreenHandler);
