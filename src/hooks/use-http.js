@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "../lib/axios";
 
-const useHttp = ({ url, getMovies }) => {
+const useHttp = ({ url, getMovies, getActor }) => {
   const [error, setError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -10,7 +10,12 @@ const useHttp = ({ url, getMovies }) => {
     setError(null);
     try {
       const response = await axios.get(url);
-      getMovies(response.data.results);
+
+      if (response.data.results) {
+        getMovies(response.data.results);
+      } else {
+        getActor(response.data);
+      }
     } catch (error) {
       setError({ error: error.message });
     }

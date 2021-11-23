@@ -27,13 +27,14 @@ const requests = {
   fetchFilmsDrama: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=18`,
   fetchFilmsDocumentaries: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=99`,
   fetchFilmsTopten: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_watch_monetization_types=flatrate`,
-  base_url_img: "https://image.tmdb.org/t/p/original",
-  fetchGenre: `genre/tv/list?api_key=${API_KEY}&language=en-US`,
   fetchTrendyOfWeekAll: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
   fetchTrendyOfDayTv: `/trending/tv/day?api_key=${API_KEY}&language=en-US`,
   fetchTrendyOfdayMovie: `/trending/movie/day?api_key=${API_KEY}&language=en-US`,
   fetchTrendyOfdayPerson: `/trending/person/day?api_key=${API_KEY}&language=en-US`,
+  
+  base_url_img: "https://image.tmdb.org/t/p/original",
+  fetchGenre: `genre/tv/list?api_key=${API_KEY}&language=en-US`,
 };
 //https://api.themoviedb.org/3/trending/movie/day?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US`,
-
+//https://api.themoviedb.org/3/person/62?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US
 export default requests;

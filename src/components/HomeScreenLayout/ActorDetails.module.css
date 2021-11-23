@@ -1,0 +1,14 @@
+.actorDetails{
+  color: #fff;
+  padding: 4rem 4rem;
+}
+.actorDetails__info{
+  
+  height:80vh;
+}
+
+.actorDetails__personalInformation{
+  margin-top: 2rem;
+  border: 1px solid #fff;
+  border-radius: 1rem;
+}

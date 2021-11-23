@@ -15,6 +15,7 @@ import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
 import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
 import TrendyScreen from "./Pages/TrendyScreen";
+import ActorDetails from "./components/HomeScreenLayout/ActorDetails"
 import "./App.css";
 
 function App() {
@@ -76,6 +77,9 @@ function App() {
             </Route>
             <Route path="/movies/:movieId" exact>
               <MovieDetail />
+            </Route>
+            <Route path="/actor/:actorId" exact>
+              <ActorDetails />
             </Route>
             <Route path="*">
               <NotFoundScreen />
