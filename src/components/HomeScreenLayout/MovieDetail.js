@@ -17,7 +17,7 @@ const MovieDetail = () => {
   const [movie, setMovie] = useState({});
   const [movieCast, setMovieCast] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isFavoriteId, setIsFavoriteId] = useState(null);
+  const [isFavoriteDocRefId, setIsFavoriteDocRefId] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
   const movieId = useParams().movieId;
@@ -44,8 +44,8 @@ const MovieDetail = () => {
     };
     fetchMovieDetails();
     fetchMovieCast();
-    docRef();
     isFavoriteDB();
+    docRef();
   }, []);
 
   // sericeWorker Notification
@@ -73,7 +73,7 @@ const MovieDetail = () => {
         });
       });
 
-  // find the doc releted movie
+  // find the docRef to the releted movie
   const docRef = async () =>
     await db
       .collection("customers")
@@ -83,7 +83,7 @@ const MovieDetail = () => {
       .then((querySnapshot) => {
         querySnapshot.forEach((movie) => {
           if (movie.data().id === +movieId) {
-            setIsFavoriteId(movie.id);
+            setIsFavoriteDocRefId(movie.id);
             setIsFavorite(true);
           }
         });
@@ -93,7 +93,6 @@ const MovieDetail = () => {
       });
 
   const addFavoriteHandler = async () => {
-    await docRef();
     await db
       .collection("customers")
       .doc(user.uid)
@@ -111,23 +110,26 @@ const MovieDetail = () => {
   };
 
   const removeFavoriteHandler = async () => {
-    await db
-      .collection("customers")
-      .doc(user.uid)
-      .collection("favorite_session")
-      .doc(isFavoriteId)
-      .delete()
-      .then(() => {
-        const options = {
-          body: "Movie succefully deleted!",
-        };
-        notificationHandler(options);
+    await docRef();
+    if (isFavoriteDocRefId) {
+      await db
+        .collection("customers")
+        .doc(user.uid)
+        .collection("favorite_session")
+        .doc(isFavoriteDocRefId)
+        .delete()
+        .then(() => {
+          const options = {
+            body: "Movie succefully deleted!",
+          };
+          notificationHandler(options);
 
-        setIsFavorite((prevState) => !prevState);
-      })
-      .catch((error) =>
-        setErrorMsg({ message: error.message, errorType: error })
-      );
+          setIsFavorite((prevState) => !prevState);
+        })
+        .catch((error) =>
+          setErrorMsg({ message: error.message, errorType: error })
+        );
+    }
   };
 
   return (
@@ -200,15 +202,15 @@ const MovieDetail = () => {
             {movieCast.map((actor) => (
               <div className={css.moviedetail__cast_card} key={actor.id}>
                 <Link to={`/actor/${actor.id}`}>
-                <img
-                  key={actor.id}
-                  src={
-                    actor.profile_path
-                      ? `${base_url_img}${actor.profile_path}`
-                      : avatar
-                  }
-                  alt={actor.name}
-                />
+                  <img
+                    key={actor.id}
+                    src={
+                      actor.profile_path
+                        ? `${base_url_img}${actor.profile_path}`
+                        : avatar
+                    }
+                    alt={actor.name}
+                  />
                 </Link>
                 <p>{actor.name}</p>
               </div>
