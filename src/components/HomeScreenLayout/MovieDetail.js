@@ -12,6 +12,7 @@ import Error from "../UI/Error";
 import avatar from "../../Assets/Netflix-avatar.png";
 import plus from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
+import { FaStar, FaStarHalf } from "react-icons/fa";
 
 const MovieDetail = () => {
   const [movie, setMovie] = useState({});
@@ -131,6 +132,8 @@ const MovieDetail = () => {
         );
     }
   };
+  const startPercentage = `${Math.round((movie?.vote_average / 10) * 100)}`;
+  console.log(startPercentage);
 
   return (
     <>
@@ -174,9 +177,29 @@ const MovieDetail = () => {
               <article>
                 <h4>Vote: </h4>
                 <p>
+                  {[...Array(5)].map((star, i) => {
+                    const indexRating = (i + 1) * 2;
+
+                     const isYellow = indexRating < movie?.vote_average
+                     const isInteger = movie?.vote_avarage
+                     
+                    return (
+                      <>
+                       { isInteger && isYellow ? <FaStar
+                        
+                          color={
+                             !isYellow 
+                              ? "#575757"
+                              : "#ffc107"
+                          }
+                        />:<FaStarHalf color="#ffc107"/>}
+                        
+                        </>
+                     
+                    );
+                  })}
+
                   {movie?.vote_average}
-                  <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>{" "}
-                  <span>&#9734;</span> <span>&#9734;</span>{" "}
                 </p>
               </article>
             </section>
