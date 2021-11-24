@@ -20,6 +20,8 @@ const ActorBanner = (props) => {
       className={css.bannerActor}
       style={{
         backgroundImage: `url("https://image.tmdb.org/t/p/original${profile_path}")`,
+        borderRadius: '5px',
+        
       }}
     >
       <div className={css.bannerActor__contents}>
