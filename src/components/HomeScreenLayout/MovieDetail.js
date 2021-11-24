@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { API_KEY } from "../../lib/Requests";
+
 import axios from "axios";
 import css from "./MovieDetail.module.css";
 import db from "../../firebase";
@@ -198,6 +199,7 @@ const MovieDetail = () => {
           <section className={css.moviedetail__cast_info}>
             {movieCast.map((actor) => (
               <div className={css.moviedetail__cast_card} key={actor.id}>
+                <Link to={`/actor/${actor.id}`}>
                 <img
                   key={actor.id}
                   src={
@@ -207,6 +209,7 @@ const MovieDetail = () => {
                   }
                   alt={actor.name}
                 />
+                </Link>
                 <p>{actor.name}</p>
               </div>
             ))}
