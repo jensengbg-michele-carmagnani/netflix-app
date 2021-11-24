@@ -185,7 +185,7 @@ const MovieDetail = () => {
                      
                     return (
                       <>
-                       { isInteger && isYellow ? <FaStar
+                       { isYellow ? <FaStar
                         
                           color={
                              !isYellow 
