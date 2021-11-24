@@ -32,9 +32,14 @@ const requests = {
   fetchTrendyOfdayMovie: `/trending/movie/day?api_key=${API_KEY}&language=en-US`,
   fetchTrendyOfdayPerson: `/trending/person/day?api_key=${API_KEY}&language=en-US`,
   
+  
   base_url_img: "https://image.tmdb.org/t/p/original",
   fetchGenre: `genre/tv/list?api_key=${API_KEY}&language=en-US`,
 };
 //https://api.themoviedb.org/3/trending/movie/day?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US`,
 //https://api.themoviedb.org/3/person/62?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US
+//https://api.themoviedb.org/3/movie/976?api_key=ee50a1e0d06151144fff8f5e7363f16e&append_to_response=videos
+//movie credits
+//https://api.themoviedb.org/3/person/1100/movie_credits?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US
+//https://api.themoviedb.org/3/person/1100/tv_credits?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US
 export default requests;
