@@ -33,7 +33,7 @@ const ActorDetails = () => {
 
   const getCredits = async () => {
     const response = await axios.get(fetchUrlCredits);
-    console.log("fimlography", response.data.cast);
+    
     setCredits(response.data.cast);
   };
 

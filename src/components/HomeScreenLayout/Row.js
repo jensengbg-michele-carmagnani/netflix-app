@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Error from "../UI/Error";
+import requests from "../../lib/Requests";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import css from "./Row.module.css";
@@ -9,7 +10,7 @@ import css from "./Row.module.css";
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   const [movies, setMovies] = useState([]);
 
-  const base_url_img = "https://image.tmdb.org/t/p/original/";
+  const base_url_img = requests.base_url_img;
 
   useEffect(() => {
     fetchTask();
