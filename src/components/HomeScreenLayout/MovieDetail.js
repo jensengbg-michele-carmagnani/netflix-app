@@ -178,25 +178,35 @@ const MovieDetail = () => {
                 <h4>Vote: </h4>
                 <p>
                   {[...Array(5)].map((star, i) => {
-                    const indexRating = (i + 1) * 2;
+                    let indexRating = (i + 1) * 20;
 
-                     const isYellow = indexRating < movie?.vote_average
-                     const isInteger = movie?.vote_avarage
-                     
-                    return (
-                      <>
-                       { isYellow ? <FaStar
-                        
-                          color={
-                             !isYellow 
-                              ? "#575757"
-                              : "#ffc107"
-                          }
-                        />:<FaStarHalf color="#ffc107"/>}
-                        
-                        </>
-                     
-                    );
+                    const refactorVote = movie?.vote_average * 10;
+                    
+                    console.log("refactorVote", indexRating);
+                    if (
+                      (refactorVote >= indexRating) &&
+                      (refactorVote <=indexRating ) 
+                      ) {
+                      return <FaStarHalf color="#ffc107" />;
+                    }else if (refactorVote > indexRating) {
+                      return <FaStar color="#ffc107" />;
+                    }
+                    else  {
+                      return <FaStar color="#575757" />;
+                    }
+
+                    // return (
+                    //   <>
+                    //     {indexRating < refactorVote ? (
+                    //       <FaStar color={"#ffc107"} />
+                    //     ) : <FaStarHalf color="#ffc107" /> ? (
+                    //       refactorVote >= indexRating ||
+                    //       refactorVote <= i+2
+                    //     ) : (
+                    //       <FaStar color="#575757" />
+                    //     )}
+                    //   </>
+                    // );
                   })}
 
                   {movie?.vote_average}

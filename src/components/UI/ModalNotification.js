@@ -40,19 +40,19 @@ const modal = (props) => {
           </section>
           <button
             className="Modola__button"
-            onClick={() => props.closed("Granted")}
+            onClick={() => props.closed()}
           >
             yes
           </button>
           <button
             className="Modola__button"
-            onClick={() => props.closed("Denied")}
+            onClick={() => props.closed()}
           >
             no
           </button>
           <button
             className="Modola__button"
-            onClick={() => props.closed("Denied")}
+            onClick={() => props.closed()}
           >
             Personalize
           </button>
