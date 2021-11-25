@@ -67,7 +67,7 @@ const PlanScreen = () => {
 
       if (error) {
         // show en error and inspect your Cloud Function logs in Firebase console
-        alert("Something whent wrong" + error.message);
+        alert("Something went wrong" + error.message);
       }
       if (sessionId) {
         const stripe = await loadStripe(

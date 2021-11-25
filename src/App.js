@@ -26,6 +26,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      console.log(user)
       if (user) {
         dispatch(login({ uid: user.uid, email: user.email }));
       } else {
@@ -68,7 +69,7 @@ function App() {
             <Route path="/latest">
               <TrendyScreen trandyScreenHanlder={transitionNavBarHandler} />
             </Route>
-            <Route path="/myfavorites">
+            <Route path="/myfavorites" >
               <MyListScreen />
             </Route>
             <Route path="/profile">
