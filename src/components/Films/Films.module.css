@@ -1,0 +1,28 @@
+.films {
+  height: 100%;
+  margin-top: 60px;
+  color: #fff;
+}
+
+.films__postersRow {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 20px;
+}
+.films__img {
+  max-height: 250px;
+  object-fit: contain;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+.films__img:hover {
+  
+  transform: scale(1.08);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.films__postersRow::-webkit-scrollbar {
+  display: none;
+}
