@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { API_KEY } from "../../lib/Requests";
-
-import axios from "axios";
-import css from "./MovieDetail.module.css";
-import db from "../../firebase";
 import { useAppSelector } from "../../app/hooks";
 
-import { useSelector } from "react-redux";
-import { selectUser } from "../../features/userSlice";
-import Error from "../UI/Error";
+import axios from "axios";
+import db from "../../firebase";
 
+
+import Error from "../UI/Error";
 import avatar from "../../Assets/Netflix-avatar.png";
 import plus from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
+import {optionNotification} from '../../../types/MovieDetails'
 import { MovieDetails } from "../../../types/MovieDetails";
 import { Cast } from "../../../types/MovieCast";
 import { troncate } from "../../../types/Movie";
 import {UserSlice} from "../../../types/User"
+import {errorMsg} from "../../../types/MovieDetails"
 import { FaStar, FaStarHalf } from "react-icons/fa";
+import css from "./MovieDetail.module.css";
 
 const MovieDetail: React.FC = () => {
   const [movie, setMovie] = useState<MovieDetails>();
   const [movieCast, setMovieCast] = useState<Cast[]>([]);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const [isFavoriteDocRefId, setIsFavoriteDocRefId] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [isFavoriteDocRefId, setIsFavoriteDocRefId] = useState<string>();
+  const [errorMsg, setErrorMsg] = useState<errorMsg>();
 
   const movieId = useParams<{ movieId: string }>().movieId;
   const user  = useAppSelector(state => state.user.user) as UserSlice;
@@ -56,7 +56,7 @@ const MovieDetail: React.FC = () => {
   }, []);
 
   // sericeWorker Notification
-  const notificationHandler = (options) => {
+  const notificationHandler = (options:optionNotification) => {
     let notif = new Notification("Hi", options);
     navigator.serviceWorker.ready.then((reg) =>
       reg.showNotification("Reminder", options)
@@ -100,20 +100,22 @@ const MovieDetail: React.FC = () => {
       });
 
   const addFavoriteHandler = async () => {
-    await db
-      .collection("customers")
-      .doc(user.uid)
-      .collection("favorite_session")
-      .add(movie)
-      .then(() => {
-        const options = {
-          body: "Movie succefully added!",
-        };
-        notificationHandler(options);
-      })
-      .catch((error) =>
-        setErrorMsg({ message: error.message, errorType: error })
-      );
+    if(movie){
+      await db
+        .collection("customers")
+        .doc(user.uid)
+        .collection("favorite_session")
+        .add(movie)
+        .then(() => {
+          const options: optionNotification = {
+            body: "Movie succefully added!",
+          };
+          notificationHandler(options);
+        })
+        .catch((error) =>
+          setErrorMsg({ message: error.message, errorType: error })
+        );
+    }
   };
 
   const removeFavoriteHandler = async () => {
@@ -138,13 +140,18 @@ const MovieDetail: React.FC = () => {
         );
     }
   };
+ 
+  if(movie?.vote_average){
 
-  const startPercentage = `${Math.round((movie?.vote_average / 10) * 100)}`;
+    const startPercentage = `${Math.round(( movie?.vote_average / 10) * 100)}`;
+    return startPercentage
+  }
+ 
 
   return (
     <>
       {errorMsg ? (
-        <Error message={errorMsg.message} error={errorMsg.error} />
+        <Error message={errorMsg.message} error={errorMsg.errorType} />
       ) : (
         <div className={css.moviedetail}>
           <div
@@ -158,7 +165,7 @@ const MovieDetail: React.FC = () => {
                 {movie?.title || movie?.name || movie?.original_title}
               </h1>
               <h1 className={css.banner__description}>
-                {troncate(movie?.overview, 180)}
+                {movie?.overview && troncate(movie?.overview, 180)}
               </h1>
               <div className={css.banner__buttons}>
                 {!isFavorite ? (
@@ -215,7 +222,7 @@ const MovieDetail: React.FC = () => {
 
               <article className={css.moviedetail__genres}>
                 <h4>Genres: </h4>
-                {movie.genres?.map((gen) => (
+                {movie && movie.genres?.map((gen) => (
                   <p key={gen.id}>{gen.name}</p>
                 ))}
               </article>

@@ -18,7 +18,7 @@ import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
 import TrendyScreen from "./Pages/TrendyScreen";
 import ActorDetails from "./components/HomeScreenLayout/ActorDetails";
-import "./App.css";
+
 
 
 
@@ -61,7 +61,7 @@ const App: React.FC = () => {
             </Route>
             <Route path="/series">
               <TvSeriesScreen
-                seriesScreenBarHandler={transitionNavBarHandler}
+                seriesScreenHandler={transitionNavBarHandler}
               />
             </Route>
 

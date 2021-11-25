@@ -1,25 +1,16 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
-<<<<<<< HEAD:src/components/Login/SignIn.tsx
 import css from "./SignIn.module.css";
+import { TextField } from "@material-ui/core";
+import { useHistory } from 'react-router-dom';
 
 const SignIn:React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const signInHandler = (e: React.FormEvent) => {
-=======
-import { TextField } from "@material-ui/core";
-import { useHistory } from 'react-router-dom';
-
-
-
-const SignIn = () => {
+  
   const history = useHistory();
-
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
   const nameRef = useRef(null);
 
   const [isLogin, setIsLogin] = useState(true);
@@ -27,9 +18,8 @@ const SignIn = () => {
 
   const [error, setError] = useState(null);
 
-  const signInHandler = (e) => {
+  const signInHandler = (e: React.FormEvent) => {
     console.log("In sign in", e)
->>>>>>> development:src/components/Login/SignIn.js
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(
@@ -53,6 +43,7 @@ const SignIn = () => {
         console.log(error.message);
       });
   };
+
   const signUpHandler = (e: React.FormEvent) => {
     e.preventDefault();
     auth
@@ -75,8 +66,6 @@ const SignIn = () => {
   };
 
   const submitHandler = (event) => {
-    console.log(event);
-    console.log(isLogin);
     setIsLoading(true);
 
     if (isLogin) {

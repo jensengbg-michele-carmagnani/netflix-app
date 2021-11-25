@@ -27,7 +27,7 @@ export interface MovieDetails {
   title?: string;
   name?: string;
   video: boolean;
-  vote_average: number;
+  vote_average?: number;
   vote_count: number;
   cast: Cast;
   
@@ -54,4 +54,13 @@ export interface SpokenLanguage {
   english_name: string;
   iso_639_1: string;
   name: string;
+}
+
+export interface optionNotification{
+  body: string;
+}
+
+export interface errorMsg{
+  message: string;
+  errorType: string;
 }

@@ -1,6 +1,5 @@
-export interface NavBarHandler {
-  transitionNavBarHandler: () => void; 
-}
+export type NavBarHandler =  () => void; 
+
 
 export interface RowProp {
   title: string,
