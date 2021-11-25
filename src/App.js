@@ -28,6 +28,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      console.log(user)
       if (user) {
         dispatch(login({ uid: user.uid, email: user.email }));
       } else {
@@ -61,11 +62,11 @@ function App() {
             </Route>
 
 
-            <Route path="/series"><TvSeriesScreen/></Route>
+            <Route path="/series"><TvSeriesScreen /></Route>
 
             <Route path="/films">{/* Films */}</Route>
             <Route path="/latest">{/* New & Popular */}</Route>
-            <Route path="/myfavorites"><MyListScreen/></Route>
+            <Route path="/myfavorites"><MyListScreen /></Route>
             <Route path="/profile">
               <Profile />
             </Route>
@@ -79,7 +80,7 @@ function App() {
         </Layout>
       ) : (
         <Switch>
-            <Route path="/">
+          <Route path="/">
             <LoginScreen />
           </Route>
         </Switch>

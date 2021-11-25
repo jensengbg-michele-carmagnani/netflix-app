@@ -8,7 +8,7 @@ const Login = () => {
   const signInHandler = () => {
     setSignIn(true);
   };
-  
+
   return (
     <div className={css.loginScreen}>
       <div className={css.loginScreen__background}>
@@ -28,7 +28,7 @@ const Login = () => {
         ) : (
           <>
             <div className={css.loginScreen__body}>
-              <h1>Ulimeted film, Tv and programmes and more.</h1>
+              <h1>Unlimited film, Tv programmes and more.</h1>
               <h2>Watch anywhere. Cancel any time </h2>
               <h3>
                 Read to watch? Enter your email to create or restart your
@@ -41,7 +41,7 @@ const Login = () => {
                     className={css.loginScreen__buttonSubmit}
                     onClick={signInHandler}
                   >
-                    Get started >
+                    Get started
                   </button>
                 </form>
               </div>
