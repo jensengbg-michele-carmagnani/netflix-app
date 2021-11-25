@@ -132,8 +132,8 @@ const MovieDetail = () => {
         );
     }
   };
+
   const startPercentage = `${Math.round((movie?.vote_average / 10) * 100)}`;
-  console.log(startPercentage);
 
   return (
     <>
@@ -176,41 +176,25 @@ const MovieDetail = () => {
               </article>
               <article>
                 <h4>Vote: </h4>
-                <p>
+                <div className={css.moviedetail__vote}>
                   {[...Array(5)].map((star, i) => {
-                    let indexRating = (i + 1) * 20;
+                    const indexRating = (i + 1) * 20;
+                    const prevIndex = (i + 1) * 20 - 20;
 
-                    const refactorVote = movie?.vote_average * 10;
-                    
-                    console.log("refactorVote", indexRating);
                     if (
-                      (refactorVote >= indexRating) &&
-                      (refactorVote <=indexRating ) 
-                      ) {
+                      +startPercentage < indexRating &&
+                      +startPercentage > prevIndex
+                    ) {
                       return <FaStarHalf color="#ffc107" />;
-                    }else if (refactorVote > indexRating) {
+                    } else if (+startPercentage > indexRating) {
                       return <FaStar color="#ffc107" />;
-                    }
-                    else  {
+                    } else {
                       return <FaStar color="#575757" />;
                     }
-
-                    // return (
-                    //   <>
-                    //     {indexRating < refactorVote ? (
-                    //       <FaStar color={"#ffc107"} />
-                    //     ) : <FaStarHalf color="#ffc107" /> ? (
-                    //       refactorVote >= indexRating ||
-                    //       refactorVote <= i+2
-                    //     ) : (
-                    //       <FaStar color="#575757" />
-                    //     )}
-                    //   </>
-                    // );
                   })}
 
-                  {movie?.vote_average}
-                </p>
+                  <span> {movie?.vote_average}</span>
+                </div>
               </article>
             </section>
             <section className={css.moviedetail__info}>

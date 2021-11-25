@@ -15,7 +15,7 @@ import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
 import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
 import TrendyScreen from "./Pages/TrendyScreen";
-import ActorDetails from "./components/HomeScreenLayout/ActorDetails"
+import ActorDetails from "./components/HomeScreenLayout/ActorDetails";
 import "./App.css";
 
 function App() {
@@ -55,7 +55,6 @@ function App() {
             <Route path="/movies" exact>
               <HomeScreen homeScreenHandler={transitionNavBarHandler} />
             </Route>
-
             <Route path="/series">
               <TvSeriesScreen
                 seriesScreenBarHandler={transitionNavBarHandler}
@@ -67,10 +66,10 @@ function App() {
             </Route>
 
             <Route path="/latest">
-              <TrendyScreen trandyScreenHanlder={transitionNavBarHandler}/>
+              <TrendyScreen trandyScreenHanlder={transitionNavBarHandler} />
             </Route>
-            <Route path="/myfavorites" >
-              <MyListScreen  />
+            <Route path="/myfavorites">
+              <MyListScreen />
             </Route>
             <Route path="/profile">
               <Profile />
