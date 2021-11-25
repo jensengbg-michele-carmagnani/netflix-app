@@ -13,7 +13,6 @@ const TvSeries = (props) => {
 
 
   useEffect(() => {
-    console.log('error in Tvfilms');
     fetchTask();
   }, []);
 
