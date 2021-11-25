@@ -56,6 +56,9 @@ const SignIn = () => {
       )
       .then((userCredetial) => {
         console.log("User credentials: ", userCredetial);
+        console.log("User credentials dislplay name: ", userCredetial.user.bc.displayName);
+        userCredetial.user.bc.displayName = nameRef;
+
         history.replace('/movies');
       })
       .catch((error) => {
