@@ -185,11 +185,11 @@ const MovieDetail = () => {
                       +startPercentage < indexRating &&
                       +startPercentage > prevIndex
                     ) {
-                      return <FaStarHalf color="#ffc107" />;
+                      return <FaStarHalf color="#ffc107" key={i} />;
                     } else if (+startPercentage > indexRating) {
-                      return <FaStar color="#ffc107" />;
+                      return <FaStar color="#ffc107" key={i} />;
                     } else {
-                      return <FaStar color="#575757" />;
+                      return <FaStar color="#575757" key={i} />;
                     }
                   })}
 
@@ -218,7 +218,7 @@ const MovieDetail = () => {
           <section className={css.moviedetail__cast_info}>
             {movieCast.map((actor) => (
               <div className={css.moviedetail__cast_card} key={actor.id}>
-                <Link to={`/actor/${actor.id}`}>
+                <Link to={`/actor/${actor.id}`} key={actor.id}>
                   <img
                     key={actor.id}
                     src={
@@ -229,7 +229,9 @@ const MovieDetail = () => {
                     alt={actor.name}
                   />
                 </Link>
-                <p>{actor.name}</p>
+                <p key={Math.random().toString(36).substr(2, 9)}>
+                  {actor.name}
+                </p>
               </div>
             ))}
           </section>

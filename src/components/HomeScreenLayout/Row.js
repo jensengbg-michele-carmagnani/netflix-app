@@ -37,17 +37,17 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
-
+ 
   const imgRow = `${css.row__poster} ${isLargeRow && css.row__posterLarge}`;
   return (
-    <div className={css.row}>
+    <div className={css.row} key={Math.random().toString(36).substr(2, 9)}>
       <h2>{title}</h2>
       <div className={css.row__posters}>
         {movies.map(
           (movie) =>
             ((isLargeRow && movie.poster_path) ||
               (!isLargeRow && movie.backdrop_path)) && (
-              <Link to={`/movies/${movie.id}`}>
+              <Link to={`/movies/${movie.id}`} key={movie.id} >
                 <img
                   className={imgRow}
                   key={movie.id}

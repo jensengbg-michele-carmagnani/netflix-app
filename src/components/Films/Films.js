@@ -43,7 +43,7 @@ const Films = (props) => {
       <h1>{title}</h1>
       <div className={css.films__postersRow}>
         {films?.map((film) => (
-          <Link to={`/movies/${film.id}`}>
+          <Link to={`/movies/${film.id}`} key={film.id}>
             <div className={css.films__poster}>
               {/* {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>} */}
               <img

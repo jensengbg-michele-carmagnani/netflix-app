@@ -44,7 +44,7 @@ const TvSeries = (props) => {
         <h1>{title}</h1>
         <div className={css.tvseries__postersRow}>
           {tvSeries.map((serie) => (
-            <Link to={`/movies/${serie.id}`}>
+            <Link to={`/movies/${serie.id}`} key={serie.id}>
               <div className={css.tvseries__poster}>
                 {/* {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>} */}
                 <img
