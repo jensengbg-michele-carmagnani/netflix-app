@@ -18,12 +18,28 @@ const requests = {
   fetchTvseriesWestern: `/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_genres=37`,
   fetchTvseriesDrama: `/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_genres=18`,
   fetchTvseriesWarPolitics: `/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_genres=10768`,
+  fetchTvseriesTopten: `discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`,
+  fetchFilmsFamily: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=10751`,
+  fetchFilmsAnimation: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=16`,
+  fetchFilmsFantasy: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=10765`,
+  fetchFilmsCrime: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=80`,
+  fetchFilmsWestern: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=37`,
+  fetchFilmsDrama: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=18`,
+  fetchFilmsDocumentaries: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=99`,
+  fetchFilmsTopten: `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_watch_monetization_types=flatrate`,
+  fetchTrendyOfWeekAll: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
+  fetchTrendyOfDayTv: `/trending/tv/day?api_key=${API_KEY}&language=en-US`,
+  fetchTrendyOfdayMovie: `/trending/movie/day?api_key=${API_KEY}&language=en-US`,
+  fetchTrendyOfdayPerson: `/trending/person/day?api_key=${API_KEY}&language=en-US`,
+  
+  
+  base_url_img: "https://image.tmdb.org/t/p/original",
   fetchGenre: `genre/tv/list?api_key=${API_KEY}&language=en-US`,
-  fetchTvseriesTopten:`discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`,
-  base_url_img: "https://image.tmdb.org/t/p/original/",
 };
-//`https://api.themoviedb.org/3/movie/512195?api_key=ee50a1e0d06151144fff8f5e7363f16e&append_to_response=videos&append_to_response=videos
-//movie details https://api.themoviedb.org/3/discover/tv?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate
-//movie cast `https://api.themoviedb.org/3/movie/512195/credits?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US
-
+//https://api.themoviedb.org/3/trending/movie/day?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US`,
+//https://api.themoviedb.org/3/person/62?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US
+//https://api.themoviedb.org/3/movie/976?api_key=ee50a1e0d06151144fff8f5e7363f16e&append_to_response=videos
+//movie credits
+//https://api.themoviedb.org/3/person/1100/movie_credits?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US
+//https://api.themoviedb.org/3/person/1100/tv_credits?api_key=ee50a1e0d06151144fff8f5e7363f16e&language=en-US
 export default requests;

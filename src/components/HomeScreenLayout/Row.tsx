@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+import Error from "../UI/Error";
+import requests from "../../lib/Requests";
+import useHttp from "../../hooks/use-http";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import css from "./Row.module.css";
 import axios from "../../lib/axios";
 import { RowProp } from "../../../types/Screens";
@@ -8,27 +13,44 @@ import {Movie} from "../../../types/Movie"
 const Row: React.FC<RowProp> = ({ title, fetchUrl, isLargeRow = false }) => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
-  const base_url_img = "https://image.tmdb.org/t/p/original/";
+  const base_url_img = requests.base_url_img;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(fetchUrl);
-      setMovies(response.data.results);
-      return response;
-    };
-    fetchData();
-  }, [fetchUrl]);
+    fetchTask();
+  }, []);
 
+  const getMovies = (paylod) => {
+    setMovies(paylod);
+  };
+  const {
+    error,
+    isLoading,
+    sendRequest: fetchTask,
+  } = useHttp({ url: fetchUrl, getMovies });
+  
+
+  if (error) {
+    return (
+      <Error
+        onError={{ message: "Somesthing went wrong, try again later!", error }}
+      />
+    );
+  }
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+ 
   const imgRow = `${css.row__poster} ${isLargeRow && css.row__posterLarge}`;
   return (
-    <div className={css.row}>
+    <div className={css.row} key={Math.random().toString(36).substr(2, 9)}>
       <h2>{title}</h2>
       <div className={css.row__posters}>
         {movies.map(
           (movie) =>
             ((isLargeRow && movie.poster_path) ||
               (!isLargeRow && movie.backdrop_path)) && (
-              <Link to={`/movies/${movie.id}`}>
+              <Link to={`/movies/${movie.id}`} key={movie.id} >
                 <img
                   className={imgRow}
                   key={movie.id}

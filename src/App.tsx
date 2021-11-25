@@ -4,7 +4,6 @@ import { auth } from "./firebase";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { login, logout, selectUser } from "./features/userSlice";
 
-
 import Layout from "./components/Layout/Layout";
 import HomeScreen from "./Pages/HomeScreen";
 import LoginScreen from "./Pages/LoginScreen";
@@ -12,9 +11,14 @@ import Profile from "./Pages/ProfileScreen";
 
 import TvSeriesScreen from "./Pages/TvSeriesScreen";
 
+
+import FilmsScreen from "./Pages/FilmsScreen";
 import MovieDetail from "./components/HomeScreenLayout/MovieDetail";
 import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
+import TrendyScreen from "./Pages/TrendyScreen";
+import ActorDetails from "./components/HomeScreenLayout/ActorDetails";
+import "./App.css";
 
 
 
@@ -55,21 +59,30 @@ const App: React.FC = () => {
             <Route path="/movies" exact>
               <HomeScreen homeScreenHandler={transitionNavBarHandler} />
             </Route>
-
             <Route path="/series">
-              <TvSeriesScreen seriesScreenHandler={transitionNavBarHandler} />
+              <TvSeriesScreen
+                seriesScreenBarHandler={transitionNavBarHandler}
+              />
             </Route>
 
-            <Route path="/films">{/* Films */}</Route>
-            <Route path="/latest">{/* New & Popular */}</Route>
-            <Route path="/myfavorites">
+            <Route path="/films">
+              <FilmsScreen moviesScreenBarHandler={transitionNavBarHandler} />
+            </Route>
+
+            <Route path="/latest">
+              <TrendyScreen trandyScreenHanlder={transitionNavBarHandler} />
+            </Route>
+            <Route path="/myfavorites" >
               <MyListScreen />
             </Route>
             <Route path="/profile">
               <Profile />
             </Route>
-            <Route path="/movies/:movieId">
+            <Route path="/movies/:movieId" exact>
               <MovieDetail />
+            </Route>
+            <Route path="/actor/:actorId" exact>
+              <ActorDetails />
             </Route>
             <Route path="*">
               <NotFoundScreen />

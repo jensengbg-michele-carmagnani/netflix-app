@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
+<<<<<<< HEAD:src/components/Login/SignIn.tsx
 import css from "./SignIn.module.css";
 
 const SignIn:React.FC = () => {
@@ -8,15 +9,48 @@ const SignIn:React.FC = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const signInHandler = (e: React.FormEvent) => {
+=======
+import { TextField } from "@material-ui/core";
+import { useHistory } from 'react-router-dom';
+
+
+
+const SignIn = () => {
+  const history = useHistory();
+
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const nameRef = useRef(null);
+
+  const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [error, setError] = useState(null);
+
+  const signInHandler = (e) => {
+    console.log("In sign in", e)
+>>>>>>> development:src/components/Login/SignIn.js
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(
         emailRef.current!.value,
         passwordRef.current!.value
       )
-      .then((user) => user)
-      .catch((err) => {
-        alert(err);
+      .then((user) => {
+        setIsLoading(false);
+        console.log(user)
+        if (user) {
+          history.replace('/movies');
+          return user;
+        } else {
+          return user.then((data) => {
+            throw new Error(data.error.message);
+          });
+        }
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error.message);
       });
   };
   const signUpHandler = (e: React.FormEvent) => {
@@ -27,29 +61,52 @@ const SignIn:React.FC = () => {
         passwordRef.current!.value
       )
       .then((userCredetial) => {
-        console.log(userCredetial);
+        console.log("User credentials: ", userCredetial);
+        history.replace('/movies');
       })
       .catch((error) => {
-        alert(error.message);
+        setError(error.message);
+        console.log(error.message);
       });
   };
+
+  const switchAuthModeHandler = () => {
+    setIsLogin((prevState) => !prevState);
+  };
+
+  const submitHandler = (event) => {
+    console.log(event);
+    console.log(isLogin);
+    setIsLoading(true);
+
+    if (isLogin) {
+      signInHandler(event)
+    } else {
+      signUpHandler(event)
+    }
+  }
+
   return (
     <div className={css.signIn}>
-      <form action="submit" className={css.signIn__signUpForm}>
-        <h1>Sign In </h1>
+      <h1 className={css.heading}>{isLogin ? 'Login' : 'Sign Up'}</h1>
+
+      <form onSubmit={submitHandler} className={css.signIn__signUpForm}>
+        {!isLogin && (
+          <input type="name" placeholder="Name" ref={nameRef} />
+        )}
         <input type="email" placeholder="Email" ref={emailRef} />
         <input type="password" placeholder="Password" ref={passwordRef} />
-        <button onClick={signInHandler} type="submit">
-          <Link to="/movies">Sign in</Link>
-        </button>
-        <h4>
-          <span className={css.signIn__gray}>New to Netflix? </span>
-          <span className={css.signIn__link} onClick={signUpHandler}>
-            <Link to="/movies">Sign up</Link>
-          </span>
-        </h4>
+        <div><span>{error}</span></div>
+
+        <button>{isLogin ? 'Login' : 'Create Account'}</button>
+
+        <h3 className={css.toggle}
+          onClick={switchAuthModeHandler}>
+          {isLogin ? 'Create new account' : 'Login with existing account'}
+        </h3>
       </form>
     </div>
+
   );
 };
 
