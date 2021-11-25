@@ -6,7 +6,7 @@ import { UserSlice } from "../../types/User";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: { uid: "" , email: ""  } ,
+    user: { uid: "EX3vacDzuNdyYpzuGzBxXuBPjU33" , email: "michele@gmail.com"  } ,
   },
   reducers: {
     login: (state, action: PayloadAction<UserSlice>) => {
