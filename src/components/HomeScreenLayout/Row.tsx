@@ -24,6 +24,7 @@ const Row: React.FC<RowProp> = ({ title, fetchUrl, isLargeRow = false }) => {
   const getMovies = (paylod:Movie[]) => {
     setMovies(paylod) ;
   };
+  
   const {
     error,
     isLoading,
