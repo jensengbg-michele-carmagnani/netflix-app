@@ -41,33 +41,33 @@ const Footer = () => {
               icon={faFacebook}
               size="3x"
               className={css.footer___fontAwesome}
-              onMouseLeave={colorHandler}
-              onMouseOver={colorHandler}
-              color={color}
+              // onMouseLeave={colorHandler}
+              // onMouseOver={colorHandler}
+              // color={color}
             />
             <FontAwesomeIcon
               icon={faInstagramSquare}
               size="3x"
               className={css.footer___fontAwesome}
-              onMouseLeave={colorHandler}
-              onMouseOver={colorHandler}
-              color={color}
+              // onMouseLeave={colorHandler}
+              // onMouseOver={colorHandler}
+              // color={color}
             />
             <FontAwesomeIcon
               icon={faYoutubeSquare}
               size="3x"
               className={css.footer___fontAwesome}
-              onMouseLeave={colorHandler}
-              onMouseOver={colorHandler}
-              color={color}
+              // onMouseLeave={colorHandler}
+              // onMouseOver={colorHandler}
+              // color={color}
             />
             <FontAwesomeIcon
               icon={faLinkedin}
               size="3x"
-              className={css.footer___fontAwesome}
-              onMouseLeave={colorHandler}
-              onMouseOver={colorHandler}
-              color={color}
+    
+              // onMouseLeave={colorHandler}
+              // onMouseOver={colorHandler}
+              // color={color}
             />
           </article>
           <h5>Audio and Subtitles</h5>
