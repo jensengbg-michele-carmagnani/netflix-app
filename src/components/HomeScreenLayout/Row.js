@@ -7,10 +7,13 @@ import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import css from "./Row.module.css";
 
+
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   const [movies, setMovies] = useState([]);
 
   const base_url_img = requests.base_url_img;
+  
+  
 
   useEffect(() => {
     fetchTask();
@@ -47,11 +50,12 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
           (movie) =>
             ((isLargeRow && movie.poster_path) ||
               (!isLargeRow && movie.backdrop_path)) && (
-              <Link to={`/movies/${movie.id}`} key={movie.id} >
+              <Link to={`/movies/${movie.id}`} key={movie.id}>
+                
                 <img
                   className={imgRow}
                   key={movie.id}
-                  src={`${base_url_img}${
+                  src={`${base_url_img && base_url_img}${
                     isLargeRow ? movie.poster_path : movie.backdrop_path
                   }`}
                   alt={movie.name}

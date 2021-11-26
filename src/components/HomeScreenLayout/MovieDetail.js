@@ -133,7 +133,7 @@ const MovieDetail = () => {
     }
   };
 
-  const startPercentage = `${Math.round((movie?.vote_average / 10) * 100)}`;
+  const startPercentage = Math.round((movie?.vote_average / 10) * 100);
 
   return (
     <>
@@ -182,11 +182,11 @@ const MovieDetail = () => {
                     const prevIndex = (i + 1) * 20 - 20;
 
                     if (
-                      +startPercentage < indexRating &&
-                      +startPercentage > prevIndex
+                      startPercentage < indexRating &&
+                      startPercentage > prevIndex
                     ) {
                       return <FaStarHalf color="#ffc107" key={i} />;
-                    } else if (+startPercentage > indexRating) {
+                    } else if (startPercentage > indexRating) {
                       return <FaStar color="#ffc107" key={i} />;
                     } else {
                       return <FaStar color="#575757" key={i} />;
