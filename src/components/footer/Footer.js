@@ -39,7 +39,8 @@ const Footer = () => {
             
             <FontAwesomeIcon
               icon={faFacebook}
-              size="3x"
+              size="2x"
+              color="white"
               className={css.footer___fontAwesome}
               // onMouseLeave={colorHandler}
               // onMouseOver={colorHandler}
@@ -47,7 +48,8 @@ const Footer = () => {
             />
             <FontAwesomeIcon
               icon={faInstagramSquare}
-              size="3x"
+              size="2x"
+              color="white"
               className={css.footer___fontAwesome}
               // onMouseLeave={colorHandler}
               // onMouseOver={colorHandler}
@@ -55,7 +57,8 @@ const Footer = () => {
             />
             <FontAwesomeIcon
               icon={faYoutubeSquare}
-              size="3x"
+              size="2x"
+              color="white"
               className={css.footer___fontAwesome}
               // onMouseLeave={colorHandler}
               // onMouseOver={colorHandler}
@@ -63,7 +66,8 @@ const Footer = () => {
             />
             <FontAwesomeIcon
               icon={faLinkedin}
-              size="3x"
+              size="2x"
+              color="white"
     
               // onMouseLeave={colorHandler}
               // onMouseOver={colorHandler}
