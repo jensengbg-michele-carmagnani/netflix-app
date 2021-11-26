@@ -47,11 +47,13 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
       <h2>{title}</h2>
       <div className={css.row__posters}>
         {movies.map(
-          (movie) =>
+          (movie,i) =>
             ((isLargeRow && movie.poster_path) ||
               (!isLargeRow && movie.backdrop_path)) && (
               <Link to={`/movies/${movie.id}`} key={movie.id}>
-                
+                <div className={css.row__rankingContainer}>
+                {isLargeRow && <h1 className={css.row___ranking}>{i+1}</h1>}
+              
                 <img
                   className={imgRow}
                   key={movie.id}
@@ -60,6 +62,8 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
                   }`}
                   alt={movie.name}
                 />
+
+                </div>
               </Link>
             )
         )}
