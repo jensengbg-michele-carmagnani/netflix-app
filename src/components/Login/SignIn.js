@@ -29,7 +29,6 @@ const SignIn = () => {
       )
       .then((user) => {
         setIsLoading(false);
-        console.log(user)
         if (user) {
           history.replace('/movies');
           return user;
@@ -69,8 +68,6 @@ const SignIn = () => {
   };
 
   const submitHandler = (event) => {
-    console.log(event);
-    console.log(isLogin);
     setIsLoading(true);
 
     if (isLogin) {
