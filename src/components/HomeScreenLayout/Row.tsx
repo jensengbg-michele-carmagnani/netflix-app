@@ -9,6 +9,8 @@ import css from "./Row.module.css";
 import axios from "../../lib/axios";
 import { RowProp } from "../../../types/Screens";
 import {Movie} from "../../../types/Movie"
+import {Https} from "../../../types/UseHttp"
+
 
 const Row: React.FC<RowProp> = ({ title, fetchUrl, isLargeRow = false }) => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -19,14 +21,14 @@ const Row: React.FC<RowProp> = ({ title, fetchUrl, isLargeRow = false }) => {
     fetchTask();
   }, []);
 
-  const getMovies = (paylod) => {
-    setMovies(paylod);
+  const getMovies = (paylod:Movie[]) => {
+    setMovies(paylod) ;
   };
   const {
     error,
     isLoading,
     sendRequest: fetchTask,
-  } = useHttp({ url: fetchUrl, getMovies });
+  } = useHttp<Https>({ url: fetchUrl, getMovies });
   
 
   if (error) {

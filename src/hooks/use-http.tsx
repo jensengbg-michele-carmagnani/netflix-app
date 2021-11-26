@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "../lib/axios";
+import { Https } from "../../types/UseHttp";
+import { errorMsg } from "../../types/MovieDetails";
 
-const useHttp = ({ url, getMovies, getActor }) => {
-  const [error, setError] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+const useHttp: React.FC<Https> = ({ url, getMovies, getActor }) => {
+  const [error, setError] = useState<errorMsg>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const sendRequest = async () => {
     setIsLoading(true);
-    setError(null);
+    setError({ message: "", errorType: "" });
     try {
       const response = await axios.get(url);
 
@@ -17,7 +19,7 @@ const useHttp = ({ url, getMovies, getActor }) => {
         getActor(response.data);
       }
     } catch (error) {
-      setError({ error: error.message });
+      setError({ message: error.message, errorType: error });
     }
     setIsLoading(false);
   };
