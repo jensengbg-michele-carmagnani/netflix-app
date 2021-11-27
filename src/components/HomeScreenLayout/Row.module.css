@@ -1,16 +1,12 @@
 .row {
   color: #fff;
   margin-left: 20px;
-  
-  
-  
 }
 .row__posters {
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
-  
 }
 .row__posters::-webkit-scrollbar {
   display: none;
@@ -21,33 +17,33 @@
   margin-right: 10px;
   transition: transform 450ms;
   justify-self: flex-end;
+  z-index: 100;
 }
 .row__poster:hover {
   transform: scale(1.08);
   opacity: 1;
   cursor: pointer;
 }
-.row__posterLarge{
+.row__posterLarge {
   max-height: 280px;
 }
-.row__posterLarge:hover{
+.row__posterLarge:hover {
   transform: scale(1.09);
   opacity: 1;
   cursor: pointer;
 }
-.row__rankingContainer{
- width: 310px;
- background-color: #fff;
- border: 3px solid #000;
- display:flex;
- justify-content: flex-end;
- position:relative
+.row__rankingContainer {
+  width: 300px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  
 }
-.row___ranking{
+.row___rankingNumber {
   position: absolute;
-  top: -146px;
-  left:-15px;
-  font-size: 24rem;
-  color:rgb(155, 155, 155);
+  top: -115px;
+  left: -15px;
+  font-size: 22rem;
+  color: rgb(179, 178, 178);
   z-index: 1;
 }

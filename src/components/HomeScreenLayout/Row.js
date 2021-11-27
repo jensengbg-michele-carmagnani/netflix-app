@@ -41,7 +41,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
     return <LoadingSpinner />;
   }
  
-  const imgRow = `${css.row__poster} ${isLargeRow && css.row__posterLarge}`;
+  const imgRow = `${css.row__poster} ${isLargeRow && css.row__posterLarge } `;
   return (
     <div className={css.row} key={Math.random().toString(36).substr(2, 9)}>
       <h2>{title}</h2>
@@ -51,8 +51,8 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
             ((isLargeRow && movie.poster_path) ||
               (!isLargeRow && movie.backdrop_path)) && (
               <Link to={`/movies/${movie.id}`} key={movie.id}>
-                <div className={css.row__rankingContainer}>
-                {isLargeRow && <h1 className={css.row___ranking}>{i+1}</h1>}
+                <div className={isLargeRow && css.row__rankingContainer}>
+                {isLargeRow && <h1 className={css.row___rankingNumber}>{i+1}</h1>}
               
                 <img
                   className={imgRow}
