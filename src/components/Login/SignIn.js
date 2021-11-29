@@ -55,6 +55,7 @@ const SignIn = () => {
         passwordRef.current.value
       )
       .then((userCredential) => {
+        setIsLoading(false);
         userCredential.user.updateProfile({
           displayName: nameRef.current.value,
         })
@@ -85,7 +86,6 @@ const SignIn = () => {
   return (
     <div className={css.signIn}>
       <h1 className={css.heading}>{isLogin ? 'Login' : 'Sign Up'}</h1>
-
       <form onSubmit={submitHandler} className={css.signIn__signUpForm}>
         {!isLogin && (
           <input type="name" placeholder="Name" ref={nameRef} />
@@ -93,8 +93,13 @@ const SignIn = () => {
         <input type="email" placeholder="Email" ref={emailRef} />
         <input type="password" placeholder="Password" ref={passwordRef} />
         <div><span>{error}</span></div>
+        {!isLoading && (
+          <button>{isLogin ? 'Login' : 'Create Account'}</button>
+        )}
 
-        <button>{isLogin ? 'Login' : 'Create Account'}</button>
+        {isLoading && <p>Sending request...</p>}
+
+        {/* <button>{isLogin ? 'Login' : 'Create Account'}</button> */}
 
         <h3 className={css.toggle}
           onClick={switchAuthModeHandler}>
