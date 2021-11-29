@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../components/Header/Banner";
 import requests from "../lib/Requests";
 import Films from "../components/Films/Films";
 
-
-
 export const FilmsScreen = (props) => {
- 
- 
+  const [isLargeRow, setIsLargeRow] = useState(true);
+
   useEffect(() => {
     window.addEventListener("scroll", props.moviesScreenBarHandler);
-    return () => window.removeEventListener("scroll", props.moviesScreenBarHandler);
+    return () =>
+      window.removeEventListener("scroll", props.moviesScreenBarHandler);
   }, [props.moviesScreenBarHandler]);
 
   return (
@@ -20,6 +19,7 @@ export const FilmsScreen = (props) => {
         title="Top Twenty"
         fetchUrl={requests.fetchFilmsTopten}
         base_url_img={requests.base_url_img}
+        isLargeRow={isLargeRow}
       />
       <Films
         title="Family"

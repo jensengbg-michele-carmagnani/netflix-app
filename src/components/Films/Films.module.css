@@ -2,16 +2,36 @@
   height: 100%;
   margin-top: 60px;
   color: #fff;
+  
 }
-
 .films__postersRow {
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
   padding: 20px;
 }
+
+.film__rankingContainer {
+  margin-right: 10px;
+  width:300px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  
+}
+
+.film___rankingNumber {
+  position: absolute;
+  font-size: 22rem;
+  top: -115px;
+  left: -20px;
+  color: rgb(179, 178, 178);
+  z-index: 0;
+}
+
+
 .films__img {
-  max-height: 250px;
+  max-height: 280px;
   object-fit: contain;
   margin-right: 10px;
   transition: transform 450ms;
@@ -26,3 +46,4 @@
 .films__postersRow::-webkit-scrollbar {
   display: none;
 }
+
