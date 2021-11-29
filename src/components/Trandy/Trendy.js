@@ -41,9 +41,10 @@ const Trendy = (props) => {
       <h1>{title}</h1>
       <div className={css.trendy__postersRow}>
         {trendy?.map((trend, i) => (
+          
           <Link to={`/movies/${trend.id}`} key={trend.id}>
-              <div  className={isLargeRow && i<10 &&  css.film__rankingContainer}>
-            {isLargeRow && i<10 && <h1 className={css.film___rankingNumber}>{i+1}</h1>}
+              <div  className={isLargeRow && i<10 &&  css.trendy__rankingContainer}>
+            {isLargeRow && i<10 && <h1 className={css.trendy___rankingNumber}>{i+1}</h1>}
             <div className={css.trendy__poster}>
               {/* {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>} */}
               <img

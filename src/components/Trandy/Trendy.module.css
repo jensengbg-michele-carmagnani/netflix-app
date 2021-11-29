@@ -10,8 +10,8 @@
   overflow-y: hidden;
   padding: 20px;
 }
-.film__rankingContainer {
-  margin-right: 24px;
+.trendy__rankingContainer {
+  margin-right: 25px;
   width:300px;
   display: flex;
   justify-content: flex-end;
@@ -19,7 +19,7 @@
   
 }
 
-.film___rankingNumber {
+.trendy___rankingNumber {
   position: absolute;
   font-size: 22rem;
   top: -145px;
