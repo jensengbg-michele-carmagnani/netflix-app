@@ -51,8 +51,8 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
             ((isLargeRow && movie.poster_path) ||
               (!isLargeRow && movie.backdrop_path)) && (
               <Link to={`/movies/${movie.id}`} key={movie.id}>
-                <div className={isLargeRow && css.row__rankingContainer}>
-                {isLargeRow && <h1 className={css.row___rankingNumber}>{i+1}</h1>}
+                <div className={isLargeRow && i<10 && css.row__rankingContainer}>
+                {isLargeRow && i<10 && <h1 className={css.row___rankingNumber}>{i+1}</h1>}
               
                 <img
                   className={imgRow}
