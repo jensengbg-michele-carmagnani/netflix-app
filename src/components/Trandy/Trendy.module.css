@@ -11,7 +11,7 @@
   padding: 20px;
 }
 .trendy__rankingContainer {
-  margin-right: 25px;
+  
   width:300px;
   display: flex;
   justify-content: flex-end;
@@ -22,8 +22,8 @@
 .trendy___rankingNumber {
   position: absolute;
   font-size: 22rem;
-  top: -145px;
-  left: 0px;
+  top: -143px;
+  left: 0;
   color: rgb(179, 178, 178);
   z-index: 0;
 }

@@ -10,6 +10,25 @@
   overflow-y: hidden;
   padding: 20px;
 }
+.tvseries__postersRow::-webkit-scrollbar{
+  display: none;
+}
+.film__rankingContainer {
+  width:300px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  
+}
+
+.film___rankingNumber {
+  position: absolute;
+  font-size: 22rem;
+  top: -143px;
+  left: 0;
+  color: rgb(179, 178, 178);
+  z-index: 0;
+}
 .tvseries__img {
   max-height: 250px;
   object-fit: contain;
