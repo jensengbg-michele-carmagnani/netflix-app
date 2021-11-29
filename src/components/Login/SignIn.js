@@ -14,23 +14,26 @@ const SignIn = () => {
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
 
-  const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [enteredEmail, setEmail] = useState('');
+  const [enteredPassword, setPassword] = useState('');
+  const [enteredName, setName] = useState('');
 
+  const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState(null);
 
 
 
   const signInHandler = (e) => {
-    console.log("In sign in", e)
+    console.log("In signin", enteredEmail,
+      enteredPassword)
+
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
+        enteredEmail,
+        enteredPassword,
       )
       .then((user) => {
-        setIsLoading(false);
         console.log(user)
         if (user) {
           history.replace('/movies');
@@ -38,12 +41,12 @@ const SignIn = () => {
         } else {
           return user.then((data) => {
             throw new Error(data.error.message);
-          });
+          })
         }
       })
       .catch((error) => {
-        setError(error.message);
         console.log(error.message);
+        setError(error.message);
       });
   };
 
@@ -51,13 +54,12 @@ const SignIn = () => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
+        enteredEmail,
+        enteredPassword,
       )
       .then((userCredential) => {
-        setIsLoading(false);
         userCredential.user.updateProfile({
-          displayName: nameRef.current.value,
+          displayName: enteredName,
         })
         history.replace('/movies');
       })
@@ -72,8 +74,7 @@ const SignIn = () => {
   };
 
   const submitHandler = (event) => {
-    setIsLoading(true);
-
+    console.log("In submit", event)
     if (isLogin) {
       signInHandler(event)
     } else {
@@ -81,27 +82,53 @@ const SignIn = () => {
     }
   }
 
-
-
   return (
     <div className={css.signIn}>
-      <h1 className={css.heading}>{isLogin ? 'Login' : 'Sign Up'}</h1>
+      <h1 className={css.signIn__heading}>{isLogin ? 'Login' : 'Sign Up'}</h1>
       <form onSubmit={submitHandler} className={css.signIn__signUpForm}>
         {!isLogin && (
-          <input type="name" placeholder="Name" ref={nameRef} />
+          <div className={css.signIn___control}>
+            <TextField
+              onChange={(e) => setName(e.target.value)}
+              label="Name"
+              variant="filled"
+              className={css.signIn___control__textfield}
+              InputLabelProps={{ className: css.signIn___control__textfield__label }}
+              inputProps={{ className: css.signIn___control__textfield__input }}
+              fullWidth
+              required
+            />
+          </div>
         )}
-        <input type="email" placeholder="Email" ref={emailRef} />
-        <input type="password" placeholder="Password" ref={passwordRef} />
-        <div><span>{error}</span></div>
-        {!isLoading && (
-          <button>{isLogin ? 'Login' : 'Create Account'}</button>
-        )}
+        <div className={css.signIn___control}>
+          <TextField
+            onChange={(e) => setEmail(e.target.value)}
+            label="email"
+            variant="filled"
+            className={css.signIn___control__textfield}
+            InputLabelProps={{ className: css.signIn___control__textfield__label }}
+            inputProps={{ className: css.signIn___control__textfield__input }}
+            fullWidth
+            required
+          />
+        </div>
+        <div className={css.signIn___control}>
+          <TextField
+            onChange={(e) => setPassword(e.target.value)}
+            label="password"
+            variant="filled"
+            type={'password'}
+            className={css.signIn___control__textfield}
+            InputLabelProps={{ className: css.signIn___control__textfield__label }}
+            inputProps={{ className: css.signIn___control__textfield__input }}
+            fullWidth
+            required
+          />
+        </div>
+        <div><span className={css.signIn___control__error}>{error}</span></div>
+        <button>{isLogin ? 'Login' : 'Create Account'}</button>
 
-        {isLoading && <p>Sending request...</p>}
-
-        {/* <button>{isLogin ? 'Login' : 'Create Account'}</button> */}
-
-        <h3 className={css.toggle}
+        <h3 className={css.signIn__toggle}
           onClick={switchAuthModeHandler}>
           {isLogin ? 'Create new account' : 'Login with existing account'}
         </h3>

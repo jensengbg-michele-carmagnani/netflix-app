@@ -26,7 +26,7 @@
   align-self: flex-start;
   padding-left: 30px;
 }
-.signIn__signUpForm > input {
+/* .signIn__signUpForm > input {
   width: 300px;
   height: 55px;
   margin: 0.6rem;
@@ -34,12 +34,31 @@
   border-radius: 5px;
   color: #fff;
   padding-left: 0.5rem;
-}
+} */
 .signIn__signUpForm :nth-child(2) {
   margin-top: 0rem;
 }
-.signIn__signUpForm > input:active {
-  background-color: #e7f0fe;
+
+.signIn___control__textfield {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 0;
+  margin-top: 0;
+  font-weight: 500px;
+}
+
+.signIn___control__textfield__label {
+  color: rgb(255 152 0) !important;
+}
+
+.signIn___control__textfield__input {
+  color: white !important;
+  border-bottom: 2px solid orange !important;
+}
+
+.signIn___control {
+  margin-bottom: 0.5rem;
 }
 .signIn__signUpForm > button {
   border-radius: 5px;
@@ -108,12 +127,12 @@
   color: rgb(252 34 28);
 }
 
-.error {
-  color: red;
-  background-color: rgb(228, 140, 157);
+.signIn___control__error {
+  color: rgb(139 0 0);
+  font-weight: bolder;
 }
 
-.toggle {
+.signIn__toggle {
   margin-top: 2rem;
   width: 305px;
   text-align: center;
@@ -123,7 +142,7 @@
   color: rgb(255 0 0);
 }
 
-.heading {
+.signIn__heading {
   text-align: center;
   color: white;
 }
