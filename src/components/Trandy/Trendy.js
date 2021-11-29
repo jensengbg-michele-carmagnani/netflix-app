@@ -8,7 +8,7 @@ import requests from "../../lib/Requests";
 import css from "./Trendy.module.css";
 
 const Trendy = (props) => {
-  const { fetchUrl, title } = props;
+  const { fetchUrl, title, isLargeRow } = props;
   const [trendy, setTrendy] = useState([]);
 
   useEffect(() => {
@@ -40,8 +40,10 @@ const Trendy = (props) => {
     <div className={css.trendy}>
       <h1>{title}</h1>
       <div className={css.trendy__postersRow}>
-        {trendy?.map((trend) => (
+        {trendy?.map((trend, i) => (
           <Link to={`/movies/${trend.id}`} key={trend.id}>
+              <div  className={isLargeRow && i<10 &&  css.film__rankingContainer}>
+            {isLargeRow && i<10 && <h1 className={css.film___rankingNumber}>{i+1}</h1>}
             <div className={css.trendy__poster}>
               {/* {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>} */}
               <img
@@ -52,6 +54,7 @@ const Trendy = (props) => {
                 }`}
                 alt={trend.name}
               />
+            </div>
             </div>
           </Link>
         ))}
