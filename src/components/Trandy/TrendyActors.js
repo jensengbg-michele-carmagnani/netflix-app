@@ -41,7 +41,7 @@ const TrendyActors = (props) => {
       <h1>{title}</h1>
       <div className={css.trendyActors__postersRow}>
         {trendyActors?.map((actor) => (
-          <Link to={`/actor/${actor.id}`}key={actor.id}>
+          <Link to={`/actor/${actor.id}`} key={actor.id}>
             <div className={css.actory__poster}>
               {/* {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>} */}
               <img

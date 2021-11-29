@@ -8,6 +8,8 @@
   overflow-x: scroll;
   padding: 20px;
 }
+
+
 .row__posters::-webkit-scrollbar {
   display: none;
 }
@@ -24,6 +26,7 @@
   opacity: 1;
   cursor: pointer;
 }
+
 .row__posterLarge {
   max-height: 280px;
 }
@@ -33,17 +36,19 @@
   cursor: pointer;
 }
 .row__rankingContainer {
+  margin-right: 10px;
   width: 300px;
   display: flex;
   justify-content: flex-end;
   position: relative;
   
 }
+
 .row___rankingNumber {
   position: absolute;
   top: -115px;
   left: -15px;
   font-size: 22rem;
   color: rgb(179, 178, 178);
-  z-index: 1;
+  z-index: 0;
 }
