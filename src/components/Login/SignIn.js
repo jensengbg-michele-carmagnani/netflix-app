@@ -19,6 +19,8 @@ const SignIn = () => {
 
   const [error, setError] = useState(null);
 
+
+
   const signInHandler = (e) => {
     console.log("In sign in", e)
     e.preventDefault();
@@ -46,16 +48,16 @@ const SignIn = () => {
   };
 
   const signUpHandler = (e) => {
-    console.log("In sign up", e)
-
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(
         emailRef.current.value,
         passwordRef.current.value
       )
-      .then((userCredetial) => {
-        console.log("User credentials: ", userCredetial);
+      .then((userCredential) => {
+        userCredential.user.updateProfile({
+          displayName: nameRef.current.value,
+        })
         history.replace('/movies');
       })
       .catch((error) => {
@@ -69,8 +71,6 @@ const SignIn = () => {
   };
 
   const submitHandler = (event) => {
-    console.log(event);
-    console.log(isLogin);
     setIsLoading(true);
 
     if (isLogin) {
@@ -79,6 +79,8 @@ const SignIn = () => {
       signUpHandler(event)
     }
   }
+
+
 
   return (
     <div className={css.signIn}>

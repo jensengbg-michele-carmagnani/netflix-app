@@ -14,7 +14,6 @@ const Modal = ({ showModal, setShowModal, movie }) => {
                     <Typography
                         className={css.genres}
                         key={index}
-                        gutterButton variant="h6"
                         component="h5"
                         noWrap> {gen.name}
                         {(index === (movie.genres.length - 1)) ? (
