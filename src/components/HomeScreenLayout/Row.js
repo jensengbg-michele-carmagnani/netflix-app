@@ -19,7 +19,6 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
 
   const getMovies = (paylod) => {
     let refinedPayload = [];
-    console.log("paylod", paylod);
     for (let key in paylod) {
       if (+key < 10 && isLargeRow) {
         refinedPayload.push(paylod[key]);

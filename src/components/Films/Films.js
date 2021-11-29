@@ -10,13 +10,22 @@ import css from "./Films.module.css";
 const Films = (props) => {
   const { title, fetchUrl, base_url_img, isLargeRow } = props;
   const [films, setFilms] = useState([]);
+  const [refinedList, setRefinedList] = useState([]);
 
   useEffect(() => {
     fetchTask();
   }, []);
 
   const getMovies = (paylod) => {
-    setFilms(paylod);
+    let refinedPayload = [];
+    console.log("paylod", paylod);
+    for (let key in paylod) {
+      if (+key < 10 && isLargeRow) {
+        refinedPayload.push(paylod[key]);
+        setRefinedList(refinedPayload);
+      }
+      setFilms(paylod);
+    }
   };
   const {
     error,
@@ -35,29 +44,56 @@ const Films = (props) => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  console.log(isLargeRow)
+  console.log(isLargeRow);
   return (
     <div className={css.films}>
       <h1>{title}</h1>
       <div className={css.films__postersRow}>
-        {films?.map((film, i) => (
-          <Link to={`/movies/${film.id}`} key={film.id}>
-            <div  className={isLargeRow && i<10 &&  css.film__rankingContainer}>
-            {isLargeRow && i<10 && <h1 className={css.film___rankingNumber}>{i+1}</h1>}
-             
-              <div className={css.films__poster}>
-                <img
-                  className={css.films__img}
-                  key={film.id}
-                  src={`${base_url_img}${
-                    film.poster_path || film.backdrop_path
-                  }`}
-                  alt={film.name}
-                />
-              </div>
-            </div>
-          </Link>
-        ))}
+        {!isLargeRow
+          ? films?.map((film, i) => (
+              <Link to={`/movies/${film.id}`} key={film.id}>
+                <div
+                  className={isLargeRow && i < 10 && css.film__rankingContainer}
+                >
+                  {isLargeRow && i < 10 && (
+                    <h1 className={css.film___rankingNumber}>{i + 1}</h1>
+                  )}
+
+                  <div className={css.films__poster}>
+                    <img
+                      className={css.films__img}
+                      key={film.id}
+                      src={`${base_url_img}${
+                        film.poster_path || film.backdrop_path
+                      }`}
+                      alt={film.name}
+                    />
+                  </div>
+                </div>
+              </Link>
+            ))
+          : refinedList?.map((film, i) => (
+              <Link to={`/movies/${film.id}`} key={film.id}>
+                <div
+                  className={isLargeRow && i < 10 && css.film__rankingContainer}
+                >
+                  {isLargeRow && i < 10 && (
+                    <h1 className={css.film___rankingNumber}>{i + 1}</h1>
+                  )}
+
+                  <div className={css.films__poster}>
+                    <img
+                      className={css.films__img}
+                      key={film.id}
+                      src={`${base_url_img}${
+                        film.poster_path || film.backdrop_path
+                      }`}
+                      alt={film.name}
+                    />
+                  </div>
+                </div>
+              </Link>
+            ))}
       </div>
     </div>
   );
