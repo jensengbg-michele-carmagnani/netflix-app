@@ -36,12 +36,12 @@ export default function MediaCard({ id, image, title, tagline, movie }) {
 
   if (id) {
     return (
-      <Card className={css.root}>
-        <CardActionArea className={css.card}>
+      <Card className={css.mediaCard__root}>
+        <CardActionArea className={css.mediaCard__card}>
           <CardMedia
             image={image}
             title={title}
-            className={css.media}
+            className={css.mediaCard__media}
             onMouseOver={handleOpen}
             onMouseLeave={handleClose}
           />

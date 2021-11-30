@@ -1,22 +1,14 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import css from "./SignIn.module.css";
 import { auth } from "../../firebase";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
-
+import * as Yup from "yup";
+import { Formik, Field, Form, ErrorMessage } from 'formik'
 
 
 const SignIn = () => {
   const history = useHistory();
-
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const nameRef = useRef(null);
-
-  const [enteredEmail, setEmail] = useState('');
-  const [enteredPassword, setPassword] = useState('');
-  const [enteredName, setName] = useState('');
 
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState(null);
@@ -24,14 +16,14 @@ const SignIn = () => {
 
 
   const signInHandler = (e) => {
-    console.log("In signin", enteredEmail,
-      enteredPassword)
+    console.log("sign In handler", e.email, e.password)
 
-    e.preventDefault();
+
+    // e.preventDefault();
     auth
       .signInWithEmailAndPassword(
-        enteredEmail,
-        enteredPassword,
+        e.email,
+        e.password,
       )
       .then((user) => {
         console.log(user)
@@ -51,15 +43,16 @@ const SignIn = () => {
   };
 
   const signUpHandler = (e) => {
-    e.preventDefault();
+    console.log(e.name)
+    // e.preventDefault();
     auth
       .createUserWithEmailAndPassword(
-        enteredEmail,
-        enteredPassword,
+        e.email,
+        e.password,
       )
       .then((userCredential) => {
         userCredential.user.updateProfile({
-          displayName: enteredName,
+          displayName: e.name,
         })
         history.replace('/movies');
       })
@@ -73,66 +66,113 @@ const SignIn = () => {
     setIsLogin((prevState) => !prevState);
   };
 
-  const submitHandler = (event) => {
-    console.log("In submit", event)
-    if (isLogin) {
-      signInHandler(event)
+  const submitHandler = (event, props) => {
+    console.log("In submit event", event)
+    console.log("In submit props", props)
+
+    if (event !== "") {
+      if (isLogin) {
+        signInHandler(event)
+      } else {
+        signUpHandler(event)
+      }
     } else {
-      signUpHandler(event)
+      console.log("Empty values.")
     }
+    setTimeout(() => {
+
+      props.resetForm()
+      props.setSubmitting(false)
+    }, 2000)
   }
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+  }
+
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Enter valid email").required("Required"),
+    password: Yup.string().min(8, "Password minimum length should be 8").required("Required"),
+  })
 
   return (
     <div className={css.signIn}>
       <h1 className={css.signIn__heading}>{isLogin ? 'Login' : 'Sign Up'}</h1>
-      <form onSubmit={submitHandler} className={css.signIn__signUpForm}>
-        {!isLogin && (
-          <div className={css.signIn___control}>
-            <TextField
-              onChange={(e) => setName(e.target.value)}
-              label="Name"
-              variant="filled"
-              className={css.signIn___control__textfield}
-              InputLabelProps={{ className: css.signIn___control__textfield__label }}
-              inputProps={{ className: css.signIn___control__textfield__input }}
-              fullWidth
-              required
-            />
-          </div>
-        )}
-        <div className={css.signIn___control}>
-          <TextField
-            onChange={(e) => setEmail(e.target.value)}
-            label="email"
-            variant="filled"
-            className={css.signIn___control__textfield}
-            InputLabelProps={{ className: css.signIn___control__textfield__label }}
-            inputProps={{ className: css.signIn___control__textfield__input }}
-            fullWidth
-            required
-          />
-        </div>
-        <div className={css.signIn___control}>
-          <TextField
-            onChange={(e) => setPassword(e.target.value)}
-            label="password"
-            variant="filled"
-            type={'password'}
-            className={css.signIn___control__textfield}
-            InputLabelProps={{ className: css.signIn___control__textfield__label }}
-            inputProps={{ className: css.signIn___control__textfield__input }}
-            fullWidth
-            required
-          />
-        </div>
-        <div><span className={css.signIn___control__error}>{error}</span></div>
-        <button>{isLogin ? 'Login' : 'Create Account'}</button>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitHandler}>
+        {(props) => (
+          <Form>
+            <div className={css.signIn__signUpForm}>
+              {!isLogin && (
+                <Field as={TextField}
+                  fullWidth
+                  name="name"
+                  label='Name'
+                  placeholder="Enter your name"
+                  helperText={<ErrorMessage name="name" />}
+                  autocomplete="off"
+                  variant="filled"
+                  className={css.signIn___control__textfield}
+                  InputLabelProps={{ className: css.signIn___control__textfield__label }}
+                  inputProps={{ className: css.signIn___control__textfield__input }}
+                  FormHelperTextProps={{ className: css.signIn___control__error }}
+                  required
+                />
+              )}
 
-        <h3 className={css.signIn__toggle}
+              <Field as={TextField}
+                fullWidth
+                name="email"
+                label='Email'
+                placeholder="Enter your email"
+                helperText={<ErrorMessage name="email" />}
+                autocomplete="off"
+                variant="filled"
+                className={css.signIn___control__textfield}
+                InputLabelProps={{ className: css.signIn___control__textfield__label }}
+                inputProps={{ className: css.signIn___control__textfield__input }}
+                FormHelperTextProps={{ className: css.signIn___control__error }}
+                required
+              />
+              <Field
+                as={TextField}
+                fullWidth
+                name='password'
+                type="password"
+                label='Password'
+                placeholder="Enter your password"
+                helperText={<ErrorMessage name="password" />}
+                autocomplete="off"
+                variant="filled"
+                className={css.signIn___control__textfield}
+                InputLabelProps={{ className: css.signIn___control__textfield__label }}
+                inputProps={{ className: css.signIn___control__textfield__input }}
+                FormHelperTextProps={{ className: css.signIn___control__error }}
+                required
+              />
+              <div><span className={css.signIn___control__error}>{error}</span></div>
+
+              <Button type='submit' variant='contained' disabled={props.isSubmitting}
+                color='primary'> {!isLogin ? 'Sign up' : 'Login'}</Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+
+      <h4 className={css.signIn__prompt}>
+        <span className={css.signIn__gray}>{isLogin ? 'New to Netflix? ' : 'Already a member? '} </span>
+        <span className={css.signIn__toggle}
           onClick={switchAuthModeHandler}>
-          {isLogin ? 'Create new account' : 'Login with existing account'}
-        </h3>
-      </form>
+          {isLogin ? 'Sign up' : 'Login'}
+        </span>
+
+      </h4>
+
+
+
+
+
     </div>
 
   );

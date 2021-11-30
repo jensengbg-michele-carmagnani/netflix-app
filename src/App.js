@@ -81,6 +81,7 @@ function App() {
             <Route path="/actor/:actorId" exact>
               <ActorDetails />
             </Route>
+
             <Route path="*">
               <NotFoundScreen />
             </Route>
