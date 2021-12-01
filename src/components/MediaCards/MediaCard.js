@@ -15,7 +15,7 @@ export default function MediaCard({ id, image, title, tagline, movie }) {
     setShowModal(null);
   }
 
-  function handleOpen(event) {
+  function handleOpen() {
     setShowModal((prev) => !prev);
   }
 
