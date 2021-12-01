@@ -10,6 +10,23 @@
   overflow-y: hidden;
   padding: 20px;
 }
+.trendy__rankingContainer {
+  
+  width:300px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  
+}
+
+.trendy___rankingNumber {
+  position: absolute;
+  font-size: 22rem;
+  top: -146px;
+  left: 0;
+  color: rgb(179, 178, 178);
+  z-index: 0;
+}
 .trendy__img {
   max-height: 250px;
   object-fit: contain;

@@ -100,3 +100,34 @@
 .moviedetail__cast_info::-webkit-scrollbar {
   display: none;
 }
+.moviedetail__starOuter{
+  position: relative;
+  display: inline-block;
+}
+.moviedetail__starInner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 10px;
+  
+}
+.moviedetail__starOuter::before{
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ccc;
+}
+.moviedetail__starInner::before{
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f8ce0b;
+}
+.moviedetail__vote{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}

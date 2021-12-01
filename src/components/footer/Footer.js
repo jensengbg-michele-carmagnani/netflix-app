@@ -1,22 +1,78 @@
-import React from 'react'
-import css from './Footer.module.css'
-import facebook  from '../../Assets/logo-facebook.svg'
-import instagram  from '../../Assets/logo-instagram.svg'
-import linkedin  from '../../Assets//logo-linkedin.svg'
-import youtube from '../../Assets/logo-youtube.svg'
+import React, { useState } from "react";
+import css from "./Footer.module.css";
 
+import {
+  faFacebook,
+  faInstagramSquare,
+  faYoutubeSquare,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+import {} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
+  const [color, setColor] = useState(null);
+  const colorHandler = () => {
+    color ? setColor((prevState) => !prevState) : setColor("white");
+  };
+
+  // const brands = [faFacebook, faInstagramSquare, faYoutubeSquare, faLinkedin];
+  
   return (
     <footer className={css.footer}>
       <div className={css.footer__wrapper}>
         <section>
           <article className={css.footer__socialmedia}>
-            <img src={facebook} alt="" />
-            <img src={instagram} alt="" />
-            <img src={linkedin} alt="" />
-            <img src={youtube} alt="" />
+             {/* {brands.map((brand, i) => {
+                console.log('prefix',brand)
+            return  (<FontAwesomeIcon
+                key={i}
+                icon={brand[i]}
+                size="3x"
+                className={css.footer___fontAwesome}
+                onMouseLeave={colorHandler}
+                onMouseOver={colorHandler}
+                color={color}
+              />)
+            }
+            )}  */}
             
+            <FontAwesomeIcon
+              icon={faFacebook}
+              size="2x"
+              color="white"
+              className={css.footer___fontAwesome}
+              // onMouseLeave={colorHandler}
+              // onMouseOver={colorHandler}
+              // color={color}
+            />
+            <FontAwesomeIcon
+              icon={faInstagramSquare}
+              size="2x"
+              color="white"
+              className={css.footer___fontAwesome}
+              // onMouseLeave={colorHandler}
+              // onMouseOver={colorHandler}
+              // color={color}
+            />
+            <FontAwesomeIcon
+              icon={faYoutubeSquare}
+              size="2x"
+              color="white"
+              className={css.footer___fontAwesome}
+              // onMouseLeave={colorHandler}
+              // onMouseOver={colorHandler}
+              // color={color}
+            />
+            <FontAwesomeIcon
+              icon={faLinkedin}
+              size="2x"
+              color="white"
+    
+              // onMouseLeave={colorHandler}
+              // onMouseOver={colorHandler}
+              // color={color}
+            />
           </article>
           <h5>Audio and Subtitles</h5>
           <h5>Media Center</h5>
@@ -41,6 +97,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 
-export default Footer
+export default Footer;

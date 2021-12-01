@@ -6,27 +6,25 @@ import requests from "../lib/Requests";
 import css from "./HomeScreen.module.css";
 import Modal from "../components/UI/ModalNotification";
 
-
 const HomeScreen = (props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-
+  const showSession = sessionStorage.getItem("modal");
   
   const showModal = () => {
-    setTimeout(() => {
-      setModalIsOpen(true);
-      sessionStorage.setItem('modal', "true")
-    }, 3000);
+    sessionStorage.setItem("modal", "true");
+    setModalIsOpen(true);
   };
-  const showSession =  sessionStorage.getItem('modal')
-  console.log('state show',showSession)
+  console.log("state show", showSession);
   
-  if (showSession !== "true" || null ) {
-    showModal();
-    
+  if (showSession !== "true" || null) {
+    setTimeout(() => {
+      showModal();
+    }, 3000);
   }
   const closeModal = async () => {
-    setModalIsOpen((prevState) => !prevState);
+    await setModalIsOpen(false);
+    console.log("modalIsOpen", modalIsOpen);
   };
 
   const initNotification = async () => {

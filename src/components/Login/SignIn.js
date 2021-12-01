@@ -13,12 +13,7 @@ const SignIn = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState(null);
 
-
-
   const signInHandler = (e) => {
-    console.log("sign In handler", e.email, e.password)
-
-
     // e.preventDefault();
     auth
       .signInWithEmailAndPassword(
@@ -43,7 +38,6 @@ const SignIn = () => {
   };
 
   const signUpHandler = (e) => {
-    console.log(e.name)
     // e.preventDefault();
     auth
       .createUserWithEmailAndPassword(
@@ -67,9 +61,6 @@ const SignIn = () => {
   };
 
   const submitHandler = (event, props) => {
-    console.log("In submit event", event)
-    console.log("In submit props", props)
-
     if (event !== "") {
       if (isLogin) {
         signInHandler(event)
@@ -90,7 +81,6 @@ const SignIn = () => {
     email: '',
     password: '',
   }
-
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Enter valid email").required("Required"),
@@ -159,22 +149,14 @@ const SignIn = () => {
           </Form>
         )}
       </Formik>
-
       <h4 className={css.signIn__prompt}>
         <span className={css.signIn__gray}>{isLogin ? 'New to Netflix? ' : 'Already a member? '} </span>
         <span className={css.signIn__toggle}
           onClick={switchAuthModeHandler}>
           {isLogin ? 'Sign up' : 'Login'}
         </span>
-
       </h4>
-
-
-
-
-
     </div>
-
   );
 };
 

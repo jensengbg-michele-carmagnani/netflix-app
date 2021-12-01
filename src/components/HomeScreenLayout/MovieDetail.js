@@ -12,6 +12,7 @@ import Error from "../UI/Error";
 import avatar from "../../Assets/Netflix-avatar.png";
 import plus from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
+import { FaStar, FaStarHalf } from "react-icons/fa";
 
 const MovieDetail = () => {
   const [movie, setMovie] = useState({});
@@ -132,6 +133,8 @@ const MovieDetail = () => {
     }
   };
 
+  const startPercentage = Math.round((movie?.vote_average / 10) * 100);
+
   return (
     <>
       {errorMsg ? (
@@ -173,11 +176,25 @@ const MovieDetail = () => {
               </article>
               <article>
                 <h4>Vote: </h4>
-                <p>
-                  {movie?.vote_average}
-                  <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>{" "}
-                  <span>&#9734;</span> <span>&#9734;</span>{" "}
-                </p>
+                <div className={css.moviedetail__vote}>
+                  {[...Array(5)].map((star, i) => {
+                    const indexRating = (i + 1) * 20;
+                    const prevIndex = (i + 1) * 20 - 20;
+
+                    if (
+                      startPercentage < indexRating &&
+                      startPercentage > prevIndex
+                    ) {
+                      return <FaStarHalf color="#ffc107" key={i} />;
+                    } else if (startPercentage > indexRating) {
+                      return <FaStar color="#ffc107" key={i} />;
+                    } else {
+                      return <FaStar color="#575757" key={i} />;
+                    }
+                  })}
+
+                  <span> {movie?.vote_average}</span>
+                </div>
               </article>
             </section>
             <section className={css.moviedetail__info}>
@@ -201,7 +218,7 @@ const MovieDetail = () => {
           <section className={css.moviedetail__cast_info}>
             {movieCast.map((actor) => (
               <div className={css.moviedetail__cast_card} key={actor.id}>
-                <Link to={`/actor/${actor.id}`}>
+                <Link to={`/actor/${actor.id}`} key={actor.id}>
                   <img
                     key={actor.id}
                     src={
@@ -212,7 +229,9 @@ const MovieDetail = () => {
                     alt={actor.name}
                   />
                 </Link>
-                <p>{actor.name}</p>
+                <p key={Math.random().toString(36).substr(2, 9)}>
+                  {actor.name}
+                </p>
               </div>
             ))}
           </section>

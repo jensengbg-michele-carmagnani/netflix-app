@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../components/Header/Banner";
 import requests from "../lib/Requests";
 
@@ -7,6 +7,7 @@ import TrendyActors from "../components/Trandy/TrendyActors";
 import css from "./TrendyScreen.module.css";
 
 const TrendyScreen = (props) => {
+  const [isLargeRow, setIsLargeRow] = useState(true)
   useEffect(() => {
     window.addEventListener("scroll", props.seriesScreenBarHandler);
     return () =>
@@ -18,6 +19,7 @@ const TrendyScreen = (props) => {
       <Trendy
         fetchUrl={requests.fetchTrendyOfWeekAll}
         title="Trendy this week"
+        isLargeRow={isLargeRow}
       />
       <Trendy
         fetchUrl={requests.fetchTrendyOfDayTv}

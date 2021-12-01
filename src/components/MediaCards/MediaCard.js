@@ -6,21 +6,6 @@ import { CardActionArea } from "@material-ui/core/";
 import { CardMedia } from "@material-ui/core/";
 import Modal from "./Modal";
 
-// const useStyles = makeStyles({
-//     root: {
-//         width: 250,
-//         height: 150,
-//         margin: 'auto'
-//     },
-//     card: {
-//         height: 150
-//     },
-//     media: {
-//         background: 'round',
-//         height: '100%',
-//         width: '100%',
-//     }
-// })
 
 export default function MediaCard({ id, image, title, tagline, movie }) {
   // const css = useStyles();

@@ -41,18 +41,19 @@ const MyList = () => {
 
   return (
     <Box p={5} pt={15} minHeight="100vh">
-      <Typography className={css.headingh5} gutterButton variant="h5" component="h2"> My List
+      <Typography className={css.headingh5}  variant="h5" component="h2"> My List
       </Typography>
       <Grid container spacing={1} className={css.GridContainer}>
         {myFavorite.map((fav) => (
-          <Grid key={fav.movie.id} item spacing={5} >
-            <Link to={`/movies/${fav.movie.id}`}>
+          <Grid key={fav.movie.id} item spacing={5} key={Math.random().toString(36).substr(2, 9)} >
+            <Link to={`/movies/${fav.movie.id}`} key={Math.random().toString(36).substr(2, 9)}>
               <MediaCard image={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
                 }`}
                 title={fav.movie.original_title}
                 movie={fav.movie}
                 tagline={fav.movie.tagline}
                 id={fav.movie.id}
+                key={Math.random().toString(36).substr(2, 9)}
               />
 
             </Link>
