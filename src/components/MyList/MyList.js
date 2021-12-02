@@ -43,7 +43,7 @@ const MyList = () => {
       </Typography>
       <Grid container spacing={1} className={css.GridContainer}>
         {myFavorite.map((fav) => (
-          <Grid item spacing={5} key={fav.movie.id} key={Math.random().toString(36).substr(2, 9)} >
+          <Grid item key={fav.movie.id} key={Math.random().toString(36).substr(2, 9)} >
             <Link to={`/movies/${fav.movie.id}`} key={Math.random().toString(36).substr(2, 9)}>
               <MediaCard image={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
                 }`}
