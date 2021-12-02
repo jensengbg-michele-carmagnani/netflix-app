@@ -19,7 +19,7 @@ const MovieDetail = () => {
   const [movieCast, setMovieCast] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFavoriteDocRefId, setIsFavoriteDocRefId] = useState(null);
-  const [errorMsg, setErrorMsg] = useState({ message: "", error: "" });
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const movieId = useParams().movieId;
   const user = useSelector(selectUser);
@@ -28,8 +28,7 @@ const MovieDetail = () => {
   const troncate = (string, n) => {
     return string?.length > n ? string.substring(0, n - 1) + "..." : string;
   };
-//ee50a1e0d06151144fff8f5e7363f16e
-//https://api.themoviedb.org/3/movie/580489?api_key=ee50a1e0d06151144fff8f5e7363f16e&append_to_response=videos&append_to_response=videos
+
   const details_Url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos&append_to_response=videos`;
   const movieCast_url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
 
@@ -38,6 +37,7 @@ const MovieDetail = () => {
       try {
         const response = await axios.get(details_Url);
         setMovie(response.data);
+        console.log(response.data)
       } catch (error) {
         setErrorMsg({
           message: "Something went wrong, Try later",
@@ -45,6 +45,7 @@ const MovieDetail = () => {
         });
       }
     };
+    console.log(errorMsg)
 
     const fetchMovieCast = async () => {
       const response = await axios.get(movieCast_url);
