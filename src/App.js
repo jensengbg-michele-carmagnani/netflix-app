@@ -68,7 +68,7 @@ function App() {
             <Route path="/latest">
               <TrendyScreen trandyScreenHanlder={transitionNavBarHandler} />
             </Route>
-            <Route path="/myfavorites" >
+            <Route path="/myfavorites">
               <MyListScreen />
             </Route>
             <Route path="/profile">
