@@ -6,6 +6,9 @@ export interface Https {
   fetchUrl:string;
   getMovies: (arg: Movie) => Movie[];
   getActor: (arg: Cast) => Cast;
+ 
+}
+export interface HttpsRes{
   error: Error;
   isLoading: boolean;
   sendRequest: ()=> void

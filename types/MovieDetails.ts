@@ -64,3 +64,7 @@ export interface errorMsg{
   message: string;
   errorType: string;
 }
+
+export interface CatchError{
+  error: Error
+}

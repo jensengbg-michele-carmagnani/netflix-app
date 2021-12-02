@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "../lib/axios";
 import { Https, Result } from "../../types/UseHttp";
-import { errorMsg } from "../../types/MovieDetails";
+import { errorMsg ,CatchError } from "../../types/MovieDetails";
 
 
 const useHttp: React.FC<Https> = ({ url, getMovies, getActor }) => {
@@ -19,7 +19,7 @@ const useHttp: React.FC<Https> = ({ url, getMovies, getActor }) => {
       } else {
         getActor(response.data);
       }
-    } catch (error) {
+    } catch (error ) {
       setError({ message: error.message, errorType: error.error });
     }
     setIsLoading(false);
