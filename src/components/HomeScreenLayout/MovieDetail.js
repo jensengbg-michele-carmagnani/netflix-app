@@ -19,7 +19,7 @@ const MovieDetail = () => {
   const [movieCast, setMovieCast] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFavoriteDocRefId, setIsFavoriteDocRefId] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState({ message: "", error: "" });
 
   const movieId = useParams().movieId;
   const user = useSelector(selectUser);
@@ -34,9 +34,15 @@ const MovieDetail = () => {
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
-      const response = await axios.get(details_Url);
-
-      setMovie(response.data);
+      try {
+        const response = await axios.get(details_Url);
+        setMovie(response.data);
+      } catch (error) {
+        setErrorMsg({
+          message: "Something went wrong, Try later",
+          error: error.message,
+        });
+      }
     };
 
     const fetchMovieCast = async () => {
@@ -138,7 +144,7 @@ const MovieDetail = () => {
   return (
     <>
       {errorMsg ? (
-        <Error message={errorMsg.message} error={errorMsg.error} />
+        <Error onError={{message: errorMsg.message, error:errorMsg.error}} />
       ) : (
         <div className={css.moviedetail}>
           <div
