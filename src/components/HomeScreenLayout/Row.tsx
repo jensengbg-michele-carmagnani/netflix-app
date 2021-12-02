@@ -6,7 +6,6 @@ import requests from "../../lib/Requests";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import css from "./Row.module.css";
-import axios from "../../lib/axios";
 import { RowProp } from "../../../types/Screens";
 import {Movie} from "../../../types/Movie"
 import {Https} from "../../../types/UseHttp"
