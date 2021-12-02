@@ -58,7 +58,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
                   <Link to={`/movies/${movie.id}`} key={movie.id}>
                     <div
                       className={
-                        isLargeRow && i < 10 && css.row__rankingContainer
+                        (isLargeRow && i < 10) ? css.row__rankingContainer: null
                       }
                     >
                       {isLargeRow && i < 10 && (

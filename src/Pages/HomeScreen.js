@@ -15,7 +15,6 @@ const HomeScreen = (props) => {
     sessionStorage.setItem("modal", "true");
     setModalIsOpen(true);
   };
-  console.log("state show", showSession);
   
   if (showSession !== "true" || null) {
     setTimeout(() => {

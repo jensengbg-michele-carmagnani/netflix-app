@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import css from "./SignIn.module.css";
 import { auth } from "../../firebase";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Box } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from 'formik'
@@ -93,7 +93,7 @@ const SignIn = () => {
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitHandler}>
         {(props) => (
           <Form>
-            <div className={css.signIn__signUpForm}>
+            <Box className={css.signIn__signUpForm}>
               {!isLogin && (
                 <Field as={TextField}
                   fullWidth
@@ -145,7 +145,7 @@ const SignIn = () => {
 
               <Button type='submit' variant='contained' disabled={props.isSubmitting}
                 color='primary'> {!isLogin ? 'Sign up' : 'Login'}</Button>
-            </div>
+            </Box>
           </Form>
         )}
       </Formik>
