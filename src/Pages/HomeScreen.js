@@ -24,7 +24,6 @@ const HomeScreen = (props) => {
   }
   const closeModal = async () => {
     await setModalIsOpen(false);
-    console.log("modalIsOpen", modalIsOpen);
   };
 
   const initNotification = async () => {

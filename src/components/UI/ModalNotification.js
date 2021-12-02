@@ -1,5 +1,7 @@
 import React from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 import "./ModalNotification.css";
 
@@ -25,6 +27,9 @@ const modal = (props) => {
       <>
         {/* <div className="Backdroop"/> */}
         <div className="Modal">
+          <div className="Modal__timeCircle" onClick={() => props.closed()}>
+            <FontAwesomeIcon icon={faTimesCircle} size="lg" />
+          </div>
           <h1>Cookie Policy</h1>
           <section>
             We use cookies and similar methods to recognize visitors and
@@ -38,22 +43,13 @@ const modal = (props) => {
             by us and third parties. You can always change your tracker
             preferences by visiting our Cookie Policy.
           </section>
-          <button
-            className="Modola__button"
-            onClick={() => props.closed()}
-          >
+          <button className="Modola__button" onClick={() => props.closed()}>
             yes
           </button>
-          <button
-            className="Modola__button"
-            onClick={() => props.closed()}
-          >
+          <button className="Modola__button" onClick={() => props.closed()}>
             no
           </button>
-          <button
-            className="Modola__button"
-            onClick={() => props.closed()}
-          >
+          <button className="Modola__button" onClick={() => props.closed()}>
             Personalize
           </button>
         </div>

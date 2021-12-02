@@ -19,7 +19,7 @@
   margin-right: 10px;
   transition: transform 450ms;
   justify-self: flex-end;
-  z-index: 100;
+  z-index: 1;
 }
 .row__poster:hover {
   transform: scale(1.08);
