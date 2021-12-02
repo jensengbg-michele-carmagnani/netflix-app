@@ -52,7 +52,7 @@ const TvSeries = (props) => {
           ? tvSeries.map((serie, i) => (
               <Link to={`/movies/${serie.id}`} key={serie.id}>
                 <div
-                  className={isLargeRow && i < 10 && css.film__rankingContainer}
+                  className={(isLargeRow && i < 10) ? css.film__rankingContainer: null}
                 >
                   {isLargeRow && i < 10 && (
                     <h1 className={css.film___rankingNumber}>{i + 1}</h1>
