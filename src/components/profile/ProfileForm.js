@@ -7,7 +7,8 @@ import { selectUser } from "../../features/userSlice";
 import PlanScreen from "./PlanScreen";
 
 const ProfileForm = () => {
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
+
   const signOut = () => {
     auth.signOut().catch((error) => {
       alert(error.message);
@@ -24,7 +25,8 @@ const ProfileForm = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
             alt=""
           />
-          <p> {user.email} </p>
+          {/* <p> {user.email} </p> */}
+          <p> {auth.currentUser.displayName} </p>
         </article>
       </section>
       <section className={css.profileForm__body}>

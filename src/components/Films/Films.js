@@ -18,7 +18,6 @@ const Films = (props) => {
 
   const getMovies = (paylod) => {
     let refinedPayload = [];
-    console.log("paylod", paylod);
     for (let key in paylod) {
       if (+key < 10 && isLargeRow) {
         refinedPayload.push(paylod[key]);
@@ -44,7 +43,6 @@ const Films = (props) => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  console.log(isLargeRow);
   return (
     <div className={css.films}>
       <h1>{title}</h1>
