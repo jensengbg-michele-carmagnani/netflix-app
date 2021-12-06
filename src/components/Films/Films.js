@@ -23,9 +23,10 @@ const Films = (props) => {
         refinedPayload.push(paylod[key]);
         setRefinedList(refinedPayload);
       }
-      setFilms(paylod);
+    setFilms(paylod);
     }
   };
+
   const {
     error,
     isLoading,

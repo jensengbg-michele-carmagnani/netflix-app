@@ -13,7 +13,8 @@ const Trendy = (props) => {
   const [refinedList, setRefinedList] = useState([]);
 
   useEffect(() => {
-    fetchTask();
+     fetchTask();
+
   }, []);
 
   const getMovies = (paylod) => {
@@ -31,14 +32,14 @@ const Trendy = (props) => {
     isLoading,
     sendRequest: fetchTask,
   } = useHttp({ url: fetchUrl, getMovies });
-
   if (error) {
+    console.log('TRENDY',error)
     return (
       <Error
-        onError={{
-          message: "Somesthing went wrong, try again later!",
-          ...error,
-        }}
+      onError={{
+        message: "Somesthing went wrong, try again later!",
+        ...error
+      }}
       />
     );
   }
@@ -63,7 +64,6 @@ const Trendy = (props) => {
                     <h1 className={css.trendy___rankingNumber}>{i + 1}</h1>
                   )}
                   <div className={css.trendy__poster}>
-                    {/* {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>} */}
                     <img
                       className={css.trendy__img}
                       key={trend.id}
@@ -86,8 +86,7 @@ const Trendy = (props) => {
                   {isLargeRow && i < 10 && (
                     <h1 className={css.trendy___rankingNumber}>{i + 1}</h1>
                   )}
-                  <div className={css.trendy__poster}>
-                    {/* {title === "Top Twenty" && <img src={icons[0].src} alt={serie.title}/>} */}
+                  <div className={css.trendy__poster}>                
                     <img
                       className={css.trendy__img}
                       key={trend.id}
