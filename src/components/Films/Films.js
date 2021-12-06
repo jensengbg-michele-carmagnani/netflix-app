@@ -35,7 +35,10 @@ const Films = (props) => {
   if (error) {
     return (
       <Error
-        onError={{ message: "Somesthing went wrong, try again later!", error }}
+        onError={{
+          message: "Somesthing went wrong, try again later!",
+          ...error,
+        }}
       />
     );
   }
@@ -51,7 +54,9 @@ const Films = (props) => {
           ? films?.map((film, i) => (
               <Link to={`/movies/${film.id}`} key={film.id}>
                 <div
-                  className={(isLargeRow && i < 10) ? css.film__rankingContainer: null}
+                  className={
+                    isLargeRow && i < 10 ? css.film__rankingContainer : null
+                  }
                 >
                   {isLargeRow && i < 10 && (
                     <h1 className={css.film___rankingNumber}>{i + 1}</h1>

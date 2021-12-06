@@ -35,7 +35,10 @@ const Trendy = (props) => {
   if (error) {
     return (
       <Error
-        onError={{ message: "Somesthing went wrong, try again later!", error }}
+        onError={{
+          message: "Somesthing went wrong, try again later!",
+          ...error,
+        }}
       />
     );
   }

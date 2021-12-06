@@ -36,7 +36,10 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   if (error) {
     return (
       <Error
-        onError={{ message: "Somesthing went wrong, try again later!", ...error }}
+        onError={{
+          message: "Somesthing went wrong, try again later!",
+          ...error,
+        }}
       />
     );
   }
@@ -58,7 +61,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
                   <Link to={`/movies/${movie.id}`} key={movie.id}>
                     <div
                       className={
-                        (isLargeRow && i < 10) ? css.row__rankingContainer: null
+                        isLargeRow && i < 10 ? css.row__rankingContainer : null
                       }
                     >
                       {isLargeRow && i < 10 && (

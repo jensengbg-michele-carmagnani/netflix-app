@@ -11,6 +11,7 @@ import ActorBanner from "../Header/ActorBanner";
 import css from "./ActorDetails.module.css";
 import requests from "../../lib/Requests";
 import axios from "../../lib/axios";
+import Avatar from "../../Assets/Netflix-avatar.png";
 
 const ActorDetails = () => {
   const params = useParams();
@@ -33,7 +34,7 @@ const ActorDetails = () => {
 
   const getCredits = async () => {
     const response = await axios.get(fetchUrlCredits);
-    
+
     setCredits(response.data.cast);
   };
 
@@ -64,7 +65,11 @@ const ActorDetails = () => {
                     <img
                       className={css.row__poster}
                       key={movie.id}
-                      src={`${base_url_img}${movie.poster_path}`}
+                      src={
+                        movie.poster_path
+                          ? `${base_url_img}${movie.poster_path}`
+                          : Avatar
+                      }
                       alt={movie.name}
                     />
                   </Link>
