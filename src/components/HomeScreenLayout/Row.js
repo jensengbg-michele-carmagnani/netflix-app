@@ -36,7 +36,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   if (error) {
     return (
       <Error
-        onError={{ message: "Somesthing went wrong, try again later!", error }}
+        onError={{ message: "Somesthing went wrong, try again later!", ...error }}
       />
     );
   }

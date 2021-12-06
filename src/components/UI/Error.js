@@ -3,10 +3,12 @@ import css from './Error.module.css'
 
  const Error = (props) => {
    const{message, error} = props.onError
+   console.log(props)
   return (
     <div className={css.error}>
       <h1>{message}</h1>
-      <p>{error.error}</p>
+      <p>{error}</p>
+      
     </div>
   )
 }

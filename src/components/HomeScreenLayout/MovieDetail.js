@@ -37,7 +37,7 @@ const MovieDetail = () => {
       try {
         const response = await axios.get(details_Url);
         setMovie(response.data);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         setErrorMsg({
           message: "Something went wrong, Try later",
@@ -45,7 +45,7 @@ const MovieDetail = () => {
         });
       }
     };
-    console.log(errorMsg)
+    console.log(errorMsg);
 
     const fetchMovieCast = async () => {
       const response = await axios.get(movieCast_url);
@@ -98,7 +98,10 @@ const MovieDetail = () => {
         });
       })
       .catch((error) => {
-        setErrorMsg({ message: error.message, errorType: error });
+        setErrorMsg({
+          message: "Something went wrong, Try later",
+          error: error.message,
+        });
       });
 
   const addFavoriteHandler = async () => {
@@ -114,7 +117,10 @@ const MovieDetail = () => {
         notificationHandler(options);
       })
       .catch((error) =>
-        setErrorMsg({ message: error.message, errorType: error })
+        setErrorMsg({
+          message: "Something went wrong, Try later",
+          error: error.message,
+        })
       );
   };
 
@@ -136,7 +142,10 @@ const MovieDetail = () => {
           setIsFavorite((prevState) => !prevState);
         })
         .catch((error) =>
-          setErrorMsg({ message: error.message, errorType: error })
+          setErrorMsg({
+            message: "Something went wrong, Try later",
+            error: error.message,
+          })
         );
     }
   };
@@ -146,7 +155,11 @@ const MovieDetail = () => {
   return (
     <>
       {errorMsg ? (
-        <Error onError={{message: errorMsg.message, error:errorMsg.error}} />
+        <div className={css.errorMessage}>
+          <Error
+            onError={{ message: errorMsg.message, error: errorMsg.error }}
+          />
+        </div>
       ) : (
         <div className={css.moviedetail}>
           <div

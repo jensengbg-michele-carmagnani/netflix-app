@@ -32,7 +32,6 @@
   font-weight: 300;
 }
 
-
 .banner___fedeBottom {
   height: 16.1rem;
 
@@ -65,17 +64,15 @@
   display: flex;
   justify-content: space-between;
 }
-.banner__buttons  {
+.banner__buttons {
   position: fixed;
   top: 500px;
   left: 30px;
-  
 }
 .banner__buttons img {
   width: 50px;
   height: 50px;
   cursor: pointer;
-  
 }
 
 .moviedetail__cast_info {
@@ -100,34 +97,39 @@
 .moviedetail__cast_info::-webkit-scrollbar {
   display: none;
 }
-.moviedetail__starOuter{
+.moviedetail__starOuter {
   position: relative;
   display: inline-block;
 }
-.moviedetail__starInner{
+.moviedetail__starInner {
   position: absolute;
   top: 0;
   left: 0;
   white-space: nowrap;
   overflow: hidden;
   width: 10px;
-  
 }
-.moviedetail__starOuter::before{
+.moviedetail__starOuter::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: #ccc;
 }
-.moviedetail__starInner::before{
+.moviedetail__starInner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: #f8ce0b;
 }
-.moviedetail__vote{
+.moviedetail__vote {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+}
+
+.errorMessage {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
