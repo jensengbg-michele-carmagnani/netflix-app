@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event';
 import LoginScreen from './LoginScreen'
 
 describe('LoginScreen Component', () => {
@@ -19,12 +20,31 @@ describe('LoginScreen Component', () => {
         expect(checkH2).toBeInTheDocument();
     });
     test('renders the h3 as a text', () => {
-        //Arrange, Act, Assert,
+        //Arrange
         render(< LoginScreen />)
         //Act
         //Assert
         const checkH3 = screen.getByText('Read to watch? Enter your email to create or restart your membership', { exact: false })
         expect(checkH3).toBeInTheDocument();
+    })
+    test('renders the "Sign in" button', () => {
+        //Arrange
+        render(< LoginScreen />)
+        //Act
+        //Assert
+        const buttonElement = screen.findAllByText('Sign In');
+        expect(buttonElement).toBeTruthy();
+    })
+    test('renders the "Sign in" button', () => {
+        //Arrange
+        render(< LoginScreen />)
+        //Act
+        //Assert
+        const buttonElement = screen.findAllByText('Get started');
+        expect(buttonElement).toBeTruthy();
+    })
+    test('renders the component SignIn', () => {
+
     })
 
 })
