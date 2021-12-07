@@ -71,7 +71,6 @@ const SignIn = () => {
       console.log("Empty values.")
     }
     setTimeout(() => {
-
       props.resetForm()
       props.setSubmitting(false)
     }, 2000)
@@ -90,7 +89,11 @@ const SignIn = () => {
   return (
     <div className={css.signIn}>
       <h1 className={css.signIn__heading}>{isLogin ? 'Login' : 'Sign Up'}</h1>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitHandler}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={submitHandler}
+        autocomplete="off">
         {(props) => (
           <Form>
             <div className={css.signIn__signUpForm}>
@@ -101,7 +104,6 @@ const SignIn = () => {
                   label='Name'
                   placeholder="Enter your name"
                   helperText={<ErrorMessage name="name" />}
-                  autocomplete="off"
                   variant="filled"
                   className={css.signIn___control__textfield}
                   InputLabelProps={{ className: css.signIn___control__textfield__label }}
@@ -110,14 +112,12 @@ const SignIn = () => {
                   required
                 />
               )}
-
               <Field as={TextField}
                 fullWidth
                 name="email"
                 label='Email'
                 placeholder="Enter your email"
                 helperText={<ErrorMessage name="email" />}
-                autocomplete="off"
                 variant="filled"
                 className={css.signIn___control__textfield}
                 InputLabelProps={{ className: css.signIn___control__textfield__label }}
@@ -133,7 +133,6 @@ const SignIn = () => {
                 label='Password'
                 placeholder="Enter your password"
                 helperText={<ErrorMessage name="password" />}
-                autocomplete="off"
                 variant="filled"
                 className={css.signIn___control__textfield}
                 InputLabelProps={{ className: css.signIn___control__textfield__label }}

@@ -45,7 +45,7 @@ const MyList = () => {
         {myFavorite.map((fav) => (
           <Grid item key={fav.movie.id} key={Math.random().toString(36).substr(2, 9)} >
             <Link to={`/movies/${fav.movie.id}`} key={Math.random().toString(36).substr(2, 9)}>
-              <MediaCard image={`${requests.base_url_img}${fav.movie.poster_path || fav.movie.backdrop_path
+              <MediaCard image={`${requests.base_url_img}${fav.movie.backdrop_path || fav.movie.poster_path
                 }`}
                 title={fav.movie.original_title}
                 movie={fav.movie}

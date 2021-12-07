@@ -6,7 +6,6 @@ import { CardActions } from '@material-ui/core/'
 
 
 const Modal = ({ showModal, movie }) => {
-
     return <> {showModal ? < CardContent className={css.modalBox}>
         <CardActions className={css.modalBox__cardActions}>
             {(movie && (typeof (movie.genres)) === 'object') ? (
