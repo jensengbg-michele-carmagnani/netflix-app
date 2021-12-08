@@ -35,7 +35,7 @@ const SignIn = () => {
 
   const signUpHandler = (e) => {
     // e.preventDefault();
-    auth
+    auth 
       .createUserWithEmailAndPassword(e.email, e.password)
       .then((userCredential) => {
         userCredential.user.updateProfile({

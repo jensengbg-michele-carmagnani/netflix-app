@@ -23,55 +23,29 @@ const Footer = () => {
       <div className={css.footer__wrapper}>
         <section>
           <article className={css.footer__socialmedia}>
-             {/* {brands.map((brand, i) => {
-                console.log('prefix',brand)
-            return  (<FontAwesomeIcon
-                key={i}
-                icon={brand[i]}
-                size="3x"
-                className={css.footer___fontAwesome}
-                onMouseLeave={colorHandler}
-                onMouseOver={colorHandler}
-                color={color}
-              />)
-            }
-            )}  */}
-            
+               
             <FontAwesomeIcon
               icon={faFacebook}
               size="2x"
               color="white"
               className={css.footer___fontAwesome}
-              // onMouseLeave={colorHandler}
-              // onMouseOver={colorHandler}
-              // color={color}
             />
             <FontAwesomeIcon
               icon={faInstagramSquare}
               size="2x"
               color="white"
               className={css.footer___fontAwesome}
-              // onMouseLeave={colorHandler}
-              // onMouseOver={colorHandler}
-              // color={color}
             />
             <FontAwesomeIcon
               icon={faYoutubeSquare}
               size="2x"
               color="white"
               className={css.footer___fontAwesome}
-              // onMouseLeave={colorHandler}
-              // onMouseOver={colorHandler}
-              // color={color}
             />
             <FontAwesomeIcon
               icon={faLinkedin}
               size="2x"
               color="white"
-    
-              // onMouseLeave={colorHandler}
-              // onMouseOver={colorHandler}
-              // color={color}
             />
           </article>
           <h5>Audio and Subtitles</h5>

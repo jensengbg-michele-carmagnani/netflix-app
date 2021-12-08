@@ -61,3 +61,16 @@
   );
 }
 
+@media screen and (max-width: 430px) {
+  .banner__title{
+    height: 100%;
+    
+  font-size: 2.4rem;
+  font-weight: 800;
+  }
+  
+  .banner__description,
+  .banner__buttons {
+    display: none;
+  }
+}
