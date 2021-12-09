@@ -15,7 +15,7 @@ const TvSeriesScreen = (props) => {
     <div className={css.tvSeriesScreen}>
       <Banner />
       <TvSeries
-        title="Top Twenty"
+        title="Top Ten"
         fetchUrl={requests.fetchTvseriesTopten}
         isLargeRow={isLargeRow}
       />
