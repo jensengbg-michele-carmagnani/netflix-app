@@ -6,7 +6,6 @@ import { CardActions } from '@material-ui/core/'
 
 
 const Modal = ({ showModal, movie }) => {
-
     return <> {showModal ? < CardContent className={css.modalBox}>
         <CardActions className={css.modalBox__cardActions}>
             {(movie && (typeof (movie.genres)) === 'object') ? (
@@ -22,17 +21,15 @@ const Modal = ({ showModal, movie }) => {
                         )}
                     </Typography>
                 ))) : (
-                <Typography gutterButton variant="h5" component="h2"> No genres
+                <Typography component="h2"> No genres
                 </Typography>
             )}
             <CardActions className={css.modalBox__tagAndVote}>
                 <Typography
-                    gutterButton variant="h5"
                     component="h2"
-                    className={css.modalBox__tagline}> {movie.tagline}
+                    className={css.modalBox__title}> {movie.title}
                 </Typography>
                 <Typography
-                    gutterButton variant="h5"
                     component="h2"
                     className={css.modalBox__vote}> Rating: {movie.vote_average}
                 </Typography>

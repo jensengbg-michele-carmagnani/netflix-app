@@ -1,0 +1,43 @@
+.actorDetails {
+  padding: 4rem 4rem;
+  display:flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height:100vh;
+
+  
+}
+.row {
+  color: #fff;
+  
+  
+}
+.row__posters {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+  
+}
+.row__posters::-webkit-scrollbar {
+  display: none;
+}
+.row__poster {
+  max-height: 230px;
+  object-fit: contain;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+.row__poster:hover {
+  transform: scale(1.08);
+  opacity: 1;
+  cursor: pointer;
+}
+.row__posterLarge{
+  max-height: 280px;
+}
+.row__posterLarge:hover{
+  transform: scale(1.09);
+  opacity: 1;
+  cursor: pointer;
+}

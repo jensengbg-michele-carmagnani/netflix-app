@@ -35,7 +35,7 @@ const SignIn = () => {
 
   const signUpHandler = (e) => {
     // e.preventDefault();
-    auth 
+    auth
       .createUserWithEmailAndPassword(e.email, e.password)
       .then((userCredential) => {
         userCredential.user.updateProfile({
@@ -64,10 +64,10 @@ const SignIn = () => {
       console.log("Empty values.");
     }
     setTimeout(() => {
-      props.resetForm();
-      props.setSubmitting(false);
-    }, 2000);
-  };
+      props.resetForm()
+      props.setSubmitting(false)
+    }, 2000)
+  }
   const initialValues = {
     name: "",
     email: "",
@@ -83,12 +83,12 @@ const SignIn = () => {
 
   return (
     <div className={css.signIn}>
-      <h1 className={css.signIn__heading}>{isLogin ? "Login" : "Sign Up"}</h1>
+      <h1 className={css.signIn__heading}>{isLogin ? 'Login' : 'Sign Up'}</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
-      >
+        autocomplete="off">
         {(props) => (
           <Form>
             <Box className={css.signIn__signUpForm}>
@@ -100,7 +100,6 @@ const SignIn = () => {
                   label="Name"
                   placeholder="Enter your name"
                   helperText={<ErrorMessage name="name" />}
-                  autocomplete="off"
                   variant="filled"
                   className={css.signIn___control__textfield}
                   InputLabelProps={{
@@ -115,15 +114,12 @@ const SignIn = () => {
                   required
                 />
               )}
-
-              <Field
-                as={TextField}
+              <Field as={TextField}
                 fullWidth
                 name="email"
                 label="Email"
                 placeholder="Enter your email"
                 helperText={<ErrorMessage name="email" />}
-                autocomplete="off"
                 variant="filled"
                 className={css.signIn___control__textfield}
                 InputLabelProps={{
@@ -143,7 +139,6 @@ const SignIn = () => {
                 label="Password"
                 placeholder="Enter your password"
                 helperText={<ErrorMessage name="password" />}
-                autocomplete="off"
                 variant="filled"
                 className={css.signIn___control__textfield}
                 InputLabelProps={{
