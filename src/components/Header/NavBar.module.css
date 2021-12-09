@@ -100,8 +100,6 @@ li {
     display: none;
   }
   .navMobile__content {
-    
-    
     position: fixed;
     display: flex;
     justify-content: center;
@@ -111,10 +109,7 @@ li {
     top: 0;
     left: 0;
     z-index: 100;
-    
-    
   }
-
   .navMobile__content div {
     margin-bottom: 0.6rem;
     width: 2rem;

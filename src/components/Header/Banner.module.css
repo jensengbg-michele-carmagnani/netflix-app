@@ -64,10 +64,10 @@
 @media screen and (max-width: 500px) {
   .banner {
     height: 300px;
-    
+    overflow: hidden;
   }
   .banner__title {
-    max-width: 300px;
+    max-width: 100%;
     font-size: 1.9rem;
     font-weight: 800;
   }
@@ -78,6 +78,5 @@
   }
   .banner___fedeBottom {
     height: 7rem;
-    
   }
 }

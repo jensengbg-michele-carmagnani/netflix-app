@@ -1,6 +1,5 @@
 .moviedetail {
   position: relative;
-  height: 90vh;
   color: aliceblue;
   margin-top: 4rem;
 }
@@ -89,6 +88,7 @@
   object-fit: contain;
   margin-right: 10px;
   transition: transform 450ms;
+
 }
 .moviedetail__cast_info img:hover {
   transform: scale(1.08);
@@ -97,6 +97,9 @@
 }
 .moviedetail__cast_info::-webkit-scrollbar {
   display: none;
+}
+.moviedetail__cast_card{
+  height:100%
 }
 
 .moviedetail__vote {
@@ -114,7 +117,7 @@
 
 @media screen and (max-width: 500px) {
   .moviedetail {
-    padding: 0;
+    margin-top: 0;
   }
   .banner__description {
     height: 280px;

@@ -23,9 +23,7 @@
   line-height: 2.5rem;
   font-weight: 100;
 }
-/* h5:hover{
-  text-decoration: underline;
-} */
+
 section > h5:hover {
   color: #fff;
   cursor: pointer;
@@ -41,16 +39,17 @@ section > h5:hover {
 @media screen and (max-width: 500px) {
   .footer {
     height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
   .footer__wrapper {
     flex-direction: column;
-    width: 100%;
+    width: inherit;
+    height: inherit;
   }
   .footer__wrapper section {
-    
     margin-left: 4rem;
     align-self: center;
-    
   }
   h5 {
     width: 100%;
