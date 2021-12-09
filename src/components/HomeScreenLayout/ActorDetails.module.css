@@ -44,4 +44,8 @@
     flex-direction: column;
     height: 100vh;
   }
+  .row__posters {
+    margin-top: 80%;
+    margin-bottom: 40%;
+  }
 }
