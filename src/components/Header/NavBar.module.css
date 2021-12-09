@@ -4,7 +4,7 @@
   padding: 10px;
   height: 55px;
   z-index: 100;
-  width: 100vw;
+  width: 100%;
 
   /* animation  */
   transition-timing-function: ease-in;
@@ -95,12 +95,13 @@ li {
 .navMobile__content {
   display: none;
 }
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 500px) {
   .nav__content {
     display: none;
   }
   .navMobile__content {
-    display: block;
+    
+    
     position: fixed;
     display: flex;
     justify-content: center;

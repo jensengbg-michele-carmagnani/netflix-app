@@ -61,21 +61,23 @@
   );
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 500px) {
   .banner {
- 
-    max-width:100%;
-    background-color: #fff;
+    height: 300px;
+    
   }
   .banner__title {
-    
     max-width: 300px;
-    font-size: 2.4rem;
+    font-size: 1.9rem;
     font-weight: 800;
   }
 
   .banner__description,
   .banner__buttons {
     display: none;
+  }
+  .banner___fedeBottom {
+    height: 7rem;
+    
   }
 }
