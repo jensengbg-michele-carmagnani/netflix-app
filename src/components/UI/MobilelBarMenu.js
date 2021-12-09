@@ -1,8 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import CSSTransition from "react-transition-group/CSSTransition";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 import "./MobilelBarMenu.css";
 
@@ -31,36 +29,61 @@ const MobilelBarMenu = (props) => {
           <div className="navMobile__content">
             <ul>
               <NavLink
+                to="/movies"
+                onClick={() => {
+                  props.closed();
+                  props.onChangeIconManu();
+                }}
+                activeClassName="active"
+              >
+                <li>Home</li>
+              </NavLink>
+              <NavLink
                 to="/series"
-                onClick={() => props.closed()}
+                onClick={() => {
+                  props.closed();
+                  props.onChangeIconManu();
+                }}
                 activeClassName="active"
               >
                 <li>Series</li>
               </NavLink>
               <NavLink
                 to="/films"
-                onClick={() => props.closed()}
+                onClick={() => {
+                  props.closed();
+                  props.onChangeIconManu();
+                }}
                 activeClassName="active"
               >
                 <li>Films</li>
               </NavLink>
               <NavLink
                 to="/latest"
-                onClick={() => props.closed()}
+                onClick={() => {
+                  props.closed();
+                  props.onChangeIconManu();
+                }}
                 activeClassName="active"
               >
                 <li>New & Popular</li>
               </NavLink>
               <NavLink
                 to="/myfavorites"
-                onClick={() => props.closed()}
+                onClick={() => {
+                  props.closed();
+                  props.onChangeIconManu();
+                }}
                 activeClassName="active"
               >
                 <li>My list</li>
               </NavLink>
               <NavLink
                 to="/profile"
-                onClick={() => props.closed()}
+                onClick={() => {
+                  props.closed();
+                  props.onChangeIconManu();
+                }}
                 activeClassName="active"
               >
                 <li>Setting profile</li>

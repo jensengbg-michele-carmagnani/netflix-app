@@ -37,7 +37,6 @@ const MovieDetail = () => {
       try {
         const response = await axios.get(details_Url);
         setMovie(response.data);
-        console.log(response.data);
       } catch (error) {
         setErrorMsg({
           message: "Something went wrong, Try later",
@@ -177,7 +176,7 @@ const MovieDetail = () => {
               </h1>
               <div className={css.banner__buttons}>
                 {!isFavorite ? (
-                  <img src={plus} alt="" onClick={addFavoriteHandler} />
+                  <img  src={plus} alt="" onClick={addFavoriteHandler} />
                 ) : (
                   <img src={check} alt="" onClick={removeFavoriteHandler} />
                 )}

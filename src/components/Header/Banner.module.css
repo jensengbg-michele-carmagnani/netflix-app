@@ -61,16 +61,22 @@
   );
 }
 
-@media screen and (max-width: 430px) {
-  .banner__title{
-    height: 100%;
-    
-  font-size: 2.4rem;
-  font-weight: 800;
+@media screen and (max-width: 500px) {
+  .banner {
+    height: 300px;
+    overflow: hidden;
   }
-  
+  .banner__title {
+    max-width: 100%;
+    font-size: 1.9rem;
+    font-weight: 800;
+  }
+
   .banner__description,
   .banner__buttons {
     display: none;
+  }
+  .banner___fedeBottom {
+    height: 7rem;
   }
 }

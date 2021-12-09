@@ -13,7 +13,7 @@ const NavBar = (props) => {
   useEffect(() => {
     getScreenWidth();
   });
-  console.log(changeIconManu);
+  
   const getScreenWidth = () => {
     const actualScreenWidth = window.screen.width;
     if (actualScreenWidth <= 414) {
@@ -28,7 +28,9 @@ const NavBar = (props) => {
   const closeModal = async () => {
     await setOpenMobileNav(prevState =>!prevState);
   };
-
+  const closeIconManu = () => {
+    setChangeIconManu(!changeIconManu)
+  }
   return (
     <>
       <div
@@ -62,7 +64,7 @@ const NavBar = (props) => {
               <li>My list</li>
             </NavLink>
             <NavLink to="/profile" activeClassName={css.active}>
-              <li>
+              <li >
                 <img
                   className={css.avatar}
                   src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
@@ -85,7 +87,7 @@ const NavBar = (props) => {
         <div className={changeIconManu && css.navMobile___second}></div>
         <div className={changeIconManu && css.navMobile___third}></div>
       </div>
-      <MobileBarMenu show={openMobileNav} closed={closeModal} />
+      <MobileBarMenu show={openMobileNav} closed={closeModal} onChangeIconManu={closeIconManu}/>
     </>
   );
 };
