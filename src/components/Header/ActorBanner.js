@@ -21,7 +21,7 @@ const ActorBanner = (props) => {
       style={{
         backgroundImage: `url("https://image.tmdb.org/t/p/original${profile_path}")`,
         borderRadius: '5px',
-        
+
       }}
     >
       <div className={css.bannerActor__contents}>
@@ -38,7 +38,7 @@ const ActorBanner = (props) => {
               <h4>Birthday : </h4> <span>{birthday}</span>
             </div>
             <div>
-              <h4>Dethday : </h4>{" "}
+              <h4>Deathday : </h4>{" "}
               {deathday ? <span>{deathday}</span> : <span>none</span>}
             </div>
             <div>

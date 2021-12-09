@@ -1,23 +1,18 @@
 .actorDetails {
   padding: 4rem 4rem;
-  display:flex;
+  display: flex;
   justify-content: space-around;
   flex-direction: column;
-  height:100vh;
-
-  
+  height: 100vh;
 }
 .row {
   color: #fff;
-  
-  
 }
 .row__posters {
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
-  
 }
 .row__posters::-webkit-scrollbar {
   display: none;
@@ -33,11 +28,20 @@
   opacity: 1;
   cursor: pointer;
 }
-.row__posterLarge{
+.row__posterLarge {
   max-height: 280px;
 }
-.row__posterLarge:hover{
+.row__posterLarge:hover {
   transform: scale(1.09);
   opacity: 1;
   cursor: pointer;
+}
+@media screen and (max-width: 430px) {
+  .actorDetails {
+    padding: 4rem 4rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 100vh;
+  }
 }
