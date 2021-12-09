@@ -79,3 +79,9 @@ span {
   margin-top: 2% !important;
   margin-left: 0px !important;
 }
+
+@media screen and (max-width: 500px) {
+  .modalBox {
+    width: 220px;
+  }
+}
