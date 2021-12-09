@@ -62,13 +62,18 @@
 }
 
 @media screen and (max-width: 430px) {
-  .banner__title{
-    height: 100%;
-    
-  font-size: 2.4rem;
-  font-weight: 800;
+  .banner {
+ 
+    max-width:100%;
+    background-color: #fff;
   }
-  
+  .banner__title {
+    
+    max-width: 300px;
+    font-size: 2.4rem;
+    font-weight: 800;
+  }
+
   .banner__description,
   .banner__buttons {
     display: none;
