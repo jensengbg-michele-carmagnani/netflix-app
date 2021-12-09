@@ -17,13 +17,12 @@ const Footer = () => {
   };
 
   // const brands = [faFacebook, faInstagramSquare, faYoutubeSquare, faLinkedin];
-  
+
   return (
     <footer className={css.footer}>
       <div className={css.footer__wrapper}>
         <section>
           <article className={css.footer__socialmedia}>
-               
             <FontAwesomeIcon
               icon={faFacebook}
               size="2x"
@@ -42,16 +41,14 @@ const Footer = () => {
               color="white"
               className={css.footer___fontAwesome}
             />
-            <FontAwesomeIcon
-              icon={faLinkedin}
-              size="2x"
-              color="white"
-            />
+            <FontAwesomeIcon icon={faLinkedin} size="2x" color="white" />
           </article>
-          <h5>Audio and Subtitles</h5>
-          <h5>Media Center</h5>
-          <h5>Privacy</h5>
-          <h5>Contact Us</h5>
+          <article>
+            <h5>Audio and Subtitles</h5>
+            <h5>Media Center</h5>
+            <h5>Privacy</h5>
+            <h5>Contact Us</h5>
+          </article>
         </section>
         <section>
           <h5>Audio Description</h5>

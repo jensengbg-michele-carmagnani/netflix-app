@@ -16,7 +16,6 @@
   cursor: pointer;
 }
 
-
 .footer__wrapper section {
   margin-right: 6rem;
 }
@@ -37,4 +36,24 @@ section > h5:hover {
   height: 40px;
   cursor: pointer;
   color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+  .footer {
+    height: 100%;
+  }
+  .footer__wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+  .footer__wrapper section {
+    
+    margin-left: 4rem;
+    align-self: center;
+    
+  }
+  h5 {
+    width: 100%;
+    text-align: center;
+  }
 }

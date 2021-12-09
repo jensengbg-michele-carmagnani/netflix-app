@@ -176,7 +176,7 @@ const MovieDetail = () => {
               </h1>
               <div className={css.banner__buttons}>
                 {!isFavorite ? (
-                  <img src={plus} alt="" onClick={addFavoriteHandler} />
+                  <img  src={plus} alt="" onClick={addFavoriteHandler} />
                 ) : (
                   <img src={check} alt="" onClick={removeFavoriteHandler} />
                 )}
