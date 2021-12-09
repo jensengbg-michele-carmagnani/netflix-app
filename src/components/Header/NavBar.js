@@ -13,7 +13,7 @@ const NavBar = (props) => {
   useEffect(() => {
     getScreenWidth();
   });
-  console.log(changeIconManu);
+  
   const getScreenWidth = () => {
     const actualScreenWidth = window.screen.width;
     if (actualScreenWidth <= 414) {

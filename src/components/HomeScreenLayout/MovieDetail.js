@@ -37,7 +37,6 @@ const MovieDetail = () => {
       try {
         const response = await axios.get(details_Url);
         setMovie(response.data);
-        console.log(response.data);
       } catch (error) {
         setErrorMsg({
           message: "Something went wrong, Try later",

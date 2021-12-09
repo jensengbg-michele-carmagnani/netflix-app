@@ -9,48 +9,44 @@
   top: 30%;
   left: 35%;
   width: 400px;
-  height:650px;
-  border-radius:5px;
+  height: 650px;
+  border-radius: 5px;
   background-color: rgb(0, 0, 0, 0.7);
-  /* box-shadow: 1px 3px 3px rgb(121, 121, 121); */
-  /* background-color: rgba(202, 199, 199, 0.7); */
   border: 1px solid rgb(65, 64, 64);
   transition: all 0.3s ease-out;
-  
 }
-.Modal__timeCircle{
+.Modal__timeCircle {
   width: 100%;
   cursor: pointer;
   display: flex;
-
 }
-.Backdroop{
+.Backdroop {
   position: fixed;
   z-index: 2;
   width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: rgba(65, 63, 63, 0.6)
+  background-color: rgba(65, 63, 63, 0.6);
 }
-.Modal button{
+.Modal button {
   border-radius: 5px;
   margin-top: 1.4rem;
-  width:305px;
-  height:55px;
-  background-color:#e50a15;
+  width: 305px;
+  height: 55px;
+  background-color: #e50a15;
   border: none;
   color: rgb(255, 255, 255);
   font-size: 1.6rem;
   cursor: pointer;
 }
-.Modal h1{
+.Modal h1 {
   font-weight: 200;
-  margin-bottom: .7rem;
+  margin-bottom: 0.7rem;
 }
-.Modola__button:hover{
-   background-color:#ff020f;
-   color: rgb(0, 0, 0);
+.Modola__button:hover {
+  background-color: #ff020f;
+  color: rgb(0, 0, 0);
 }
 
 .ModalOpen {
@@ -62,7 +58,6 @@
 }
 
 .fade-slide-enter {
-
 }
 
 .fade-slide-enter-active {
@@ -70,7 +65,6 @@
 }
 
 .fade-slide-exit {
-
 }
 
 .fade-slide-exit-active {
@@ -79,30 +73,42 @@
 
 @keyframes openModal {
   0% {
-      opacity: 0;
-      transform: translateY(-100%);
+    opacity: 0;
+    transform: translateY(-100%);
   }
   50% {
-      opacity: 1;
-      transform: translateY(90%);
+    opacity: 1;
+    transform: translateY(90%);
   }
   100% {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes closeModal {
   0% {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
   50% {
-      opacity: 0.8;
-      transform: translateY(60%);
+    opacity: 0.8;
+    transform: translateY(60%);
   }
   100% {
-      opacity: 0;
-      transform: translateY(-100%);
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Modal {
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+  }
+  .Modal button {
+    margin-top: 2rem;
   }
 }
