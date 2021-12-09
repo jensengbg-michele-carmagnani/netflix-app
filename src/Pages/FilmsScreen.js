@@ -16,7 +16,7 @@ export const FilmsScreen = (props) => {
     <div>
       <Banner />
       <Films
-        title="Top Twenty"
+        title="Top Ten"
         fetchUrl={requests.fetchFilmsTopten}
         base_url_img={requests.base_url_img}
         isLargeRow={isLargeRow}
