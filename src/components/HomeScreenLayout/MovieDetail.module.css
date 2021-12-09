@@ -133,3 +133,36 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 430px) {
+  .banner__title {
+    height: 100%;
+    font-size: 2.4rem;
+    font-weight: 800;
+  }
+
+  .moviedetail__wrapper {
+    height: 30%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .banner__buttons {
+    position: fixed;
+    top: 40%;
+    left: 5%;
+  }
+  .banner__buttons img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .banner__description {
+    height: 50%;
+    width: 45rem;
+    margin-left: 25%;
+    line-height: 1.2rem;
+    font-size: 1rem;
+    max-width: 70%;
+  }
+}
