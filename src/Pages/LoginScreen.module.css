@@ -101,7 +101,12 @@ input {
   );
 }
 @media screen and (max-width: 500px) {
-  .loginScreen__body { 
+  .loginScreen__logo {
+    width: 150px;
+
+    left: 32%;
+  }
+  .loginScreen__body {
     position: absolute;
     width: 50%;
     z-index: 1;
@@ -117,7 +122,7 @@ input {
     text-align: center;
   }
   .loginScreen__body > h1 {
-    font-size:  1.6rem;
+    font-size: 1.6rem;
     margin-bottom: 20px;
   }
   .loginScreen__body > h2 {
@@ -129,10 +134,10 @@ input {
     text-align: center;
     font-weight: 200;
   }
-  form{
+  form {
     display: flex;
     flex-direction: column;
-    margin-top:2rem;
+    margin-top: 2rem;
   }
   input {
     height: 33px;
@@ -140,13 +145,13 @@ input {
     border: none;
     outline-width: 0;
     max-width: 600px;
-    border-radius: 0.2rem ;
+    border-radius: 0.2rem;
     font-size: 1.2rem;
-    text-align: center
+    text-align: center;
   }
-  
+
   .loginScreen__buttonSubmit {
-    margin-top: .3rem;
+    margin-top: 0.3rem;
     padding: 10px;
     width: 200px;
     background-color: #e50a15;
@@ -154,6 +159,6 @@ input {
     font-size: 1.6rem;
     border: none;
     cursor: pointer;
-    border-radius:  0.2rem;
+    border-radius: 0.2rem;
   }
 }
