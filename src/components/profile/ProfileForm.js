@@ -26,7 +26,7 @@ const ProfileForm = () => {
             alt=""
           />
           {/* <p> {user.email} </p> */}
-          <p> {auth.currentUser.displayName} </p>
+          <p> {auth.currentUser?.displayName} </p>
         </article>
       </section>
       <section className={css.profileForm__body}>

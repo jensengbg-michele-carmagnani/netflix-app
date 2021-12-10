@@ -15,7 +15,7 @@ const SignIn = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log(history.location.pathname);
   const googleSignInHandler = () => {
     setIsLoading(true);
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -35,11 +35,8 @@ const SignIn = () => {
         // The signed-in user info.
         let user = result.user;
         if (user) {
-          console.log("user", user);
-
           return user;
         }
-        setIsLoading(false);
       })
       .catch((error) => {
         // Handle Errors here.
@@ -52,9 +49,12 @@ const SignIn = () => {
 
         // ...
       });
+      
   };
   const signInHandler = (e) => {
     // e.preventDefault();
+    setIsLoading(true);
+
     auth
       .signInWithEmailAndPassword(e.email, e.password)
       .then((user) => {
@@ -72,6 +72,7 @@ const SignIn = () => {
         console.log(error.message);
         setError(error.message);
       });
+    setIsLoading(false);
   };
 
   const signUpHandler = (e) => {
@@ -121,125 +122,122 @@ const SignIn = () => {
       .min(8, "Password minimum length should be 8")
       .required("Required"),
   });
-  console.log('isLoading',isLoading)
+  console.log("isLoading", isLoading);
   return (
     <>
-      {!isLoading ? (
-        <div className={css.signIn}>
-          <h1 className={css.signIn__heading}>
-            {isLogin ? "Login" : "Sign Up"}
-          </h1>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={submitHandler}
-          >
-            {(props) => (
-              <Form>
-                <Box className={css.signIn__signUpForm}>
-                  {!isLogin && (
-                    <Field
-                      as={TextField}
-                      fullWidth
-                      name="name"
-                      label="Name"
-                      placeholder="Enter your name"
-                      helperText={<ErrorMessage name="name" />}
-                      autocomplete="off"
-                      variant="filled"
-                      className={css.signIn___control__textfield}
-                      InputLabelProps={{
-                        className: css.signIn___control__textfield__label,
-                      }}
-                      inputProps={{
-                        className: css.signIn___control__textfield__input,
-                      }}
-                      FormHelperTextProps={{
-                        className: css.signIn___control__error,
-                      }}
-                      required
-                    />
-                  )}
-
-                  <Field
-                    as={TextField}
-                    fullWidth
-                    name="email"
-                    label="Email"
-                    placeholder="Enter your email"
-                    helperText={<ErrorMessage name="email" />}
-                    autocomplete="off"
-                    variant="filled"
-                    className={css.signIn___control__textfield}
-                    InputLabelProps={{
-                      className: css.signIn___control__textfield__label,
-                    }}
-                    inputProps={{
-                      className: css.signIn___control__textfield__input,
-                    }}
-                    FormHelperTextProps={{
-                      className: css.signIn___control__error,
-                    }}
-                    required
-                  />
-                  <Field
-                    as={TextField}
-                    fullWidth
-                    name="password"
-                    type="password"
-                    label="Password"
-                    placeholder="Enter your password"
-                    helperText={<ErrorMessage name="password" />}
-                    autocomplete="off"
-                    variant="filled"
-                    className={css.signIn___control__textfield}
-                    InputLabelProps={{
-                      className: css.signIn___control__textfield__label,
-                    }}
-                    inputProps={{
-                      className: css.signIn___control__textfield__input,
-                    }}
-                    FormHelperTextProps={{
-                      className: css.signIn___control__error,
-                    }}
-                    required
-                  />
-                  <div>
-                    <span className={css.signIn___control__error}>{error}</span>
-                  </div>
-
-                  <Button type="submit" variant="contained" color="primary">
-                    {" "}
-                    {!isLogin ? "Sign up" : "Login"}
-                  </Button>
-                </Box>
-              </Form>
-            )}
-          </Formik>
-          <h4 className={css.signIn__prompt}>
-            <span className={css.signIn__gray}>
-              {isLogin ? "New to Netflix? " : "Already a member? "}{" "}
-            </span>
-            <span
-              className={css.signIn__toggle}
-              onClick={switchAuthModeHandler}
-            >
-              {isLogin ? "Sign up" : "Login"}
-            </span>
-          </h4>
-          <div className={css.signIn__google} onClick={googleSignInHandler}>
-            <FontAwesomeIcon
-              icon={faGoogle}
-              size="2x"
-              color="white"
-              className={css.googleIcon}
-            />
-            <p>Sign in with Google</p>
+      <div className={css.signIn}>
+        {isLoading && history.location.pathname === "/login"? (
+          <div className={css.signIn__loadingspinner}>
+            <LoadingSpinner />
           </div>
+        ) : null}
+
+        <h1 className={css.signIn__heading}>{isLogin ? "Login" : "Sign Up"}</h1>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={submitHandler}
+        >
+          {(props) => (
+            <Form>
+              <Box className={css.signIn__signUpForm}>
+                {!isLogin && (
+                  <Field
+                    as={TextField}
+                    fullWidth
+                    name="name"
+                    label="Name"
+                    placeholder="Enter your name"
+                    helperText={<ErrorMessage name="name" />}
+                    autocomplete="off"
+                    variant="filled"
+                    className={css.signIn___control__textfield}
+                    InputLabelProps={{
+                      className: css.signIn___control__textfield__label,
+                    }}
+                    inputProps={{
+                      className: css.signIn___control__textfield__input,
+                    }}
+                    FormHelperTextProps={{
+                      className: css.signIn___control__error,
+                    }}
+                    required
+                  />
+                )}
+
+                <Field
+                  as={TextField}
+                  fullWidth
+                  name="email"
+                  label="Email"
+                  placeholder="Enter your email"
+                  helperText={<ErrorMessage name="email" />}
+                  autocomplete="off"
+                  variant="filled"
+                  className={css.signIn___control__textfield}
+                  InputLabelProps={{
+                    className: css.signIn___control__textfield__label,
+                  }}
+                  inputProps={{
+                    className: css.signIn___control__textfield__input,
+                  }}
+                  FormHelperTextProps={{
+                    className: css.signIn___control__error,
+                  }}
+                  required
+                />
+                <Field
+                  as={TextField}
+                  fullWidth
+                  name="password"
+                  type="password"
+                  label="Password"
+                  placeholder="Enter your password"
+                  helperText={<ErrorMessage name="password" />}
+                  autocomplete="off"
+                  variant="filled"
+                  className={css.signIn___control__textfield}
+                  InputLabelProps={{
+                    className: css.signIn___control__textfield__label,
+                  }}
+                  inputProps={{
+                    className: css.signIn___control__textfield__input,
+                  }}
+                  FormHelperTextProps={{
+                    className: css.signIn___control__error,
+                  }}
+                  required
+                />
+                <div>
+                  <span className={css.signIn___control__error}>{error}</span>
+                </div>
+
+                <Button type="submit" variant="contained" color="primary">
+                  {" "}
+                  {!isLogin ? "Sign up" : "Login"}
+                </Button>
+              </Box>
+            </Form>
+          )}
+        </Formik>
+        <h4 className={css.signIn__prompt}>
+          <span className={css.signIn__gray}>
+            {isLogin ? "New to Netflix? " : "Already a member? "}{" "}
+          </span>
+          <span className={css.signIn__toggle} onClick={switchAuthModeHandler}>
+            {isLogin ? "Sign up" : "Login"}
+          </span>
+        </h4>
+        <div className={css.signIn__google} onClick={googleSignInHandler}>
+          <FontAwesomeIcon
+            icon={faGoogle}
+            size="2x"
+            color="white"
+            className={css.googleIcon}
+          />
+          <p>Sign in with Google</p>
         </div>
-      ) : (
-        <LoadingSpinner />
-      )}
+      </div>
     </>
   );
 };
