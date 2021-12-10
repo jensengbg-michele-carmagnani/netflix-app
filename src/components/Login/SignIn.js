@@ -106,10 +106,10 @@ const SignIn = () => {
       console.log("Empty values.");
     }
     setTimeout(() => {
-      props.resetForm();
-      props.setSubmitting(false);
-    }, 2000);
-  };
+      props.resetForm()
+      props.setSubmitting(false)
+    }, 2000)
+  }
   const initialValues = {
     name: "",
     email: "",
@@ -124,6 +124,7 @@ const SignIn = () => {
   });
   console.log("isLoading", isLoading);
   return (
+<<<<<<< HEAD
     <>
       <div className={css.signIn}>
         {isLoading && history.location.pathname === "/login"? (
@@ -173,6 +174,26 @@ const SignIn = () => {
                   placeholder="Enter your email"
                   helperText={<ErrorMessage name="email" />}
                   autocomplete="off"
+=======
+    <div className={css.signIn}>
+      <h1 className={css.signIn__heading}>{isLogin ? 'Login' : 'Sign Up'}</h1>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={submitHandler}
+        autocomplete="off">
+        {(props) => (
+          <Form>
+            <Box className={css.signIn__signUpForm}>
+              {!isLogin && (
+                <Field
+                  as={TextField}
+                  fullWidth
+                  name="name"
+                  label="Name"
+                  placeholder="Enter your name"
+                  helperText={<ErrorMessage name="name" />}
+>>>>>>> 67177d1543897e8e30fda45a72c1a9c731158a04
                   variant="filled"
                   className={css.signIn___control__textfield}
                   InputLabelProps={{
@@ -186,6 +207,7 @@ const SignIn = () => {
                   }}
                   required
                 />
+<<<<<<< HEAD
                 <Field
                   as={TextField}
                   fullWidth
@@ -211,6 +233,48 @@ const SignIn = () => {
                 <div>
                   <span className={css.signIn___control__error}>{error}</span>
                 </div>
+=======
+              )}
+              <Field as={TextField}
+                fullWidth
+                name="email"
+                label="Email"
+                placeholder="Enter your email"
+                helperText={<ErrorMessage name="email" />}
+                variant="filled"
+                className={css.signIn___control__textfield}
+                InputLabelProps={{
+                  className: css.signIn___control__textfield__label,
+                }}
+                inputProps={{
+                  className: css.signIn___control__textfield__input,
+                }}
+                FormHelperTextProps={{ className: css.signIn___control__error }}
+                required
+              />
+              <Field
+                as={TextField}
+                fullWidth
+                name="password"
+                type="password"
+                label="Password"
+                placeholder="Enter your password"
+                helperText={<ErrorMessage name="password" />}
+                variant="filled"
+                className={css.signIn___control__textfield}
+                InputLabelProps={{
+                  className: css.signIn___control__textfield__label,
+                }}
+                inputProps={{
+                  className: css.signIn___control__textfield__input,
+                }}
+                FormHelperTextProps={{ className: css.signIn___control__error }}
+                required
+              />
+              <div>
+                <span className={css.signIn___control__error}>{error}</span>
+              </div>
+>>>>>>> 67177d1543897e8e30fda45a72c1a9c731158a04
 
                 <Button type="submit" variant="contained" color="primary">
                   {" "}

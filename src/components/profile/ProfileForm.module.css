@@ -67,3 +67,16 @@
 .profileForm__signout:hover {
   background-color: #136bdf;
 }
+
+@media screen and (max-width: 430px) {
+  .profileForm {
+    width: 80%;
+    height: 80%;
+    margin-bottom: 30px;
+  }
+
+  .profileForm > h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}

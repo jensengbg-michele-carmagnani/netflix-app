@@ -35,6 +35,17 @@
   opacity: 1;
   cursor: pointer;
 }
-
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 430px) {
+  .actorDetails {
+    padding: 4rem 4rem 0rem 2rem;
+    height: 50%;
+  }
+  /*
+  .row {
+    margin-top: 10px;
+  }
+  .row__posters {
+    margin-top: 100%;
+    margin-bottom: 175%;
+  } */
 }

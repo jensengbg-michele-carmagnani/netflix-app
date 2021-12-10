@@ -23,3 +23,6 @@
 .headingh5 {
   color: white;
 }
+
+@media screen and (max-width: 500px) {
+}

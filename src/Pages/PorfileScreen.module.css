@@ -1,7 +1,10 @@
-.profile{
+.profile {
   background-color: #141414;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 430px) {
 }
