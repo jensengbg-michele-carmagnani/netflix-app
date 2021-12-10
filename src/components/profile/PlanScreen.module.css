@@ -45,7 +45,7 @@
   background-color: #0a20e5;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 500px) {
   .planScreen {
     width: 100%;
   }
