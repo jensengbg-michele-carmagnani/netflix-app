@@ -26,12 +26,15 @@
   color: #fff;
   align-self: flex-start;
   padding-left: 30px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .signIn__prompt {
   text-align: left;
   margin-left: 17%;
 }
+
 /* .signIn__signUpForm > input {
   width: 300px;
   height: 55px;
@@ -146,10 +149,12 @@
   width: 305px;
   text-align: center;
   border: 5px rgb(255 0 0);
-  /* background-color: rgb(128 128 128 / 40%); */
   border-radius: 5px;
   color: rgb(255 0 0);
   font-size: 18px;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: transform 450ms;
 }
 
 .signIn__heading {
@@ -160,7 +165,7 @@
 }
 
 .signIn__google {
-  padding-top:3rem;
+  padding-top: 3rem;
   color: white;
   width: 100%;
   display: flex;
@@ -170,17 +175,18 @@
   cursor: pointer;
   transition: transform 450ms;
 }
-.signIn__google p{
+.signIn__google p {
   margin-left: 1rem;
 }
-.signIn__google p:hover{
+.signIn__google p:hover {
   font-weight: 900;
-  transform:scale(.9);
+  text-decoration: underline;
+  transform: scale(0.9);
 }
-.signIn__loadingspinner{
+.signIn__loadingspinner {
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-color: rgba(73, 73, 73, 0.5);
@@ -188,4 +194,9 @@
   z-index: 100;
   top: 0%;
   left: 0%;
+}
+@media screen and (max-width: 500px) {
+  .signIn {
+    width: 100%;
+  }
 }

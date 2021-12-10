@@ -229,14 +229,14 @@ const SignIn = () => {
             {isLogin ? "Sign up" : "Login"}
           </span>
         </h4>
-        <div className={css.signIn__google} onClick={googleSignInHandler}>
+        <div className={css.signIn__google}>
           <FontAwesomeIcon
             icon={faGoogle}
             size="2x"
             color="white"
             className={css.googleIcon}
           />
-          <p>Sign in with Google</p>
+          <p onClick={googleSignInHandler}>Sign in with Google</p>
         </div>
       </div>
     </>

@@ -2,7 +2,6 @@ import React, { useState, Fragment } from "react";
 import css from "./LoginScreen.module.css";
 import SignIn from "../components/Login/SignIn";
 
-
 const Login = () => {
   const [signIn, setSignIn] = useState(false);
 
@@ -18,12 +17,14 @@ const Login = () => {
           src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
           alt=""
         />
-        <button
-          className={css.loginScreen__signInButton}
-          onClick={signInHandler}
-        >
-          Sign In
-        </button>
+        {! signIn && (
+          <button
+            className={css.loginScreen__signInButton}
+            onClick={signInHandler}
+          >
+            Sign In
+          </button>
+        )}
         {signIn ? (
           <SignIn />
         ) : (
