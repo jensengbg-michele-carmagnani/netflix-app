@@ -40,14 +40,16 @@
   align-items: center;
   flex-direction: column;
   color: #ffffff;
+  width:100%
 }
 .navMobile__content li {
   padding: 1rem;
-  font-size: 3rem;
-  width: 100%;
+  font-size: 2rem;
   border-color: #969393 solid 2px;
   text-align: center;
+  border-bottom: 1px dotted rgb(255, 0, 0)
 }
+
 .avatar {
   width: 40%;
 }
