@@ -9,6 +9,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import firebase from "firebase";
+import { setError } from "../../features/userSlice";
 
 const SignIn = () => {
   const history = useHistory();
@@ -47,10 +48,9 @@ const SignIn = () => {
         let email = error.email;
         // The firebase.auth.AuthCredential type that was used.
         let credential = error.credential;
-
+        setError(errorMessage);
         // ...
       });
-      
   };
   const signInHandler = (e) => {
     // e.preventDefault();
@@ -107,10 +107,10 @@ const SignIn = () => {
       console.log("Empty values.");
     }
     setTimeout(() => {
-      props.resetForm()
-      props.setSubmitting(false)
-    }, 2000)
-  }
+      props.resetForm();
+      props.setSubmitting(false);
+    }, 2000);
+  };
   const initialValues = {
     name: "",
     email: "",
@@ -127,7 +127,7 @@ const SignIn = () => {
   return (
     <>
       <div className={css.signIn}>
-        {isLoading && history.location.pathname === "/login"? (
+        {isLoading && history.location.pathname === "/login" ? (
           <div className={css.signIn__loadingspinner}>
             <LoadingSpinner />
           </div>
