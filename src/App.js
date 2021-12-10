@@ -16,21 +16,26 @@ import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
 import TrendyScreen from "./Pages/TrendyScreen";
 import ActorDetails from "./components/HomeScreenLayout/ActorDetails";
+import LoadingSpinner from "./components/UI/LoadingSpinner";
 import "./App.css";
 
 function App() {
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoadin] = useState(false);
   const user = useSelector(selectUser);
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsLoadin(true);
       if (user) {
+        history.replace("/movies");
         dispatch(login({ uid: user.uid, email: user.email }));
       } else {
         dispatch(logout);
       }
+      setIsLoadin(false);
     });
 
     return unsubscribe;
@@ -43,6 +48,7 @@ function App() {
       setShow(false);
     }
   };
+ 
 
   return (
     <>
@@ -92,7 +98,7 @@ function App() {
             <LoginScreen />
           </Route>
         </Switch>
-      )}
+      ) }
     </>
   );
 }

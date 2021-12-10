@@ -11,13 +11,6 @@ import {} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
-  const [color, setColor] = useState(null);
-  const colorHandler = () => {
-    color ? setColor((prevState) => !prevState) : setColor("white");
-  };
-
-  // const brands = [faFacebook, faInstagramSquare, faYoutubeSquare, faLinkedin];
-
   return (
     <footer className={css.footer}>
       <div className={css.footer__wrapper}>
@@ -32,7 +25,7 @@ const Footer = () => {
             <FontAwesomeIcon
               icon={faInstagramSquare}
               size="2x"
-              color="white"
+              color="white"article 
               className={css.footer___fontAwesome}
             />
             <FontAwesomeIcon
