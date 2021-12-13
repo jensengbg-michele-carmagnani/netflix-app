@@ -9,7 +9,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import firebase from "firebase";
-import { setError } from "../../features/userSlice";
+
 
 const SignIn = () => {
   const history = useHistory();
