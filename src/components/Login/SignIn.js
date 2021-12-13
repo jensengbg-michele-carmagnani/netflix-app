@@ -36,6 +36,8 @@ const SignIn = () => {
         }
         // The signed-in user info.
         let user = result.user;
+        history.replace("/movies");
+
         if (user) {
           return user;
         }
@@ -150,7 +152,6 @@ const SignIn = () => {
                     label="Name"
                     placeholder="Enter your name"
                     helperText={<ErrorMessage name="name" />}
-                    autocomplete="off"
                     variant="filled"
                     className={css.signIn___control__textfield}
                     InputLabelProps={{
@@ -173,7 +174,6 @@ const SignIn = () => {
                   label="Email"
                   placeholder="Enter your email"
                   helperText={<ErrorMessage name="email" />}
-                  autocomplete="off"
                   variant="filled"
                   className={css.signIn___control__textfield}
                   InputLabelProps={{
@@ -195,7 +195,6 @@ const SignIn = () => {
                   label="Password"
                   placeholder="Enter your password"
                   helperText={<ErrorMessage name="password" />}
-                  autocomplete="off"
                   variant="filled"
                   className={css.signIn___control__textfield}
                   InputLabelProps={{

@@ -30,7 +30,6 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setIsLoadin(true);
       if (user) {
-        history.replace("/movies");
         dispatch(login({ uid: user.uid, email: user.email }));
       } else {
         dispatch(logout);
@@ -48,7 +47,6 @@ function App() {
       setShow(false);
     }
   };
- 
 
   return (
     <>
@@ -98,7 +96,7 @@ function App() {
             <LoginScreen />
           </Route>
         </Switch>
-      ) }
+      )}
     </>
   );
 }
