@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import firebase from "firebase";
 
-
 const SignIn = () => {
   const history = useHistory();
   const [isLogin, setIsLogin] = useState(true);
@@ -18,11 +17,11 @@ const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   console.log(history.location.pathname);
 
-  const googleSignInHandler = () => {
+  const googleSignInHandler = async () => {
     setIsLoading(true);
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
-    firebase
+    await firebase
       .auth()
       .getRedirectResult()
       .then((result) => {
@@ -54,11 +53,11 @@ const SignIn = () => {
         // ...
       });
   };
-  const signInHandler = (e) => {
+  const signInHandler = async (e) => {
     // e.preventDefault();
     setIsLoading(true);
 
-    auth
+    await auth
       .signInWithEmailAndPassword(e.email, e.password)
       .then((user) => {
         console.log(user);
@@ -78,9 +77,9 @@ const SignIn = () => {
     setIsLoading(false);
   };
 
-  const signUpHandler = (e) => {
+  const signUpHandler = async (e) => {
     // e.preventDefault();
-    auth
+    await auth
       .createUserWithEmailAndPassword(e.email, e.password)
       .then((userCredential) => {
         userCredential.user.updateProfile({
