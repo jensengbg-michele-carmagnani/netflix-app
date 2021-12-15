@@ -1,4 +1,4 @@
-# Netflix
+# Netflix [![N|Solid](https://www.google.com/url?sa=i&url=https%3A%2F%2Fflyclipart.com%2Fnetflix-netflix-logo-png-82871&psig=AOvVaw0gaEt6Vn_qpvuI8VQ5h-Z-&ust=1639654714769000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNC_x_jb5fQCFQAAAAAdAAAAABAJ)](https://nodesource.com/products/nsolid)
 ## Purpose of the application  
 - Application aiming to provide an online library for movies content . 
 - The application allows user to browse through latest updated movies, tv-series, documentaries etc. 
