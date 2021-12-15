@@ -1,3 +1,19 @@
+# Netflix
+## Purpose of the application  
+- Application aiming to provide an online library for movies content . 
+- The application allows user to browse through latest updated movies, tv-series, documentaries etc. 
+- The application organizes and displays the content according to its respective genre. 
+- The application provides details like date of release, movie rating and information of the cast of the movie. 
+- The application also provides a row of actors with the Actor of the day. 
+- User can organize their own favorite list by adding/removing the movie to their  list. 
+- User can also join a subscription plan via Stripe by using fake payment information. 
+
+## Info for simulate a payment in profile 
+- The number of the credit card to use 4242 4242 4242 4242 Visa.
+- For simulating payment with other credit cards and failing payment please check the [link]
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

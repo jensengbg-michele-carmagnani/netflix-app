@@ -31,8 +31,6 @@ const requests = {
   fetchTrendyOfDayTv: `/trending/tv/day?api_key=${API_KEY}&language=en-US`,
   fetchTrendyOfdayMovie: `/trending/movie/day?api_key=${API_KEY}&language=en-US`,
   fetchTrendyOfdayPerson: `/trending/person/day?api_key=${API_KEY}&language=en-US`,
-  
-  
   base_url_img: "https://image.tmdb.org/t/p/original",
   fetchGenre: `genre/tv/list?api_key=${API_KEY}&language=en-US`,
 };
