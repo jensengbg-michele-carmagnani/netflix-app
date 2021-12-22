@@ -7,18 +7,12 @@ import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import css from "./Row.module.css";
 import { RowProp } from "../../../types/Screens";
-import {Movie} from "../../../types/Movie"
-import {Https} from "../../../types/UseHttp"
-
-<<<<<<< HEAD:src/components/HomeScreenLayout/Row.tsx
+import { Movie } from "../../../types/Movie";
+import { Https } from "../../../types/UseHttp";
 
 const Row: React.FC<RowProp> = ({ title, fetchUrl, isLargeRow = false }) => {
   const [movies, setMovies] = useState<Movie[]>([]);
-=======
-const Row = ({ title, fetchUrl, isLargeRow = false }) => {
-  const [movies, setMovies] = useState([]);
-  const [refinedList, setRefinedList] = useState([]);
->>>>>>> development:src/components/HomeScreenLayout/Row.js
+  const [refinedList, setRefinedList] = useState<Movie[]>([]);
 
   const base_url_img = requests.base_url_img;
 
@@ -26,12 +20,8 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
     fetchTask();
   }, []);
 
-<<<<<<< HEAD:src/components/HomeScreenLayout/Row.tsx
   const getMovies = (paylod:Movie[]) => {
-    setMovies(paylod) ;
-=======
-  const getMovies = (paylod) => {
-    let refinedPayload = [];
+    let refinedPayload: Movie[] = [];
     for (let key in paylod) {
       if (+key < 10 && isLargeRow) {
         refinedPayload.push(paylod[key]);
@@ -39,19 +29,13 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
       }
       setMovies(paylod);
     }
->>>>>>> development:src/components/HomeScreenLayout/Row.js
   };
-  
+
   const {
     error,
     isLoading,
     sendRequest: fetchTask,
-<<<<<<< HEAD:src/components/HomeScreenLayout/Row.tsx
   } = useHttp<Https>({ url: fetchUrl, getMovies });
-  
-=======
-  } = useHttp({ url: fetchUrl, getMovies });
->>>>>>> development:src/components/HomeScreenLayout/Row.js
 
   if (error) {
     return (

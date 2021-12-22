@@ -6,21 +6,20 @@ import { useAppSelector } from "../../app/hooks";
 import axios from "axios";
 import db from "../../firebase";
 
-
 import Error from "../UI/Error";
 import avatar from "../../Assets/Netflix-avatar.png";
 import plus from "../../Assets/add50-ico.png";
 import check from "../../Assets/check50-ico.png";
-import {optionNotification} from '../../../types/MovieDetails'
+import { optionNotification } from "../../../types/MovieDetails";
 import { MovieDetails } from "../../../types/MovieDetails";
 import { Cast } from "../../../types/MovieCast";
 import { troncate } from "../../../types/Movie";
-import {UserSlice} from "../../../types/User"
-import {errorMsg} from "../../../types/MovieDetails"
+import { UserSlice } from "../../../types/User";
+import { errorMsg } from "../../../types/MovieDetails";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import css from "./MovieDetail.module.css";
 
-const MovieDetail: React.FC= () => {
+const MovieDetail: React.FC = () => {
   const [movie, setMovie] = useState<MovieDetails>();
   const [movieCast, setMovieCast] = useState<Cast[]>([]);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
@@ -29,7 +28,7 @@ const MovieDetail: React.FC= () => {
   const [startPercentage, setStartPercentage] = useState<number>(0);
 
   const movieId = useParams<{ movieId: string }>().movieId;
-  const user  = useAppSelector(state => state.user.user) as UserSlice;
+  const user = useAppSelector((state) => state.user.user) as UserSlice;
   const base_url_img = "https://image.tmdb.org/t/p/original/";
 
   const troncate: troncate = (string, n) => {
@@ -40,10 +39,10 @@ const MovieDetail: React.FC= () => {
   const movieCast_url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
 
   useEffect(() => {
-     if(movie?.vote_average){
-    setStartPercentage( Math.round(( movie?.vote_average / 10) * 100)) 
-  }
- 
+    if (movie?.vote_average) {
+      setStartPercentage(Math.round((movie?.vote_average / 10) * 100));
+    }
+
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(details_Url);
@@ -68,7 +67,7 @@ const MovieDetail: React.FC= () => {
   }, []);
 
   // sericeWorker Notification
-  const notificationHandler = (options:optionNotification) => {
+  const notificationHandler = (options: optionNotification) => {
     let notif = new Notification("Hi", options);
     navigator.serviceWorker.ready.then((reg) =>
       reg.showNotification("Reminder", options)
@@ -115,8 +114,7 @@ const MovieDetail: React.FC= () => {
       });
 
   const addFavoriteHandler = async () => {
-<<<<<<< HEAD:src/components/HomeScreenLayout/MovieDetail.tsx
-    if(movie){
+    if (movie) {
       await db
         .collection("customers")
         .doc(user.uid)
@@ -129,28 +127,12 @@ const MovieDetail: React.FC= () => {
           notificationHandler(options);
         })
         .catch((error) =>
-          setErrorMsg({ message: error.message, errorType: error })
+          setErrorMsg({
+            message: "Something went wrong, Try later",
+            error: error.message,
+          })
         );
     }
-=======
-    await db
-      .collection("customers")
-      .doc(user.uid)
-      .collection("favorite_session")
-      .add(movie)
-      .then(() => {
-        const options = {
-          body: "Movie succefully added!",
-        };
-        notificationHandler(options);
-      })
-      .catch((error) =>
-        setErrorMsg({
-          message: "Something went wrong, Try later",
-          error: error.message,
-        })
-      );
->>>>>>> development:src/components/HomeScreenLayout/MovieDetail.js
   };
 
   const removeFavoriteHandler = async () => {
@@ -178,32 +160,22 @@ const MovieDetail: React.FC= () => {
         );
     }
   };
-<<<<<<< HEAD:src/components/HomeScreenLayout/MovieDetail.tsx
- 
- 
-=======
 
-  const startPercentage = Math.round((movie?.vote_average / 10) * 100);
->>>>>>> development:src/components/HomeScreenLayout/MovieDetail.js
+  setStartPercentage(Math.round((movie?.vote_average / 10) * 100));
 
   return (
     <>
-    
       {errorMsg ? (
-<<<<<<< HEAD:src/components/HomeScreenLayout/MovieDetail.tsx
-        <Error message={errorMsg.message} error={errorMsg.errorType} />
-=======
         <div className={css.errorMessage}>
           <Error
             onError={{ message: errorMsg.message, error: errorMsg.error }}
           />
         </div>
->>>>>>> development:src/components/HomeScreenLayout/MovieDetail.js
       ) : (
         <div className={css.moviedetail}>
-        <div
+          <div
             className={css.banner}
-        style={{
+            style={{
               backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
             }}
           >
@@ -216,7 +188,7 @@ const MovieDetail: React.FC= () => {
               </h1>
               <div className={css.banner__buttons}>
                 {!isFavorite ? (
-                  <img  src={plus} alt="" onClick={addFavoriteHandler} />
+                  <img src={plus} alt="" onClick={addFavoriteHandler} />
                 ) : (
                   <img src={check} alt="" onClick={removeFavoriteHandler} />
                 )}
@@ -269,9 +241,8 @@ const MovieDetail: React.FC= () => {
 
               <article className={css.moviedetail__genres}>
                 <h4>Genres: </h4>
-                {movie && movie.genres?.map((gen) => (
-                  <p key={gen.id}>{gen.name}</p>
-                ))}
+                {movie &&
+                  movie.genres?.map((gen) => <p key={gen.id}>{gen.name}</p>)}
               </article>
             </section>
           </section>
@@ -299,7 +270,6 @@ const MovieDetail: React.FC= () => {
       )}
     </>
   );
-  
 };
 
 export default MovieDetail;

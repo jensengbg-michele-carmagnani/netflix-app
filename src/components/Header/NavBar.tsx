@@ -4,10 +4,7 @@ import css from "./NavBar.module.css";
 
 import { NavLink } from "react-router-dom";
 
-<<<<<<< HEAD:src/components/Header/NavBar.tsx
-const NavBar:React.FC<{isShow:boolean}> = (props) => {
-=======
-const NavBar = (props) => {
+const NavBar: React.FC<{ isShow: boolean }> = (props) => {
   const [screenWidth, setScreenWidth] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [openMobileNav, setOpenMobileNav] = useState(false);
@@ -16,8 +13,7 @@ const NavBar = (props) => {
   useEffect(() => {
     getScreenWidth();
   });
->>>>>>> development:src/components/Header/NavBar.js
-  
+
   const getScreenWidth = () => {
     const actualScreenWidth = window.screen.width;
     if (actualScreenWidth <= 414) {
@@ -30,11 +26,11 @@ const NavBar = (props) => {
   };
 
   const closeModal = async () => {
-    await setOpenMobileNav(prevState =>!prevState);
+    await setOpenMobileNav((prevState) => !prevState);
   };
   const closeIconManu = () => {
-    setChangeIconManu(!changeIconManu)
-  }
+    setChangeIconManu(!changeIconManu);
+  };
   return (
     <>
       <div
@@ -68,7 +64,7 @@ const NavBar = (props) => {
               <li>My list</li>
             </NavLink>
             <NavLink to="/profile" activeClassName={css.active}>
-              <li >
+              <li>
                 <img
                   className={css.avatar}
                   src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
@@ -83,7 +79,7 @@ const NavBar = (props) => {
         onClick={() => {
           showMobileNav();
           setChangeIconManu(!changeIconManu);
-          openMobileNav && closeModal()
+          openMobileNav && closeModal();
         }}
         className={css.navMobile__content}
       >
@@ -91,7 +87,11 @@ const NavBar = (props) => {
         <div className={changeIconManu && css.navMobile___second}></div>
         <div className={changeIconManu && css.navMobile___third}></div>
       </div>
-      <MobileBarMenu show={openMobileNav} closed={closeModal} onChangeIconManu={closeIconManu}/>
+      <MobileBarMenu
+        show={openMobileNav}
+        closed={closeModal}
+        onChangeIconManu={closeIconManu}
+      />
     </>
   );
 };

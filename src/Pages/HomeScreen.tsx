@@ -18,12 +18,7 @@ const HomeScreen: React.FC<{
     sessionStorage.setItem("modal", "true");
     setModalIsOpen(true);
   };
-<<<<<<< HEAD:src/Pages/HomeScreen.tsx
-  console.log("state show", showSession);
-
-=======
   
->>>>>>> development:src/Pages/HomeScreen.js
   if (showSession !== "true" || null) {
     setTimeout(() => {
       showModal();
