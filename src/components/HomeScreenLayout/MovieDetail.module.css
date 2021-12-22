@@ -1,6 +1,5 @@
 .moviedetail {
   position: relative;
-  height: 90vh;
   color: aliceblue;
   margin-top: 4rem;
 }
@@ -32,10 +31,8 @@
   font-weight: 300;
 }
 
-
 .banner___fedeBottom {
-  height: 16.1rem;
-
+  height: 16.2rem;
   background: rgb(0, 0, 0);
   background: linear-gradient(
     180deg,
@@ -65,17 +62,16 @@
   display: flex;
   justify-content: space-between;
 }
-.banner__buttons  {
+.banner__buttons {
   position: fixed;
   top: 500px;
   left: 30px;
-  
+  z-index: 100;
 }
 .banner__buttons img {
   width: 50px;
   height: 50px;
   cursor: pointer;
-  
 }
 
 .moviedetail__cast_info {
@@ -100,34 +96,87 @@
 .moviedetail__cast_info::-webkit-scrollbar {
   display: none;
 }
-.moviedetail__starOuter{
-  position: relative;
-  display: inline-block;
+.moviedetail__cast_card {
+  height: 100%;
 }
-.moviedetail__starInner{
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 10px;
-  
-}
-.moviedetail__starOuter::before{
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  color: #ccc;
-}
-.moviedetail__starInner::before{
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  color: #f8ce0b;
-}
-.moviedetail__vote{
+
+.moviedetail__vote {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
+
+.errorMessage {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .moviedetail {
+    margin-top: 0;
+  }
+  .banner__title {
+    height: 100%;
+    font-size: 2.4rem;
+    font-weight: 800;
+  }
+
+  .moviedetail__wrapper {
+    height: 30%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .banner__buttons {
+    position: fixed;
+    top: 40%;
+    left: 5%;
+  }
+  .banner__buttons img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .banner__description {
+    height: 50%;
+    width: 45rem;
+    margin-left: 25%;
+    line-height: 1.2rem;
+    font-size: 1rem;
+    max-width: 70%;
+  }
+}
+
+/* @media screen and (max-width: 430px) {
+  .banner__title {
+    height: 100%;
+    font-size: 2.4rem;
+    font-weight: 800;
+  }
+
+  .moviedetail__wrapper {
+    height: 30%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .banner__buttons {
+    position: fixed;
+    top: 40%;
+    left: 5%;
+  }
+  .banner__buttons img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .banner__description {
+    height: 50%;
+    width: 45rem;
+    margin-left: 25%;
+    line-height: 1.2rem;
+    font-size: 1rem;
+    max-width: 70%;
+   } */

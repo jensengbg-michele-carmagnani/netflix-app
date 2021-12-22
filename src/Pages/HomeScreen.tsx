@@ -18,8 +18,12 @@ const HomeScreen: React.FC<{
     sessionStorage.setItem("modal", "true");
     setModalIsOpen(true);
   };
+<<<<<<< HEAD:src/Pages/HomeScreen.tsx
   console.log("state show", showSession);
 
+=======
+  
+>>>>>>> development:src/Pages/HomeScreen.js
   if (showSession !== "true" || null) {
     setTimeout(() => {
       showModal();
@@ -27,7 +31,6 @@ const HomeScreen: React.FC<{
   }
   const closeModal = async () => {
     await setModalIsOpen(false);
-    console.log("modalIsOpen", modalIsOpen);
   };
 
   const initNotification = async () => {

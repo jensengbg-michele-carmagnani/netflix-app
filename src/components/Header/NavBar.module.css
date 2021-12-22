@@ -1,11 +1,10 @@
-
 .nav__content {
   position: fixed;
   top: 0;
   padding: 10px;
   height: 55px;
   z-index: 100;
-  width: 100vw;
+  width: 100%;
 
   /* animation  */
   transition-timing-function: ease-in;
@@ -24,9 +23,8 @@
 }
 .nav__black {
   background-color: #141414;
-  
 }
-.nav__black a{
+.nav__black a {
   color: #fff;
 }
 
@@ -37,10 +35,9 @@ ul {
   align-items: center;
   margin: 0;
   padding: 0;
- width: 100%;
- height: 100%;
+  width: 100%;
+  height: 100%;
 }
-
 
 li {
   list-style-type: none;
@@ -51,8 +48,7 @@ li {
 .logo {
   cursor: pointer;
   width: 80px;
-  height: 50px ;
-  
+  height: 50px;
 }
 
 .avatar {
@@ -63,28 +59,73 @@ li {
   cursor: pointer;
   border-radius: 0.3rem;
 }
-.nav__singOut{
+.nav__singOut {
   position: fixed;
   right: 100px;
   top: -3px;
   border-radius: 5px;
-  border:1px #fff solid;
+  border: 1px #fff solid;
   margin-top: 1.4rem;
-  width:105px;
-  height:30px;
+  width: 105px;
+  height: 30px;
   background-color: #111;
   color: #fff;
-  font-size:.7rem;
+  font-size: 0.7rem;
   cursor: pointer;
   line-height: 1.3rem;
   transition-timing-function: ease-in;
   transition: all 0.5s;
-  
 }
 
-.nav__singOut:hover{
-   background-color:#e50a15;
-   color: #fff;
-   border:none;
-   cursor: pointer;
+.nav__singOut:hover {
+  background-color: #e50a15;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.navMobile__content {
+  position: relative;
+}
+.navMobile__openMenu {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
+}
+.navMobile__content {
+  display: none;
+}
+@media screen and (max-width: 500px) {
+  .nav__content {
+    display: none;
+  }
+  .navMobile__content {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+  .navMobile__content div {
+    margin-bottom: 0.6rem;
+    width: 2rem;
+    height: 0.1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: all 0.5s linear;
+  }
+  .navMobile___first {
+    transform: translateY(22px) rotate(45deg);
+  }
+  .navMobile___second {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  .navMobile___third {
+    transform: rotate(-45deg);
+  }
 }

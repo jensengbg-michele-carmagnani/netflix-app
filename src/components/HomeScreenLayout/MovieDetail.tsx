@@ -45,10 +45,17 @@ const MovieDetail: React.FC= () => {
   }
  
     const fetchMovieDetails = async () => {
-      const response = await axios.get(details_Url);
-
-      setMovie(response.data);
+      try {
+        const response = await axios.get(details_Url);
+        setMovie(response.data);
+      } catch (error) {
+        setErrorMsg({
+          message: "Something went wrong, Try later",
+          error: error.message,
+        });
+      }
     };
+    console.log(errorMsg);
 
     const fetchMovieCast = async () => {
       const response = await axios.get(movieCast_url);
@@ -101,10 +108,14 @@ const MovieDetail: React.FC= () => {
         });
       })
       .catch((error) => {
-        setErrorMsg({ message: error.message, errorType: error });
+        setErrorMsg({
+          message: "Something went wrong, Try later",
+          error: error.message,
+        });
       });
 
   const addFavoriteHandler = async () => {
+<<<<<<< HEAD:src/components/HomeScreenLayout/MovieDetail.tsx
     if(movie){
       await db
         .collection("customers")
@@ -121,6 +132,25 @@ const MovieDetail: React.FC= () => {
           setErrorMsg({ message: error.message, errorType: error })
         );
     }
+=======
+    await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("favorite_session")
+      .add(movie)
+      .then(() => {
+        const options = {
+          body: "Movie succefully added!",
+        };
+        notificationHandler(options);
+      })
+      .catch((error) =>
+        setErrorMsg({
+          message: "Something went wrong, Try later",
+          error: error.message,
+        })
+      );
+>>>>>>> development:src/components/HomeScreenLayout/MovieDetail.js
   };
 
   const removeFavoriteHandler = async () => {
@@ -141,18 +171,34 @@ const MovieDetail: React.FC= () => {
           setIsFavorite((prevState) => !prevState);
         })
         .catch((error) =>
-          setErrorMsg({ message: error.message, errorType: error })
+          setErrorMsg({
+            message: "Something went wrong, Try later",
+            error: error.message,
+          })
         );
     }
   };
+<<<<<<< HEAD:src/components/HomeScreenLayout/MovieDetail.tsx
  
  
+=======
+
+  const startPercentage = Math.round((movie?.vote_average / 10) * 100);
+>>>>>>> development:src/components/HomeScreenLayout/MovieDetail.js
 
   return (
     <>
     
       {errorMsg ? (
+<<<<<<< HEAD:src/components/HomeScreenLayout/MovieDetail.tsx
         <Error message={errorMsg.message} error={errorMsg.errorType} />
+=======
+        <div className={css.errorMessage}>
+          <Error
+            onError={{ message: errorMsg.message, error: errorMsg.error }}
+          />
+        </div>
+>>>>>>> development:src/components/HomeScreenLayout/MovieDetail.js
       ) : (
         <div className={css.moviedetail}>
         <div
@@ -170,7 +216,7 @@ const MovieDetail: React.FC= () => {
               </h1>
               <div className={css.banner__buttons}>
                 {!isFavorite ? (
-                  <img src={plus} alt="" onClick={addFavoriteHandler} />
+                  <img  src={plus} alt="" onClick={addFavoriteHandler} />
                 ) : (
                   <img src={check} alt="" onClick={removeFavoriteHandler} />
                 )}

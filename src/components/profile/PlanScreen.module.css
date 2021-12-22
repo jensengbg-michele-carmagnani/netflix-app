@@ -2,47 +2,62 @@
   width: 550px;
 }
 
-.planScreen__subscription{
+.planScreen__subscription {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
 }
-.planScreen__info{
+.planScreen__info {
   display: flex;
   flex-direction: column;
 }
-.planScreen__info > h4{
- font-size:2rem;
- font-weight: 100;
+.planScreen__info > h4 {
+  font-size: 2rem;
+  font-weight: 100;
 }
-.planScreen__info>h5{
-  color:#E50A15;
+.planScreen__info > h5 {
+  color: #e50a15;
   font-size: 1.3rem;
 }
-.planScreen__endSubscription{
-  color:#E50A15;
+.planScreen__endSubscription {
+  color: #e50a15;
   font-size: 1.15rem;
 }
-.planScreen__button{
+.planScreen__button {
   border-radius: 5px;
   margin-top: 1.4rem;
-  width:205px;
-  height:55px;
-  background-color:#e50a15;
+  width: 205px;
+  height: 55px;
+  background-color: #e50a15;
   border: none;
   color: #fff;
   font-size: 1.3rem;
   cursor: pointer;
-  
 }
-.planScreen__button:hover{
-background-color:#ff1925;
+.planScreen__button:hover {
+  background-color: #ff1925;
 }
-.planScreen__buttonCurrent{
-  background-color:#0717a5;
+.planScreen__buttonCurrent {
+  background-color: #0717a5;
 }
-.planScreen__buttonCurrent:hover{
-  background-color:#0a20e5;
+.planScreen__buttonCurrent:hover {
+  background-color: #0a20e5;
 }
 
+@media screen and (max-width: 500px) {
+  .planScreen {
+    width: 100%;
+  }
+  .planScreen__info > h4 {
+    font-size: 1.5rem;
+  }
+  .planScreen__info > h5 {
+    font-size: 1.2rem;
+  }
+  .planScreen__button {
+    margin-top: 0rem;
+    width: 50%;
+    font-size: 1.2rem;
+  }
+}

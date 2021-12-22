@@ -20,7 +20,6 @@
 }
 
 .bannerActor___fedeBottom {
-  
   height: 2.4rem;
   background: rgb(0, 0, 0);
   background: linear-gradient(
@@ -52,6 +51,37 @@
 .bannerActor__sensitiveData h4,
 h2 {
   min-width: 150px;
-  color: #686868;
+  color: white;
   font-weight: bolder;
+}
+
+@media screen and (max-width: 500px) {
+  .bannerActor {
+    /* height: 25%; */
+    height: 100%;
+    background-position: left top;
+  }
+
+  .bannerActor__title {
+    padding-top: 400px;
+    padding-bottom: 20px;
+  }
+
+  .bannerActor__contents {
+    padding-top: 2rem;
+    flex-direction: column;
+  }
+
+  /* .bannerActor {
+    height: 100%;
+    background-position: left top;
+  }
+  .bannerActor__title {
+    padding-top: 330px;
+    padding-bottom: 30px;
+  }
+  .bannerActor__contents {
+    padding-top: 8rem;
+    flex-direction: column;
+  } */
 }
