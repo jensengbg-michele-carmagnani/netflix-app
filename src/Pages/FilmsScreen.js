@@ -4,7 +4,7 @@ import requests from "../lib/Requests";
 import Films from "../components/Films/Films";
 
 export const FilmsScreen = (props) => {
-  const [isLargeRow, setIsLargeRow] = useState(true);
+  const [isLargeRow] = useState(true);
 
   useEffect(() => {
     window.addEventListener("scroll", props.moviesScreenBarHandler);

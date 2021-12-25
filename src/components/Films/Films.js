@@ -11,11 +11,6 @@ const Films = (props) => {
   const { title, fetchUrl, base_url_img, isLargeRow } = props;
   const [films, setFilms] = useState([]);
   const [refinedList, setRefinedList] = useState([]);
-
-  useEffect(() => {
-    fetchTask();
-  }, []);
-
   const getMovies = (paylod) => {
     let refinedPayload = [];
     for (let key in paylod) {
@@ -26,12 +21,19 @@ const Films = (props) => {
     setFilms(paylod);
     }
   };
-
   const {
     error,
     isLoading,
     sendRequest: fetchTask,
   } = useHttp({ url: fetchUrl, getMovies });
+
+  useEffect(() => {
+    fetchTask();
+  }, []);
+
+  
+
+ 
 
   if (error) {
     return (

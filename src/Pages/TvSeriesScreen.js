@@ -4,7 +4,7 @@ import TvSeries from "../components/TvSeries/TvSeries";
 import Banner from "../components/Header/Banner";
 import css from "./TvSeriesScreen.module.css";
 const TvSeriesScreen = (props) => {
-  const [isLargeRow, setIsLargeRow] = useState(true);
+  const [isLargeRow] = useState(true);
   useEffect(() => {
     window.addEventListener("scroll", props.trandyScreenHanlder);
     return () =>

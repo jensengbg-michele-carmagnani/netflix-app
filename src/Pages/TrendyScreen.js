@@ -7,7 +7,7 @@ import TrendyActors from "../components/Trandy/TrendyActors";
 import css from "./TrendyScreen.module.css";
 
 const TrendyScreen = (props) => {
-  const [isLargeRow, setIsLargeRow] = useState(true)
+  const [isLargeRow] = useState(true)
   useEffect(() => {
     window.addEventListener("scroll", props.seriesScreenBarHandler);
     return () =>

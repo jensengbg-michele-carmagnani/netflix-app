@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ import NotFoundScreen from "./Pages/NotFoundScreen";
 import MyListScreen from "./Pages/MyListScreen";
 import TrendyScreen from "./Pages/TrendyScreen";
 import ActorDetails from "./components/HomeScreenLayout/ActorDetails";
-// const FilmsScreen = lazy(() => import("./Pages/FilmsScreen"));
+
 
 function App() {
   const [show, setShow] = useState(false);
@@ -27,13 +27,13 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsLoadin(true);
+      setIsLoadin(!isLoading);
       if (user) {
         dispatch(login({ uid: user.uid, email: user.email }));
       } else {
         dispatch(logout);
       }
-      setIsLoadin(false);
+      setIsLoadin(isLoading);
     });
 
     return unsubscribe;
